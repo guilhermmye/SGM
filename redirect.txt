@@ -1,0 +1,34 @@
+    public void teste() {
+        System.out.println("teste");
+    }
+    
+    public void validarLeilao(Integer id, Boolean readOnly){
+        try {  
+            
+            Leilao leilao = pesquisarLeilaoPorIdService.obterPorId(id, "");
+            
+            if(leilao != null && leilao.getNumeroLeilao() != null && leilao.getAnoLeilao() != null){            
+                Boolean leialoEncerrado = validarLeilaoService.leilaoEncerrado(leilao.getNumeroLeilao(),leilao.getAnoLeilao());
+                if(!leialoEncerrado) {
+                    throw new BusinessException("Leilão "+leilao.getNumeroLeilao()+"/"+leilao.getAnoLeilao()+" não foi encerrado. Não é permitido realizar a baixa.");  
+                }else {
+                    redirectEdicao(id,readOnly);
+                }
+            } 
+        
+        }catch (BusinessException e) {
+           addError(e.getMessage());
+        }
+    }
+    
+    private void redirectEdicao(Integer id,Boolean readOnly)
+    {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try
+        {
+            ec.redirect(ec.getRequestContextPath() + "/app/contabilidade/imobilizado/baixaBem/registrarBaixaLeilao?id="+id+"&readOnly="+readOnly);            
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
