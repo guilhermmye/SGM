@@ -1,5 +1,5 @@
 
-CREATE TABLE teste.regiao (
+CREATE TABLE regiao (
                 regiao_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 sigla VARCHAR NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE teste.regiao (
 );
 
 
-CREATE TABLE teste.uf (
+CREATE TABLE uf (
                 uf_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 sigla VARCHAR NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE teste.uf (
 );
 
 
-CREATE TABLE teste.regiaoIntermedia (
+CREATE TABLE regiaoIntermedia (
                 regiaoIntermediaria_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 uf_id INTEGER NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE teste.regiaoIntermedia (
 );
 
 
-CREATE TABLE teste.regiaoImediata (
+CREATE TABLE regiaoImediata (
                 regiaoImediata_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 regiaoIntermediaria_id INTEGER NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE teste.regiaoImediata (
 );
 
 
-CREATE TABLE teste.mesorregiao (
+CREATE TABLE mesorregiao (
                 mesorregiao_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 uf_id INTEGER NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE teste.mesorregiao (
 );
 
 
-CREATE TABLE teste.microrregiao (
+CREATE TABLE microrregiao (
                 microrregiao_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 mesorregiao_id INTEGER NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE teste.microrregiao (
 );
 
 
-CREATE TABLE teste.municipio (
+CREATE TABLE municipio (
                 municipio_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 regiaoImediata_id INTEGER NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE teste.municipio (
 );
 
 
-CREATE TABLE teste.distrito (
+CREATE TABLE distrito (
                 distrito_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 municipio_id INTEGER NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE teste.distrito (
 );
 
 
-CREATE TABLE teste.subdistrito (
+CREATE TABLE subdistrito (
                 subdistrito_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 distrito_id INTEGER NOT NULL,
@@ -73,65 +73,65 @@ CREATE TABLE teste.subdistrito (
 );
 
 
-ALTER TABLE teste.uf ADD CONSTRAINT regiao_uf_fk
+ALTER TABLE uf ADD CONSTRAINT regiao_uf_fk
 FOREIGN KEY (regiao_id)
-REFERENCES teste.regiao (regiao_id)
+REFERENCES regiao (regiao_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.mesorregiao ADD CONSTRAINT uf_mesorregiao_fk
+ALTER TABLE mesorregiao ADD CONSTRAINT uf_mesorregiao_fk
 FOREIGN KEY (uf_id)
-REFERENCES teste.uf (uf_id)
+REFERENCES uf (uf_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.regiaoIntermedia ADD CONSTRAINT uf_regiaointermedia_fk
+ALTER TABLE regiaoIntermedia ADD CONSTRAINT uf_regiaointermedia_fk
 FOREIGN KEY (uf_id)
-REFERENCES teste.uf (uf_id)
+REFERENCES uf (uf_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.regiaoImediata ADD CONSTRAINT regiaointermedia_regiaoimediata_fk
+ALTER TABLE regiaoImediata ADD CONSTRAINT regiaointermedia_regiaoimediata_fk
 FOREIGN KEY (regiaoIntermediaria_id)
-REFERENCES teste.regiaoIntermedia (regiaoIntermediaria_id)
+REFERENCES regiaoIntermedia (regiaoIntermediaria_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.municipio ADD CONSTRAINT regiaoimediata_municipio_fk
+ALTER TABLE municipio ADD CONSTRAINT regiaoimediata_municipio_fk
 FOREIGN KEY (regiaoImediata_id)
-REFERENCES teste.regiaoImediata (regiaoImediata_id)
+REFERENCES regiaoImediata (regiaoImediata_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.microrregiao ADD CONSTRAINT mesorregiao_microrregiao_fk
+ALTER TABLE microrregiao ADD CONSTRAINT mesorregiao_microrregiao_fk
 FOREIGN KEY (mesorregiao_id)
-REFERENCES teste.mesorregiao (mesorregiao_id)
+REFERENCES mesorregiao (mesorregiao_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.municipio ADD CONSTRAINT microrregiao_municipio_fk
+ALTER TABLE municipio ADD CONSTRAINT microrregiao_municipio_fk
 FOREIGN KEY (microrregiao_id)
-REFERENCES teste.microrregiao (microrregiao_id)
+REFERENCES microrregiao (microrregiao_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.distrito ADD CONSTRAINT municipio_distrito_fk
+ALTER TABLE distrito ADD CONSTRAINT municipio_distrito_fk
 FOREIGN KEY (municipio_id)
-REFERENCES teste.municipio (municipio_id)
+REFERENCES municipio (municipio_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE teste.subdistrito ADD CONSTRAINT distrito_subdistrito_fk
+ALTER TABLE subdistrito ADD CONSTRAINT distrito_subdistrito_fk
 FOREIGN KEY (distrito_id)
-REFERENCES teste.distrito (distrito_id)
+REFERENCES distrito (distrito_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
