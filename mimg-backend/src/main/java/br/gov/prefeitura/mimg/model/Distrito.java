@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +22,11 @@ import lombok.Setter;
 public class Distrito {
 	
 	private Integer id;
+	
+	@NotNull
+	@Size(min = 2,max = 100)
 	private String nome;
+	
 	private Municipio municipio;
 	
 	
