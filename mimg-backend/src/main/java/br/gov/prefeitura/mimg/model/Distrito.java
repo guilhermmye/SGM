@@ -36,7 +36,8 @@ public class Distrito {
 	public Integer getId() {
 		return id;
 	}
-		
+	
+	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "municipio_id")
     public Municipio getMunicipio()

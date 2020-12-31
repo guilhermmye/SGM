@@ -1,6 +1,5 @@
 package br.gov.prefeitura.mimg.resourse;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Distrito;
 import br.gov.prefeitura.mimg.repository.DistritoRepository;
+import br.gov.prefeitura.mimg.repository.filter.DistritoFilter;
 import br.gov.prefeitura.mimg.service.DistritoService;
 
 @RestController
@@ -39,9 +41,14 @@ public class DistritoResource {
 	private DistritoService           distritoService;
 	
 	@GetMapping
-	public List<Distrito> listar(){
-		return distritoRepository.findAll();
+	public Page<Distrito> pesquisar(DistritoFilter distritoFilter,Pageable pageable){
+		return distritoRepository.filtrar(distritoFilter,pageable);
 	}
+	
+//	@GetMapping
+//	public List<Distrito> pesquisar(DistritoFilter distritoFilter){
+//		return distritoRepository.filtrar(distritoFilter);
+//	}
 	
 	@PostMapping
 	public ResponseEntity<Distrito> criar(@Valid @RequestBody Distrito distrito, HttpServletResponse response) {
