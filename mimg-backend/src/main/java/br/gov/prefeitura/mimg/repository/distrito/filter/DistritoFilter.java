@@ -1,4 +1,4 @@
-package br.gov.prefeitura.mimg.repository.filter;
+package br.gov.prefeitura.mimg.repository.distrito.filter;
 
 import lombok.Getter;
 import lombok.Setter;

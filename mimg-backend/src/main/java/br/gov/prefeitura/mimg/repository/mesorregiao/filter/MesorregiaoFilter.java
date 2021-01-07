@@ -1,11 +1,11 @@
-package br.gov.prefeitura.mimg.repository.filter;
+package br.gov.prefeitura.mimg.repository.mesorregiao.filter;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class RegiaoFilter {
+public class MesorregiaoFilter {
 	private String nome;
 	private String sigla;
 }

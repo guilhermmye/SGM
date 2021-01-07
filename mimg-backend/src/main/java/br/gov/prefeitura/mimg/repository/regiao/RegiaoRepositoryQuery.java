@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import br.gov.prefeitura.mimg.model.Regiao;
-import br.gov.prefeitura.mimg.repository.filter.RegiaoFilter;
+import br.gov.prefeitura.mimg.repository.regiao.filter.RegiaoFilter;
 
 public interface RegiaoRepositoryQuery {
 	
