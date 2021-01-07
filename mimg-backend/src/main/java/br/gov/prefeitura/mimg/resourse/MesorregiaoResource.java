@@ -1,6 +1,5 @@
 package br.gov.prefeitura.mimg.resourse;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,12 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Mesorregiao;
-import br.gov.prefeitura.mimg.model.Regiao;
 import br.gov.prefeitura.mimg.repository.MesorregiaoRepository;
-import br.gov.prefeitura.mimg.repository.RegiaoRepository;
 import br.gov.prefeitura.mimg.repository.mesorregiao.filter.MesorregiaoFilter;
-import br.gov.prefeitura.mimg.repository.regiao.filter.RegiaoFilter;
-import br.gov.prefeitura.mimg.service.RegiaoService;
+import br.gov.prefeitura.mimg.service.MesorregiaoService;
 
 @RestController
 @RequestMapping("/mesorregioes")
@@ -42,7 +38,7 @@ public class MesorregiaoResource {
 	private ApplicationEventPublisher publisher;
 	
 	@Autowired
-	private RegiaoService           regiaoService;
+	private MesorregiaoService           mesorregiaoService;
 	
 	
 	@GetMapping
@@ -76,7 +72,7 @@ public class MesorregiaoResource {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Mesorregiao> atualizar(@PathVariable Integer id, @Valid @RequestBody Mesorregiao mesorregiao) {		
-		Mesorregiao mesorregiaoSalvo = regiaoService.atualizar(id, mesorregiao);	
+		Mesorregiao mesorregiaoSalvo = mesorregiaoService.atualizar(id, mesorregiao);	
 		return ResponseEntity.ok(mesorregiaoSalvo);		
 	}
 }
