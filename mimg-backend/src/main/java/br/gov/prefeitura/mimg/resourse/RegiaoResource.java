@@ -1,5 +1,7 @@
 package br.gov.prefeitura.mimg.resourse;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -7,7 +9,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -83,7 +84,7 @@ public class RegiaoResource {
 	}
 	
 	@GetMapping("/ibge/{id}")
-	public ResponseEntity<Regiao> pesquisarIbge(@PathVariable String id){
+	public ResponseEntity<Regiao[]> pesquisarIbge(@PathVariable String id){
 		
 		RestTemplate restTemplate = new RestTemplate();
 		UriComponents uri = UriComponentsBuilder.newInstance()
@@ -93,14 +94,14 @@ public class RegiaoResource {
 				.queryParam(id)
 				.build();
 		
-		ResponseEntity<Regiao> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao.class);		
-	     System.out.println("Resultado da Chamada REST: " + regiao.getBody().getNome());
-		return regiao;
-    	
+		ResponseEntity<Regiao[]> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao[].class);
 		
+		List<Regiao> regioes = Arrays.asList(regiao.getBody());
+		
+		for (Regiao regiao2 : regioes) {
+			System.out.println("Resultado da Chamada REST: {"+ regiao2.getId() +","+regiao2.getNome()+","+regiao2.getSigla()+"}");
+		}	     
+		return regiao;		
 	}    
-	
-	
-	
 	
 }
