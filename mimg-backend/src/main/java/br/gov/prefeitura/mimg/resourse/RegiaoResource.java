@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Regiao;
@@ -41,10 +45,30 @@ public class RegiaoResource {
 	private RegiaoService           regiaoService;
 	
 	
-	@GetMapping
+	
+	@GetMapping()
+	public ResponseEntity<Regiao> pesquisarIbge(@PathVariable("id") String id){
+		
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("regioes")
+				.queryParam("2")
+				.build();
+		
+		ResponseEntity<Regiao> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao.class);		
+	     System.out.println("Resultado da Chamada REST: " + regiao.getBody().getNome());
+		return regiao;
+    	
+		
+	}    
+	
+	
+	/*@GetMapping
 	public Page<Regiao> pesquisar(RegiaoFilter regiaoFilter,Pageable pageable){
 		return regiaoRepository.filtrar(regiaoFilter,pageable);
-	}
+	}*/
 	
 //	@GetMapping
 //	public List<Regiao> pesquisar(RegiaoFilter regiaoFilter){
@@ -75,6 +99,8 @@ public class RegiaoResource {
 		Regiao regiaoSalvo = regiaoService.atualizar(id, regiao);	
 		return ResponseEntity.ok(regiaoSalvo);		
 	}
+	
+	
 	
 	
 }

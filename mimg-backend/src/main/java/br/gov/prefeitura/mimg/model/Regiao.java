@@ -1,5 +1,7 @@
 package br.gov.prefeitura.mimg.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="regiao")
-public class Regiao {
+public class Regiao implements Serializable{
 	
 	private Integer id;
 	
