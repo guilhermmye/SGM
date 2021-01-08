@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import br.gov.prefeitura.mimg.model.Distrito;
-import br.gov.prefeitura.mimg.repository.filter.DistritoFilter;
+import br.gov.prefeitura.mimg.repository.distrito.filter.DistritoFilter;
 
 public interface DistritoRepositoryQuery {
 	

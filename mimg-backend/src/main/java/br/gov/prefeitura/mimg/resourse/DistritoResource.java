@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Distrito;
 import br.gov.prefeitura.mimg.repository.DistritoRepository;
-import br.gov.prefeitura.mimg.repository.filter.DistritoFilter;
+import br.gov.prefeitura.mimg.repository.distrito.filter.DistritoFilter;
 import br.gov.prefeitura.mimg.service.DistritoService;
 
 @RestController
