@@ -46,29 +46,11 @@ public class RegiaoResource {
 	
 	
 	
-	@GetMapping()
-	public ResponseEntity<Regiao> pesquisarIbge(@PathVariable("id") String id){
-		
-		RestTemplate restTemplate = new RestTemplate();
-		UriComponents uri = UriComponentsBuilder.newInstance()
-				.scheme("https")
-				.host("servicodados.ibge.gov.br/api/v1/localidades")
-				.path("regioes")
-				.queryParam("2")
-				.build();
-		
-		ResponseEntity<Regiao> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao.class);		
-	     System.out.println("Resultado da Chamada REST: " + regiao.getBody().getNome());
-		return regiao;
-    	
-		
-	}    
 	
-	
-	/*@GetMapping
+	@GetMapping
 	public Page<Regiao> pesquisar(RegiaoFilter regiaoFilter,Pageable pageable){
 		return regiaoRepository.filtrar(regiaoFilter,pageable);
-	}*/
+	}
 	
 //	@GetMapping
 //	public List<Regiao> pesquisar(RegiaoFilter regiaoFilter){
@@ -99,6 +81,24 @@ public class RegiaoResource {
 		Regiao regiaoSalvo = regiaoService.atualizar(id, regiao);	
 		return ResponseEntity.ok(regiaoSalvo);		
 	}
+	
+	@GetMapping("/ibge/{id}")
+	public ResponseEntity<Regiao> pesquisarIbge(@PathVariable String id){
+		
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("regioes")
+				.queryParam(id)
+				.build();
+		
+		ResponseEntity<Regiao> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao.class);		
+	     System.out.println("Resultado da Chamada REST: " + regiao.getBody().getNome());
+		return regiao;
+    	
+		
+	}    
 	
 	
 	
