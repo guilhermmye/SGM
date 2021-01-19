@@ -1,0 +1,53 @@
+COMANDOS DOKCER 
+
+*********
+
+- docker image list : Lista as imagens que o docker host tem 
+- docker image pull python (trocar o nome python peplo o nome da imagem) : Atualizar a imagem
+- docker image inspect python (trocar o nome python peplo o nome da imagem) : inspecionar a imagem, todos os dados referente a imagem
+
+- docker container run <parâmetros> <imagem> <CMD> <argumentos>
+----- Parâmetros -----
+-d   : Execução do container em background
+-i   : Modo interativo. Mantém o STDIN aberto mesmo sem console anexado
+-t   : Aloca uma pseudo TTY
+–rm  : Automaticamente remove o container após finalização (Não funciona com -d)
+–name: Nomear o container
+-v   : Mapeamento de volume
+-p   : Mapeamento de porta
+-m   : Limitar o uso de memória RAM
+-c   : Balancear o uso de CPU
+
+Exemplo: docker container run -it --rm --name meu_python python bash
+
+- docker container run -it --rm -v "<host>:<container>" python - Mapear Volume
+- docker container run -it --rm -p "<host>:<container>" python - Mapear Portas
+- docker container run -it --rm -m 512M python(trocar o nome python peplo o nome da imagem) - limitar a quantidade de memoria para a inicialização.
+- docker container run -it --rm -c 512 python(trocar o nome python peplo o nome da imagem) - balancear o uso da cpu pelos containers, caso nao seja especificado sera usado como priridade maxima (1024).
+
+- docker container list <parâmetros> - mostra todos os containers
+----- Parâmetros -----
+-a   : Lista todos os containers, inclusive os desligados
+-l   : Lista os últimos containers,inclusive os desligados
+-n   : Lista os últimos N containers,inclusive os desligados
+-q   : Lista apenas os ids dos containers,ótimo para utilização em scripts
+
+- docker container stop meu_python - desliga o container
+- docker container start meu_python - reiniciar o container desligado
+
+************
+--criar imagem 
+ docker container commit containercriado meuubuntu:nginx
+
+--criar imagem 
+1 FROM ubuntu:16.04
+2 RUN apt-get update && apt-get install nginx -y
+3 COPY arquivo_teste /tmp/arquivo_teste
+4 CMD bash
+
+
+
+
+
+
+63 pagina 
