@@ -14,7 +14,7 @@ import { Regiao } from 'src/app/shared/model/regiao.model';
 export class ListaRegioesComponent implements OnInit {
 
   regioes: Regiao[] = [];
-
+  displayedColumns = ['nome','sigla']
   constructor(
     public regiaoService:RegiaoService
   ) { }
