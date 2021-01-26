@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ListaRegioesComponent } from './views/home/lista-regioes/lista-regioes.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule
 
   ],
   providers: [],
