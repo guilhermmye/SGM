@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     SidebarComponent,
     ToggleDirective,
     HomeComponent,
-    TableComponent
+    TableComponent,
+    ListaRegioesComponent
   ],
   imports: [
     BrowserModule,

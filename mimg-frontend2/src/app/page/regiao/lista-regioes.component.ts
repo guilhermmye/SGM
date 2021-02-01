@@ -3,7 +3,6 @@ import { RegiaoService } from 'src/app/share/service/regiao/regiao.service';
 import { Regiao } from 'src/app/shared/model/regiao/regiao.model';
 
 
-
 @Component({
   selector: 'app-lista-regioes',
   templateUrl: './lista-regioes.component.html',
@@ -11,7 +10,7 @@ import { Regiao } from 'src/app/shared/model/regiao/regiao.model';
 
   
 })
-export class ListaRegioesComponent implements OnInit {
+export class ListaRegioesComponent implements  OnInit {
 
   regioes: Regiao[] = [];
   displayedColumns = ['nome','sigla']
