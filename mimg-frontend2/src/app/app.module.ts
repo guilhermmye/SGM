@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
 import { ToggleDirective } from './dashboard/sidebar/toggle.directive';
@@ -21,6 +20,12 @@ import { MatCardModule } from '@angular/material/card';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
+import { RouterModule } from '@angular/router';
+import {routes} from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 
 
 @NgModule({
@@ -30,12 +35,11 @@ import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
     ToggleDirective,
     HomeComponent,
     TableComponent,
-    ListaRegioesComponent
+    ListaRegioesComponent  
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -48,7 +52,9 @@ import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
     MatNativeDateModule,
     MatRadioModule,
     MatTooltipModule,
-    MatRippleModule
+    MatRippleModule,
+    HttpClientModule, 
+    RouterModule.forRoot(routes)
   ],
   providers: [{
     provide: LocationStrategy,
