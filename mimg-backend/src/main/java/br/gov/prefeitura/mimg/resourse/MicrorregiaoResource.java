@@ -11,7 +11,7 @@ import br.gov.prefeitura.mimg.model.Microrregiao;
 import br.gov.prefeitura.mimg.repository.MicrorregiaoRepository;
 
 @RestController
-@RequestMapping("/Microrregioes")
+@RequestMapping("/microrregioes")
 public class MicrorregiaoResource {
 	
 	@Autowired
