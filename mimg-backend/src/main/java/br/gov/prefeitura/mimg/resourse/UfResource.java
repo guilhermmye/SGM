@@ -3,6 +3,7 @@ package br.gov.prefeitura.mimg.resourse;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.UfRepository;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/ufs")
 public class UfResource {

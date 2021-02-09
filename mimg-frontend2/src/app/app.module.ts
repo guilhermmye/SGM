@@ -20,6 +20,14 @@ import { MatCardModule } from '@angular/material/card';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
+import { ListaDistritosComponent } from './page/distrito/lista-distritos.component';
+import { ListaMesorregioesComponent } from './page/mesorregiao/lista-mesorregioes.component';
+import { ListaMicrorregioesComponent } from './page/microrregiao/lista-microrregioes.component';
+import { ListaMunicipiosComponent } from './page/municipio/lista-municipios.component';
+import { ListaRegioesImediatasComponent } from './page/regiaoImediata/lista-regioesImediatas.component';
+import { ListaRegioesIntermediariasComponent } from './page/regiaoIntermediaria/lista-regioesIntermediarias.component';
+import { ListaSubdistritosComponent } from './page/subdistrito/lista-subdistritos.component';
+import { ListaUfsComponent } from './page/uf/lista-ufs.component';
 import { RouterModule } from '@angular/router';
 import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,7 +43,15 @@ import { HttpClientModule } from '@angular/common/http';
     ToggleDirective,
     HomeComponent,
     TableComponent,
-    ListaRegioesComponent  
+    ListaRegioesComponent,
+    ListaDistritosComponent,
+    ListaMesorregioesComponent,
+    ListaMicrorregioesComponent,
+    ListaMunicipiosComponent,
+    ListaRegioesImediatasComponent,
+    ListaRegioesIntermediariasComponent,
+    ListaSubdistritosComponent,
+    ListaUfsComponent,
   ],
   imports: [
     BrowserModule,
