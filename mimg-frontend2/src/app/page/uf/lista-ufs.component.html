@@ -22,7 +22,7 @@
 
             <ng-container matColumnDef="regiao">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Região</th>
-              <td mat-cell *matCellDef="let element">{{element.regiao}}</td>
+              <td mat-cell *matCellDef="let element">{{element.regiao.nome}}</td>
             </ng-container>
            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
