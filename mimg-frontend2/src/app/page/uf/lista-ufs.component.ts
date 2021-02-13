@@ -24,7 +24,7 @@ export class ListaUfsComponent implements  OnInit {
   }
 
   getListar(){
-    this.ufService.getUfs("ufs").subscribe(data => {
+    this.ufService.getufs("ufs").subscribe(data => {
        this.ufs = data.content;
        console.log(this.ufs);
     });

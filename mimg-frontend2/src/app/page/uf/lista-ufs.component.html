@@ -1,3 +1,10 @@
+<div class="c-subheader-nav">
+  <div class="btn-group" role="group">
+    <button mat-raised-button ><mat-icon>add</mat-icon>Importar UF</button> 
+       
+  </div>
+</div>
+
 <main class="c-main">
       <div class="container-fluid">
         <div class="mat-elevation-z8">
@@ -22,7 +29,7 @@
 
             <ng-container matColumnDef="regiao">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Região</th>
-              <td mat-cell *matCellDef="let element">{{element.regiao.nome}}</td>
+              <td mat-cell *matCellDef="let element">{{element.regiao}}</td>
             </ng-container>
            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

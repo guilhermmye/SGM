@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from 'src/app/shared//model/regiao/responsePageable.model';
 import { Regiao } from 'src/app/shared/model/regiao/regiao.model';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,15 @@ httpOptions={
 
   constructor(private httpClient: HttpClient) {}
 
-   public getRegioes(flag: string): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(this.apiUrl);
-}
+
+  public getRegioes(flag: string): Observable<ResponsePageable> {
+    return this.httpClient.get<ResponsePageable>(`${environment.regiao_api}/regioes`);
+  }
+
+  public getImportarRegioes(): Observable<ResponsePageable> {
+    
+   return this.httpClient.get<ResponsePageable>(`${environment.regiao_api}/regioes/ibge/1|2|3|4|5`)
+ }
 
 
 
