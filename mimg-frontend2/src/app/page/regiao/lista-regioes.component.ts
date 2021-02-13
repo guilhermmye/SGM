@@ -29,7 +29,12 @@ export class ListaRegioesComponent implements  OnInit {
     });
 }
 
-
+getImportar(){
+  this.regiaoService.getImportarRegioes().subscribe(data => {
+     this.regioes = data.content;
+     console.log(this.regioes);
+  });
+}
 
 
 }
