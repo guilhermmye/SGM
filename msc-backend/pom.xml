@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.br.prefeitura</groupId>
-	<artifactId>mimg-backend</artifactId>
+	<artifactId>msc-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mimg-backend</name>
+	<name>msc-backend</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
