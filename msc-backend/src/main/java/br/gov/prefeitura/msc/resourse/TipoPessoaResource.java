@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.prefeitura.msc.event.RecursoCriadoEvent;
-import br.gov.prefeitura.msc.model.Sexo;
 import br.gov.prefeitura.msc.model.TipoPessoa;
 import br.gov.prefeitura.msc.repository.TipoPessoaRepository;
 import br.gov.prefeitura.msc.repository.tipoPessoa.filter.TipoPessoaFilter;
