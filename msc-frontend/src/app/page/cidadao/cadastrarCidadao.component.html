@@ -64,31 +64,67 @@
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </div>
-
-                    <div>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Toppings</mat-label>
-                            <mat-select [formControl]="toppings" multiple>
-                              <mat-select-trigger>
-                                {{toppings.value ? toppings.value[0] : ''}}
-                                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-                                  (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                                </span>
-                              </mat-select-trigger>
-                              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-
-                    </div>
-
                     <div class="col-sm">
-                        <mat-radio-group aria-label="Select an option">
-                            <mat-radio-button class="mt-4" value="1">Option 1</mat-radio-button>
-                            <mat-radio-button class="mt-4" value="2">Option 2</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                        <mat-form-field >
+                            <mat-label>Sexo</mat-label>
+                            <mat-select>
+                            <mat-option value="option">Option</mat-option>
+                            </mat-select>
+                       </mat-form-field>
+                    </div>                 
                 </div>
             </mat-card-content>
+            
+            <mat-card class="mb-4">
+                <mat-card-header>
+                    <mat-card-subtitle>Endereço Atual</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm">
+                            <mat-form-field>
+                                <input matInput placeholder="Endereço">
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="col-sm">
+                            <mat-form-field>
+                                <input matInput placeholder="Número">
+                            </mat-form-field>
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm">
+                            <mat-form-field>
+                                <input matInput placeholder="CEP">
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="col-sm">
+                            <mat-form-field >
+                                <mat-label>UF</mat-label>
+                                <mat-select>
+                                <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                           </mat-form-field>
+                        </div>  
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <mat-form-field >
+                                <mat-label>Município</mat-label>
+                                <mat-select>
+                                <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                           </mat-form-field>
+                        </div> 
+                    </div>
+                </mat-card-content>
+
+            </mat-card>        
+                   
+
 
             <mat-card-actions>
                 <button mat-button>LIKE</button>

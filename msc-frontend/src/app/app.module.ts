@@ -24,7 +24,7 @@ import { CadastrarCidadaoComponent } from './page/cidadao/cadastrarCidadao.compo
 import { RouterModule } from '@angular/router';
 import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
 
 
 
