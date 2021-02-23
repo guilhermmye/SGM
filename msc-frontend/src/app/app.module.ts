@@ -25,6 +25,8 @@ import { RouterModule } from '@angular/router';
 import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+
 
 
 
@@ -58,6 +60,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatRippleModule,
     HttpClientModule, 
     MatSelectModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [{
