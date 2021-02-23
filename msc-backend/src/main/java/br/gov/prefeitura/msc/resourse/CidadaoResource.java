@@ -23,58 +23,58 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.prefeitura.msc.event.RecursoCriadoEvent;
-import br.gov.prefeitura.msc.model.Pessoa;
-import br.gov.prefeitura.msc.repository.PessoaRepository;
-import br.gov.prefeitura.msc.repository.pessoa.filter.PessoaFilter;
-import br.gov.prefeitura.msc.service.PessoaService;
+import br.gov.prefeitura.msc.model.Cidadao;
+import br.gov.prefeitura.msc.repository.CidadaoRepository;
+import br.gov.prefeitura.msc.repository.cidadao.filter.CidadaoFilter;
+import br.gov.prefeitura.msc.service.CidadaoService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/pessoas")
-public class PessoaResource {
+@RequestMapping("/cidadaos")
+public class CidadaoResource {
 	
 	@Autowired
-	private PessoaRepository  			pessoaRepository;
+	private CidadaoRepository  			cidadaoRepository;
 	
 	@Autowired
 	private ApplicationEventPublisher 	publisher;
 	
 	@Autowired
-	private PessoaService           	pessoaService;
+	private CidadaoService           	cidadaoService;
 	
 	@GetMapping
-	public Page<Pessoa> pesquisar(PessoaFilter pessoaFilter,Pageable pageable){
-		return pessoaRepository.filtrar(pessoaFilter,pageable);
+	public Page<Cidadao> pesquisar(CidadaoFilter cidadaoFilter,Pageable pageable){
+		return cidadaoRepository.filtrar(cidadaoFilter,pageable);
 	}
 	
 //	@GetMapping
-//	public List<Pessoa> pesquisar(PessoaFilter pessoaFilter){
-//		return pessoaRepository.filtrar(pessoaFilter);
+//	public List<Cidadao> pesquisar(cidadaoFilter cidadaoFilter){
+//		return cidadaoRepository.filtrar(cidadaoFilter);
 //	}
 	
 	@PostMapping
-	public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
-		Pessoa pessoaSalvo = pessoaRepository.save(pessoa);		
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, pessoaSalvo.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(pessoaSalvo);		
+	public ResponseEntity<Cidadao> criar(@Valid @RequestBody Cidadao cidadao, HttpServletResponse response) {
+		Cidadao cidadaoSalvo = cidadaoRepository.save(cidadao);		
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, cidadaoSalvo.getId()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(cidadaoSalvo);		
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> buscarPorId(@PathVariable Integer id) {
-		Optional<Pessoa> pessoa = pessoaRepository.findById(id);		
-		return pessoa != null && pessoa.get() != null ? ResponseEntity.ok(pessoa.get()) : ResponseEntity.notFound().build();		
+	public ResponseEntity<Cidadao> buscarPorId(@PathVariable Integer id) {
+		Optional<Cidadao> cidadao = cidadaoRepository.findById(id);		
+		return cidadao != null && cidadao.get() != null ? ResponseEntity.ok(cidadao.get()) : ResponseEntity.notFound().build();		
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Integer id) {
-		pessoaRepository.deleteById(id);
+		cidadaoRepository.deleteById(id);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Pessoa> atualizar(@PathVariable Integer id, @Valid @RequestBody Pessoa pessoa) {		
-		Pessoa pessoaSalvo = pessoaService.atualizar(id, pessoa);	
-		return ResponseEntity.ok(pessoaSalvo);		
+	public ResponseEntity<Cidadao> atualizar(@PathVariable Integer id, @Valid @RequestBody Cidadao cidadao) {		
+		Cidadao cidadaoSalvo = cidadaoService.atualizar(id, cidadao);	
+		return ResponseEntity.ok(cidadaoSalvo);		
 	}
 	
 }

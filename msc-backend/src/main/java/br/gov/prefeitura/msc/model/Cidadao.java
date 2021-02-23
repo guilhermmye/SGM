@@ -18,8 +18,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="pessoa")
-public class Pessoa {
+@Table(name="cidadao")
+public class Cidadao {
 	
 	private Integer id;
 	private String  nome;
