@@ -16,7 +16,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import br.gov.prefeitura.msc.model.Cidadao;
-import br.gov.prefeitura.msc.repository.pessoa.filter.CidadaoFilter;
+import br.gov.prefeitura.msc.repository.cidadao.filter.CidadaoFilter;
 
 public class CidadaoRepositoryImpl implements CidadaoRepositoryQuery {
 

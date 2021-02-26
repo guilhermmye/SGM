@@ -10,7 +10,7 @@ export class Cidadao {
 	 //dataNascimento : DatePipe  ;
 	 endereco       : String  = "";
 	 cep            : String  = "";
-	 municipioId    : number  = 0;
+	 municipioId    : String  =  "";
 	 numero         : String  = "";
 	 //Sexo :   sexo;
 	 //TipoPessoa: tipoPessoa;

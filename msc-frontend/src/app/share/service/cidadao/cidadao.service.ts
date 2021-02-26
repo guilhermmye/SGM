@@ -29,7 +29,7 @@ private readonly urlMsc = environment.msc_api;
   }
 
   public criarCidadao(cidadao:any){
-    var url = this.urlMsc+"";
+    var url = this.urlMsc+"/cidadaos";
     return this.httpClient.post<Cidadao>(url,cidadao,
       {
         headers: new HttpHeaders({

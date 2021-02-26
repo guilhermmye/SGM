@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,7 +38,7 @@ public class Cidadao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "pessoa_id")
+	@Column(name = "cidadao_id")
 	public Integer getId() {
 		return id;
 	}
@@ -48,6 +50,7 @@ public class Cidadao {
 		
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sexo_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public Sexo getSexo()
     {
         return sexo;
@@ -55,6 +58,7 @@ public class Cidadao {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tipoPessoa_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public TipoPessoa getTipoPessoa()
     {
         return tipoPessoa;
