@@ -1,6 +1,5 @@
 package br.gov.prefeitura.msc.resourse;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,8 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,15 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.prefeitura.msc.event.RecursoCriadoEvent;
-import br.gov.prefeitura.msc.model.Regiao;
 import br.gov.prefeitura.msc.model.Sexo;
 import br.gov.prefeitura.msc.repository.SexoRepository;
 import br.gov.prefeitura.msc.repository.sexo.filter.SexoFilter;
@@ -50,15 +42,15 @@ public class SexoResource {
 	private SexoService           		sexoService;
 	
 	
-	@GetMapping
-	public Page<Sexo> pesquisar(SexoFilter sexoFilter,Pageable pageable){
-		return sexoRepository.filtrar(sexoFilter,pageable);
-	}
-	
 //	@GetMapping
-//	public List<Sexo> pesquisar(SexoFilter sexoFilter){
-//		return sexoRepository.filtrar(sexoFilter);
+//	public Page<Sexo> pesquisar(SexoFilter sexoFilter,Pageable pageable){
+//		return sexoRepository.filtrar(sexoFilter,pageable);
 //	}
+	
+	@GetMapping
+	public List<Sexo> pesquisar(SexoFilter sexoFilter){
+		return sexoRepository.filtrar(sexoFilter);
+	}
 	
 	@PostMapping
 	public ResponseEntity<Sexo> criar(@Valid @RequestBody Sexo sexo, HttpServletResponse response) {

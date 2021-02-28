@@ -28,6 +28,17 @@ private readonly urlMsc = environment.msc_api;
     
   }
 
+
+  public listarSexo() {
+    var url = this.urlMsc+"/sexos";
+    return this.httpClient.get<ResponsePageable>(url,{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+    
+  }
+
   public criarCidadao(cidadao:any){
     var url = this.urlMsc+"/cidadaos";
     return this.httpClient.post<Cidadao>(url,cidadao,

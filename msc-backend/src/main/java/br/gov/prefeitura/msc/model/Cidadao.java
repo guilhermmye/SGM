@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -46,6 +47,11 @@ public class Cidadao {
 	@Column(name = "municipio_id")
 	public Integer getMunicipioId() {
 		return municipioId;
+	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 		
 	@ManyToOne(fetch = FetchType.LAZY)

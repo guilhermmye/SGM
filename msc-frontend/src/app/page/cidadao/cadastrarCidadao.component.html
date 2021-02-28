@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <mat-form-field >
-                                <input matInput placeholder="CPF/CNPJ" type="text" formControlName="cpfCnpj" required maxlength="15">
+                                <input matInput placeholder="CPF/CNPJ" mask="000.000.000-00||00.000.000/0000-00" type="text" formControlName="cpfCnpj" required maxlength="15">
                             </mat-form-field>
                         </div>
 
@@ -51,16 +51,16 @@
 
                         <div class="col-sm">
                             <mat-form-field>
-                                <input matInput placeholder="Telefone" type="text" formControlName="telefone" required>
+                                <input matInput placeholder="Telefone" mask="(00) 00000-0000||(00) 0000-0000" type="text" formControlName="telefone" required>
                             </mat-form-field>
-                        </div>
+                        </div> 
                     </div>
 
                     <div class="row">
                         <div class="col-sm">
                             <mat-form-field>
                                 <mat-label>Data Nascimento</mat-label>
-                                <input matInput [matDatepicker]="picker">
+                                <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
@@ -69,7 +69,7 @@
                             <mat-form-field >
                                 <mat-label>Sexo</mat-label>
                                 <mat-select>
-                                <mat-option value="option">Option</mat-option>
+                                <mat-option *ngFor="let sexo of sexos" value="sexo.descricao">{{sexo.descricao}}</mat-option>
                                 </mat-select>
                         </mat-form-field>
                         </div>                 
@@ -98,7 +98,7 @@
                         <div class="row">
                             <div class="col-sm">
                                 <mat-form-field>
-                                    <input matInput placeholder="CEP" type="text" formControlName="cep" required>
+                                    <input matInput placeholder="CEP" mask="00.000-000"  type="text" formControlName="cep" required>
                                 </mat-form-field>
                             </div>
         
@@ -110,16 +110,6 @@
                                     </mat-select>
                             </mat-form-field>
                             </div>  
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <mat-form-field >
-                                    <mat-label>Município</mat-label>
-                                    <mat-select>
-                                    <mat-option value="option">Option</mat-option>
-                                    </mat-select>
-                            </mat-form-field>
-                            </div> 
                         </div>
                     </mat-card-content>
                 </mat-card>                

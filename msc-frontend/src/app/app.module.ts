@@ -26,11 +26,12 @@ import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
-
-
-
-
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -63,10 +64,11 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [{
-    provide: LocationStrategy,
+    provide: LOCALE_ID, useValue: 'pt-BR',
     useClass: HashLocationStrategy
   }],
   bootstrap: [AppComponent]
