@@ -24,11 +24,14 @@ import { CadastrarCidadaoComponent } from './page/cidadao/cadastrarCidadao.compo
 import { RouterModule } from '@angular/router';
 import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSelectModule} from '@angular/material/select'
+import {MatSelectModule} from '@angular/material/select';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
-
-
-
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -58,10 +61,14 @@ import {MatSelectModule} from '@angular/material/select'
     MatRippleModule,
     HttpClientModule, 
     MatSelectModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [{
-    provide: LocationStrategy,
+    provide: LOCALE_ID, useValue: 'pt-BR',
     useClass: HashLocationStrategy
   }],
   bootstrap: [AppComponent]

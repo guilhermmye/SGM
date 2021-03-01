@@ -1,4 +1,4 @@
-package br.gov.prefeitura.msc.repository.pessoa.filter;
+package br.gov.prefeitura.msc.repository.cidadao.filter;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PessoaFilter {
+public class CidadaoFilter {
 	
 	private Integer id;
 	private String  nome;

@@ -29,6 +29,7 @@
     "@coreui/icons": "^1.0.1",
     "font-awesome": "^4.7.0",
     "material-icons": "^0.5.1",
+    "ngx-mask": "^11.1.4",
     "roboto-fontface": "^0.10.0",
     "rxjs": "~6.6.0",
     "simple-line-icons": "^2.5.5",

@@ -1,35 +1,54 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponsePageable } from 'src/app/shared//model/regiao/responsePageable.model';
-import { Regiao } from 'src/app/shared/model/regiao/regiao.model';
+import { ResponsePageable } from 'src/app/shared//model/cidadao/responsePageable.model';
+import { Cidadao } from 'src/app/shared/model/cidadao/cidadao.model';
 import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegiaoService {
+export class CidadaoService {
 
-apiUrl = 'http://localhost:8080/regioes';
-httpOptions={
-  
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
+private readonly urlMsc = environment.msc_api;
 
-  constructor(private httpClient: HttpClient) {}
-
-
-  public getRegioes(flag: string): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(`${environment.msc_api}/regioes`);
+  constructor(private httpClient: HttpClient) {
+   
   }
 
-  public getImportarRegioes(): Observable<ResponsePageable> {
+
+  public listarCidadoes(): Observable<ResponsePageable> {
+    var url = this.urlMsc+"/cidadaos";
+    return this.httpClient.get<ResponsePageable>(url,{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
     
-   return this.httpClient.get<ResponsePageable>(`${environment.msc_api}/regioes/ibge/1|2|3|4|5`)
- }
+  }
+
+
+  public listarSexo() {
+    var url = this.urlMsc+"/sexos";
+    return this.httpClient.get<ResponsePageable>(url,{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+    
+  }
+
+  public criarCidadao(cidadao:any){
+    var url = this.urlMsc+"/cidadaos";
+    return this.httpClient.post<Cidadao>(url,cidadao,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+  }
+
 
 
 

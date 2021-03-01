@@ -12,14 +12,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name="pessoa")
-public class Pessoa {
+@Table(name="cidadao")
+public class Cidadao {
 	
 	private Integer id;
 	private String  nome;
@@ -36,7 +39,7 @@ public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "pessoa_id")
+	@Column(name = "cidadao_id")
 	public Integer getId() {
 		return id;
 	}
@@ -45,9 +48,15 @@ public class Pessoa {
 	public Integer getMunicipioId() {
 		return municipioId;
 	}
+	
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
 		
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sexo_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public Sexo getSexo()
     {
         return sexo;
@@ -55,6 +64,7 @@ public class Pessoa {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tipoPessoa_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public TipoPessoa getTipoPessoa()
     {
         return tipoPessoa;

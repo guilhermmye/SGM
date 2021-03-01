@@ -21,10 +21,10 @@ CREATE TABLE tipoPessoa (
 
 ALTER SEQUENCE tipopessoa_tipopessoa_id_seq OWNED BY tipoPessoa.tipoPessoa_id;
 
-CREATE SEQUENCE pessoa_pessoa_id_seq;
+CREATE SEQUENCE cidadao_cidadao_id_seq;
 
-CREATE TABLE pessoa (
-                pessoa_id INTEGER NOT NULL DEFAULT nextval('pessoa_pessoa_id_seq'),
+CREATE TABLE cidadao (
+                cidadao_id INTEGER NOT NULL DEFAULT nextval('cidadao_cidadao_id_seq'),
                 sexo_id INTEGER NOT NULL,
                 tipoPessoa_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
@@ -36,20 +36,20 @@ CREATE TABLE pessoa (
 				numero VARCHAR(10) NOT NULL,
                 cep VARCHAR(10),
                 municipio_id INTEGER NOT NULL,
-                CONSTRAINT pessoa_id PRIMARY KEY (pessoa_id)
+                CONSTRAINT cidadao_id PRIMARY KEY (cidadao_id)
 );
 
 
-ALTER SEQUENCE pessoa_pessoa_id_seq OWNED BY pessoa.pessoa_id;
+ALTER SEQUENCE cidadao_cidadao_id_seq OWNED BY cidadao.cidadao_id;
 
-ALTER TABLE pessoa ADD CONSTRAINT sexo_pessoa_fk
+ALTER TABLE cidadao ADD CONSTRAINT sexo_cidadao_fk
 FOREIGN KEY (sexo_id)
 REFERENCES sexo (sexo_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE pessoa ADD CONSTRAINT tipopessoa_pessoa_fk
+ALTER TABLE cidadao ADD CONSTRAINT tipopessoa_cidadao_fk
 FOREIGN KEY (tipoPessoa_id)
 REFERENCES tipoPessoa (tipoPessoa_id)
 ON DELETE NO ACTION
