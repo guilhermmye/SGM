@@ -30,6 +30,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Regiao;
+import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.RegiaoRepository;
 import br.gov.prefeitura.mimg.repository.regiao.filter.RegiaoFilter;
 import br.gov.prefeitura.mimg.service.RegiaoService;
@@ -56,11 +57,7 @@ public class RegiaoResource {
 		return regiaoRepository.filtrar(regiaoFilter,pageable);
 	}
 	
-//	@GetMapping
-//	public List<Regiao> pesquisar(RegiaoFilter regiaoFilter){
-//		return regiaoRepository.filtrar(regiaoFilter);
-//	}
-	
+
 	@PostMapping
 	public ResponseEntity<Regiao> criar(@Valid @RequestBody Regiao regiao, HttpServletResponse response) {
 		Regiao regiaoSalvo = regiaoRepository.save(regiao);		
@@ -100,6 +97,7 @@ public class RegiaoResource {
 		ResponseEntity<Regiao[]> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao[].class);
 		
 		List<Regiao> regioes = Arrays.asList(regiao.getBody());
+		
 	
 		regiaoService.salvarRegioes(regioes);
 		return regiao;		

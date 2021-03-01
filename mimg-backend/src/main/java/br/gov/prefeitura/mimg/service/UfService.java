@@ -20,6 +20,9 @@ public class UfService {
 	@Autowired
 	private UfRepository       ufRepository;
 	
+	@Autowired
+	private RegiaoService      regiaoService;
+	
 	public Uf atualizar(Integer id,Uf uf) {		
 		Uf ufSalvo = buscarUfPorId(id);		
 		BeanUtils.copyProperties(uf,ufSalvo,"id");		
@@ -48,7 +51,10 @@ public class UfService {
 			if(uf2.getId() == null)
 			{
 				uf2.setId(-1);
-			}	
+			}
+			
+			Regiao regiao = regiaoService.buscarRegiaoPorId(uf2.getRegiao().getId());
+			uf2.setRegiao(regiao);
 			ufRepository.save(uf2);
 		}
 		
