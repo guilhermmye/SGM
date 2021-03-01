@@ -68,8 +68,8 @@
                         <div class="col-sm">
                             <mat-form-field >
                                 <mat-label>Sexo</mat-label>
-                                <mat-select>
-                                <mat-option *ngFor="let sexo of sexos" value="sexo.descricao">{{sexo.descricao}}</mat-option>
+                                <mat-select formControlName="sexo" >
+                                <mat-option *ngFor="let sexo of sexos"  [value]="sexo">{{sexo.descricao}}</mat-option>
                                 </mat-select>
                         </mat-form-field>
                         </div>                 

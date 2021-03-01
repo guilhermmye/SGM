@@ -22,7 +22,7 @@ public class TipoPessoaService {
 		return tipoPessoaRepository.save(tipoPessoaSalvo);		
 	}
 	
-	private TipoPessoa buscarTipoPessoaPorId(Integer id) {
+	public TipoPessoa buscarTipoPessoaPorId(Integer id) {
 		Optional<TipoPessoa> tipoPessoaSalvo = tipoPessoaRepository.findById(id);		
 		if(tipoPessoaSalvo == null || tipoPessoaSalvo.get() == null) {
 			throw new EmptyResultDataAccessException(1);

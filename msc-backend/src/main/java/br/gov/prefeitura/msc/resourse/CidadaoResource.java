@@ -54,7 +54,7 @@ public class CidadaoResource {
 	
 	@PostMapping
 	public ResponseEntity<Cidadao> criar(@Valid @RequestBody Cidadao cidadao, HttpServletResponse response) {
-		Cidadao cidadaoSalvo = cidadaoRepository.save(cidadao);		
+		Cidadao cidadaoSalvo = cidadaoService.cadastrar(cidadao);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, cidadaoSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(cidadaoSalvo);		
 	}

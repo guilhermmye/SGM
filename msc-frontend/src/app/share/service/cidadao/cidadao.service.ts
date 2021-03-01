@@ -31,7 +31,7 @@ private readonly urlMsc = environment.msc_api;
 
   public listarSexo() {
     var url = this.urlMsc+"/sexos";
-    return this.httpClient.get<ResponsePageable>(url,{
+    return this.httpClient.get(url,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })

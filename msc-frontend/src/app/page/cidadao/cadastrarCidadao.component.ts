@@ -4,6 +4,7 @@ import { FormGroup, FormControl ,Validators,FormBuilder} from '@angular/forms';
 import { Breakpoints } from '@angular/cdk/layout';
 import {Cidadao} from 'src/app/shared/model/cidadao/cidadao.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 
 @Component({
   selector: 'app-cadastrarCidadao',
@@ -13,12 +14,12 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 export class CadastrarCidadaoComponent implements OnInit {
   cidadao: Cidadao = new Cidadao();
+  //sexo: Sexo = new Sexo();
 
   displayedColumns:string[] =['id','nome'];
   dataSource:any;
-
-  displayedColumnsSexo:string[] =['id','descricao'];
-  sexos:any[]=['id','descricao'];
+  
+  sexos:any[] = [];
   
   constructor(public CidadaoService: CidadaoService) {
 
@@ -35,8 +36,7 @@ export class CadastrarCidadaoComponent implements OnInit {
       cep               :  new FormControl(this.cidadao.cep,Validators.required),
       //municipioId     :  new FormControl(this.cidadao.municipioId,Validators.required),
       numero            :  new FormControl(this.cidadao.numero,Validators.required),
-      //Sexo            :  new FormControl(this.cidadao.id,Validators.required),
-      //TipoPessoa      :  new FormControl(this.cidadao.id,Validators.required),
+      sexo              :  new FormControl(this.cidadao.sexo,Validators.required),      
   });
 
   ngOnInit() {
@@ -86,7 +86,7 @@ export class CadastrarCidadaoComponent implements OnInit {
     .then((sexos) => {
       var listaSexos :any;
       listaSexos = sexos;
-      this.sexos = listaSexos.content;
+      this.sexos = listaSexos;
     }).catch((erro) => {
       var erros = erro;
     });
