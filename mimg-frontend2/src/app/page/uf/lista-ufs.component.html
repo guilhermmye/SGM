@@ -1,6 +1,6 @@
 <div class="c-subheader-nav">
   <div class="btn-group" role="group">
-    <button mat-raised-button (click)="getImportar()" ><mat-icon>add</mat-icon>Importar UF</button> 
+    <button mat-raised-button (click)="getImportarUF()" ><mat-icon>add</mat-icon>Importar UF</button> 
        
   </div>
 </div>
@@ -29,7 +29,7 @@
 
             <ng-container matColumnDef="regiao">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Região</th>
-              <td mat-cell *matCellDef="let element">{{element.regiao}}</td>
+              <td mat-cell *matCellDef="let element">{{element.regiao.sigla}}</td>
             </ng-container>
            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

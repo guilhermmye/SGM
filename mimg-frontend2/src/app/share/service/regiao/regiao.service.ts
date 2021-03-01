@@ -23,12 +23,12 @@ httpOptions={
 
 
   public getRegioes(flag: string): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(`${environment.regiao_api}/regioes`);
+    return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/regioes`);
   }
 
   public getImportarRegioes(): Observable<ResponsePageable> {
     
-   return this.httpClient.get<ResponsePageable>(`${environment.regiao_api}/regioes/ibge/1|2|3|4|5`)
+   return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/regioes/ibge/1|2|3|4|5`)
  }
 
 

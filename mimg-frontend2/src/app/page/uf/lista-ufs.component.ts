@@ -30,13 +30,12 @@ export class ListaUfsComponent implements  OnInit {
     });
 }
 
-getImportar(){
+getImportarUF(){
   this.ufService.getImportarUfs().subscribe(data => {
      this.ufs = data.content;
      console.log(this.ufs);
   
   });
-
 
 }
 }

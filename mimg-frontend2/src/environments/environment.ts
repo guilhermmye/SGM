@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  regiao_api:'/cadastro/api',
+  mimg_api:'/mimg/api',
   tempo_validade:30,
   loader_time_show:500,
   loader_time_hiden:0
