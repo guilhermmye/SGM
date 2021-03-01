@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponsePageable } from 'src/app/shared//model/mesorregiao/responsePageable.model';
 import { Mesorregiao } from 'src/app/shared/model/mesorregiao/mesorregiao.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,16 @@ httpOptions={
 
   constructor(private httpClient: HttpClient) {}
 
-   public getMesorregioes(flag: string): Observable<ResponsePageable> {
-    return this.httpClient.get<ResponsePageable>(this.apiUrl);
-}
+
+  public getMesorregioes(flag: string): Observable<ResponsePageable> {
+    return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/mesorregioes`);
+  }
+
+  public getImportarMesorregioes(): Observable<ResponsePageable> {
+    
+   return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/mesorregioes/ibge/31/mesorregioes`)
+ }
+
 
 
 

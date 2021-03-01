@@ -1,5 +1,7 @@
 package br.gov.prefeitura.mimg.resourse;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +20,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Mesorregiao;
+import br.gov.prefeitura.mimg.model.Regiao;
 import br.gov.prefeitura.mimg.repository.MesorregiaoRepository;
 import br.gov.prefeitura.mimg.repository.mesorregiao.filter.MesorregiaoFilter;
 import br.gov.prefeitura.mimg.service.MesorregiaoService;
@@ -46,10 +53,7 @@ public class MesorregiaoResource {
 		return mesorregiaoRepository.filtrar(mesorregiaoFilter,pageable);
 	}
 	
-//	@GetMapping
-//	public List<Mesorregiao> pesquisar(MesorregiaoFilter mesorregiaoFilter){
-//		return mesorregiaoRepository.filtrar(mesorregiaoFilter);
-//	}
+
 	
 	@PostMapping
 	public ResponseEntity<Mesorregiao> criar(@Valid @RequestBody Mesorregiao mesorregiao, HttpServletResponse response) {
@@ -75,4 +79,27 @@ public class MesorregiaoResource {
 		Mesorregiao mesorregiaoSalvo = mesorregiaoService.atualizar(id, mesorregiao);	
 		return ResponseEntity.ok(mesorregiaoSalvo);		
 	}
+	
+	@RequestMapping( value ="/ibge/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Mesorregiao[]> pesquisarIbge(@PathVariable String id){
+		
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("estados")
+				.queryParam(id)
+				.build();
+		
+		ResponseEntity<Mesorregiao[]> mesorregiao = restTemplate.getForEntity(uri.toUriString(), Mesorregiao[].class);
+		
+		List<Mesorregiao> mesorregiaos = Arrays.asList(mesorregiao.getBody());
+		
+	
+		mesorregiaoService.salvarMesorregioes(mesorregiaos);
+		return mesorregiao;		
+	} 
+	
+	
+	
 }

@@ -1,5 +1,6 @@
 package br.gov.prefeitura.mimg.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Uf {
 	private Regiao regiao;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "uf_id")
 	public Integer getId() {
 		return id;

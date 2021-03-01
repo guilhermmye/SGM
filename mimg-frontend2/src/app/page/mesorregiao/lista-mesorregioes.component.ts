@@ -30,6 +30,14 @@ export class ListaMesorregioesComponent implements  OnInit {
 }
 
 
+getImportar(){
+this.mesorregiaoService.getImportarMesorregioes().subscribe(data => {
+   this.mesorregioes = data.content;
+   console.log(this.mesorregioes);
+});
+}
+
+
 
 
 }
