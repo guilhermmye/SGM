@@ -30,9 +30,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Mesorregiao;
 import br.gov.prefeitura.mimg.model.Regiao;
+import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.MesorregiaoRepository;
 import br.gov.prefeitura.mimg.repository.mesorregiao.filter.MesorregiaoFilter;
 import br.gov.prefeitura.mimg.service.MesorregiaoService;
+import br.gov.prefeitura.mimg.service.UfService;
 
 @RestController
 @RequestMapping("/mesorregioes")
@@ -46,6 +48,9 @@ public class MesorregiaoResource {
 	
 	@Autowired
 	private MesorregiaoService           mesorregiaoService;
+	
+	@Autowired
+	private UfService           ufService;
 	
 	
 	@GetMapping
@@ -83,18 +88,28 @@ public class MesorregiaoResource {
 	@RequestMapping( value ="/ibge/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Mesorregiao[]> pesquisarIbge(@PathVariable String id){
 		
+		
+		String  novoId=id.replace("|", "/");
+			
 		RestTemplate restTemplate = new RestTemplate();
 		UriComponents uri = UriComponentsBuilder.newInstance()
 				.scheme("https")
 				.host("servicodados.ibge.gov.br/api/v1/localidades")
 				.path("estados")
-				.queryParam(id)
+				.queryParam(novoId)
 				.build();
-		
-		ResponseEntity<Mesorregiao[]> mesorregiao = restTemplate.getForEntity(uri.toUriString(), Mesorregiao[].class);
+		String caminho = uri.toUriString().replace("?","/");
+		ResponseEntity<Mesorregiao[]> mesorregiao = restTemplate.getForEntity(caminho, Mesorregiao[].class);
 		
 		List<Mesorregiao> mesorregiaos = Arrays.asList(mesorregiao.getBody());
 		
+		for (Mesorregiao mesorregiao2 : mesorregiaos) {
+			if(mesorregiao2 != null && mesorregiao2.getUf() == null)
+			{
+				Uf uf = ufService.buscarUfPorId(31);
+				mesorregiao2.setUf(uf);
+			}
+		}
 	
 		mesorregiaoService.salvarMesorregioes(mesorregiaos);
 		return mesorregiao;		

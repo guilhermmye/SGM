@@ -35,7 +35,7 @@ public class UfService {
 		return ufRepository.save(ufSalvo);		
 	}
 	
-	private Uf buscarUfPorId(Integer id) {
+	public Uf buscarUfPorId(Integer id) {
 		Optional<Uf> ufSalvo = ufRepository.findById(id);		
 		if(ufSalvo == null || ufSalvo.get() == null) {
 			throw new EmptyResultDataAccessException(1);

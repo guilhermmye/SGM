@@ -27,7 +27,7 @@ httpOptions={
 
   public getImportarMesorregioes(): Observable<ResponsePageable> {
     
-   return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/mesorregioes/ibge/31/mesorregioes`)
+   return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/mesorregioes/ibge/31|mesorregioes`)
  }
 
 

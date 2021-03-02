@@ -31,5 +31,12 @@ export class ListaMicrorregioesComponent implements  OnInit {
 
 
 
+getImportarMicro(){
+  this.microrregiaoService.getImportarMicrorregioes().subscribe(data => {
+     this.microrregioes = data.content;
+     console.log(this.microrregioes);
+  });
+}
+
 
 }
