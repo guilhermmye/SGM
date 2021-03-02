@@ -24,6 +24,7 @@ httpOptions={
   public getMicrorregioes(): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/microrregioes`);
   }
+  
 
   public getImportarMicrorregioes(): Observable<ResponsePageable> {
     
