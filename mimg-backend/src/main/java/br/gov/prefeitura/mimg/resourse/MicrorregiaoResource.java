@@ -35,10 +35,10 @@ public class MicrorregiaoResource {
 	@Autowired
 	private MicrorregiaoService           microrregiaoService;
 	
-	@GetMapping
+/*	@GetMapping
 	public List<Microrregiao> listar(){
 		return microrregiaoRepository.findAll();
-	}
+	}*/
 	
 
 	@GetMapping
@@ -58,7 +58,10 @@ public class MicrorregiaoResource {
 				.queryParam(id)
 				.build();
 		
-		ResponseEntity<Microrregiao[]> microrregiao = restTemplate.getForEntity(uri.toUriString(), Microrregiao[].class);
+		String NovoCaminho   = uri.toUriString().replace('-', '/');
+		String caminho = uri.toUriString().replace("?","/");		
+		
+		ResponseEntity<Microrregiao[]> microrregiao = restTemplate.getForEntity(NovoCaminho, Microrregiao[].class);
 		
 		List<Microrregiao> microrregioes = Arrays.asList(microrregiao.getBody());
 		
