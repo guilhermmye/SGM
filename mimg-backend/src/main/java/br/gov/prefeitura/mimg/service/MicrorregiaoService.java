@@ -1,12 +1,14 @@
 package br.gov.prefeitura.mimg.service;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
 import br.gov.prefeitura.mimg.model.Microrregiao;
 import br.gov.prefeitura.mimg.repository.MicrorregiaoRepository;
 
@@ -35,5 +37,17 @@ public class MicrorregiaoService {
 		}
 		return microrregiaoSalvo.get();
 	}
-	
+	@Transactional
+	public void salvarMicrorregioes(List<Microrregiao> microrregioes) {		
+			
+           for (Microrregiao microrregioes2 : microrregioes) {
+			
+			if(microrregioes2.getId() == null)
+			{
+				microrregioes2.setId(-1);
+			}	
+			microrregiaoRepository.save(microrregioes2);
+		}
+		
+	}
 }

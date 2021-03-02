@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +27,6 @@ public class Microrregiao {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "microrregiao_id")
 	public Integer getId() {
 		return id;
@@ -33,6 +34,7 @@ public class Microrregiao {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mesorregiao_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
     public Mesorregiao getMesorregiao()
     {
         return mesorregiao;
