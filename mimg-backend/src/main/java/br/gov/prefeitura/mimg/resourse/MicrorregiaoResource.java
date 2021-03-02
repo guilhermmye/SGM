@@ -59,9 +59,9 @@ public class MicrorregiaoResource {
 				.build();
 		
 		String NovoCaminho   = uri.toUriString().replace('-', '/');
-		String caminho = uri.toUriString().replace("?","/");		
+		String caminho = NovoCaminho.replace("?","/");		
 		
-		ResponseEntity<Microrregiao[]> microrregiao = restTemplate.getForEntity(NovoCaminho, Microrregiao[].class);
+		ResponseEntity<Microrregiao[]> microrregiao = restTemplate.getForEntity(caminho, Microrregiao[].class);
 		
 		List<Microrregiao> microrregioes = Arrays.asList(microrregiao.getBody());
 		
