@@ -23,7 +23,7 @@ export class ListaMicrorregioesComponent implements  OnInit {
   }
 
   getListar(){
-    this.microrregiaoService.getMicrorregioes("microrregioes").subscribe(data => {
+    this.microrregiaoService.getMicrorregioes().subscribe(data => {
        this.microrregioes = data.content;
        console.log(this.microrregioes);
     });
