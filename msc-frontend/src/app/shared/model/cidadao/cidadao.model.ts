@@ -8,13 +8,13 @@ export class Cidadao {
 	 cpfCnpj        : String  = "";
 	 email          : String  = "";
 	 telefone       : String  = "";
-	 //dataNascimento : DatePipe  ;
+	 dataNascimento : any; 
 	 endereco       : String  = "";
 	 cep            : String  = "";
-	 municipioId    : String  =  "";
+//	 municipioId    : String  = "";
 	 numero         : String  = "";
 	 sexo           : Sexo = new Sexo();
-	 //TipoPessoa: tipoPessoa;
+
 
 
 }

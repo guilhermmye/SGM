@@ -14,31 +14,37 @@ import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 
 export class CadastrarCidadaoComponent implements OnInit {
   cidadao: Cidadao = new Cidadao();
-  //sexo: Sexo = new Sexo();
 
   displayedColumns:string[] =['id','nome'];
   dataSource:any;
   
   sexos:any[] = [];
+
+  profileForm : FormGroup = this.iniciarForm();
   
   constructor(public CidadaoService: CidadaoService) {
-
+    
   }
 
-  profileForm = new FormGroup({  
+  iniciarForm(){
+  return this.profileForm = new FormGroup({  
       id                : new FormControl({ value: this.cidadao.id, disabled: true }, Validators.required),
       nome              :  new FormControl(this.cidadao.nome,Validators.required),
-      cpfCnpj           :  new FormControl(this.cidadao.cpfCnpj,Validators.required),
+      cpfCnpj           :  new FormControl({ value:this.cidadao.cpfCnpj, disabled:this.isEdicao()},Validators.required),
       email             :  new FormControl(this.cidadao.email,Validators.required),
-      telefone          :  new FormControl( this.cidadao.telefone,Validators.required),
-      dataNascimento    :  new FormControl(this.cidadao.id,Validators.required),
+      telefone          :  new FormControl(this.cidadao.telefone,Validators.required),
+      dataNascimento    :  new FormControl(this.cidadao.dataNascimento,Validators.required),
       endereco          :  new FormControl(this.cidadao.endereco,Validators.required),
       cep               :  new FormControl(this.cidadao.cep,Validators.required),
       //municipioId     :  new FormControl(this.cidadao.municipioId,Validators.required),
       numero            :  new FormControl(this.cidadao.numero,Validators.required),
       sexo              :  new FormControl(this.cidadao.sexo,Validators.required),      
   });
+}
 
+  isEdicao(){
+    return this.cidadao.id > 0 && this.cidadao.id != null;
+  }
   ngOnInit() {
     this.cidadao = new Cidadao();
     this.listarCidadaos();
@@ -46,9 +52,9 @@ export class CadastrarCidadaoComponent implements OnInit {
   }
 
   onSubmit(){
-  //  if(this.profileForm.invalid){
+    if(!this.profileForm.invalid){
       this.cadastrarProdutos(this.profileForm.getRawValue());
- //   }
+    }
   }
 
   cadastrarProdutos(value:any){
@@ -59,6 +65,7 @@ export class CadastrarCidadaoComponent implements OnInit {
         var ok = resposta;
         this.listarCidadaos();
         this. limparCampos();
+        this.retornoCallback(ok);
       }).catch((erro) => {
         var erros = erro;
       });
@@ -93,17 +100,23 @@ export class CadastrarCidadaoComponent implements OnInit {
   }
 
   limparCampos(){
+   // this.cidadao = new Cidadao();
+    //this.profileForm.reset();
+    //this.iniciarForm();
+  }
+
+  carregarTela(){
     this.profileForm.patchValue({
       nome:'',
 
     })
   }
 
-  carregarTela(){
-    this.profileForm.patchValue({
-      nome:'Teste Campo',
-
-    })
+  private retornoCallback(r: Cidadao) {
+    this.cidadao = r;
+    this.iniciarForm();
+    this.profileForm.setValue(r);
+    
   }
 
 }
