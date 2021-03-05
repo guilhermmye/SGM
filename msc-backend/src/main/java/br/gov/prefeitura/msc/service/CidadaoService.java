@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,20 @@ public class CidadaoService {
 	@Autowired
 	private TipoPessoaService		tipoPessoaService;
 	
-	private final Integer CPF  = 1;
-	private final Integer CNPJ = 2;
+	private final static Integer CPF  = 1;
+	private final static Integer CNPJ = 2;
 	
 	public Cidadao atualizar(Integer id,Cidadao cidadao) {		
-		Cidadao cidadaoSalvo = buscarPessoaPorId(id);		
+		Cidadao cidadaoSalvo = buscarPessoaPorId(id);
+		TipoPessoa tipoPessoa = tipoPessoaService.buscarTipoPessoaPorId(cidadao.getCpfCnpj().length() == 11 ? CPF : CNPJ);
+		cidadao.setTipoPessoa(tipoPessoa);
+		cidadao.setMunicipioId(1);
 		BeanUtils.copyProperties(cidadao,cidadaoSalvo,"id");		
 		return cidadaoRepository.save(cidadaoSalvo);		
 	}
 	
-	public Cidadao cadastrar(Cidadao cidadao) {		
+	public Cidadao cadastrar(Cidadao cidadao) {	
+		validarPessoa(cidadao.getCpfCnpj());
 		TipoPessoa tipoPessoa = tipoPessoaService.buscarTipoPessoaPorId(cidadao.getCpfCnpj().length() == 11 ? CPF : CNPJ);
 		cidadao.setTipoPessoa(tipoPessoa);
 		cidadao.setMunicipioId(1);
@@ -43,5 +48,23 @@ public class CidadaoService {
 		}
 		return cidadaoSalvo.get();
 	}
+	
+	public Cidadao buscarPessoaPorCpfCnpj(String cpfCnpj) {
+		Cidadao cidadaoSalvo = cidadaoRepository.obterPorCpfCnpj(cpfCnpj);		
+		if(cidadaoSalvo == null ) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return cidadaoSalvo;
+	}
+	
+	private void validarPessoa(String cpfCnpj) {
+		Cidadao cidadao = buscarPessoaPorCpfCnpj(cpfCnpj);
+		
+		if(cidadao != null && cidadao.getId() != null) {
+			throw new DataIntegrityViolationException("Cidadão já Cadastrado.");
+		}
+	}
+	
+	
 
 }

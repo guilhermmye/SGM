@@ -49,6 +49,16 @@ private readonly urlMsc = environment.msc_api;
     })
   }
 
+  public alterarCidadao(cidadao:Cidadao){
+    var url = this.urlMsc+"/cidadaos/"+cidadao.id;
+    return this.httpClient.put<Cidadao>(url,cidadao,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+  }
+
 
 
 

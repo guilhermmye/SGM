@@ -21,8 +21,10 @@ export class CadastrarCidadaoComponent implements OnInit {
   sexos:any[] = [];
 
   profileForm : FormGroup = this.iniciarForm();
-  
+
   constructor(public CidadaoService: CidadaoService) {
+
+   
     
   }
 
@@ -45,10 +47,12 @@ export class CadastrarCidadaoComponent implements OnInit {
   isEdicao(){
     return this.cidadao.id > 0 && this.cidadao.id != null;
   }
+
   ngOnInit() {
     this.cidadao = new Cidadao();
     this.listarCidadaos();
     this.listarSexos();
+
   }
 
   onSubmit(){
@@ -58,20 +62,29 @@ export class CadastrarCidadaoComponent implements OnInit {
   }
 
   cadastrarProdutos(value:any){
-   // if (value.id == undefined) {
-      this.CidadaoService.criarCidadao(value)
+    if (value.id > 0 && value.id != null) {
+      this.CidadaoService.alterarCidadao(value)
       .toPromise()
       .then((resposta) => {
-        var ok = resposta;
-        this.listarCidadaos();
-        this. limparCampos();
-        this.retornoCallback(ok);
-      }).catch((erro) => {
-        var erros = erro;
-      });
- // }else{
-    //PUT
- // }
+      var ok = resposta;
+      this.listarCidadaos();
+      this.limparCampos();
+      this.retornoCallback(ok);
+    }).catch((erro) => {
+      var erros = erro;
+    });    
+  }else{
+    this.CidadaoService.criarCidadao(value)
+     .toPromise()
+     .then((resposta) => {
+      var ok = resposta;
+      this.listarCidadaos();
+      this.limparCampos();
+      this.retornoCallback(ok);
+    }).catch((erro) => {
+      var erros = erro;
+    });
+  }
 
   }
 

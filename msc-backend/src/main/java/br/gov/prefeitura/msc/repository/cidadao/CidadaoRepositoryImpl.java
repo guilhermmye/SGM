@@ -23,6 +23,21 @@ public class CidadaoRepositoryImpl implements CidadaoRepositoryQuery {
 	@PersistenceContext
 	private EntityManager manager;
 	
+	
+	@Override
+	public Cidadao obterPorCpfCnpj(String cpfCnpj) {
+		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaQuery<Cidadao> criteria = builder.createQuery(Cidadao.class);		
+		Root<Cidadao> root = criteria.from(Cidadao.class);
+		
+		Predicate predicate = builder.equal(root.get("cpfCnpj"),cpfCnpj.replace(".","").replace("-","").replace("/",""));
+		
+		criteria.where(predicate);
+				
+		TypedQuery<Cidadao> query = manager.createQuery(criteria);		
+		return query.getSingleResult();
+	}
+	
 	@Override
 	public List<Cidadao> filtrar(CidadaoFilter cidadaoFilter) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
@@ -35,7 +50,7 @@ public class CidadaoRepositoryImpl implements CidadaoRepositoryQuery {
 		TypedQuery<Cidadao> query = manager.createQuery(criteria);		
 		return query.getResultList();
 	}
-
+	
 	@Override
 	public Page<Cidadao> filtrar(CidadaoFilter cidadaoFilter, Pageable pageable) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
@@ -97,13 +112,9 @@ public class CidadaoRepositoryImpl implements CidadaoRepositoryQuery {
 //		if(cidadaoFilter.getIdTipoPessoa() != null) {
 //			predicates.add(builder.equal(root.get("idTipoPessoa"),cidadaoFilter.getIdTipoPessoa()));
 //		}
-		
-		
-		
-		
+				
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
-	
 	
 	private void adicionarRestricoesDePaginacao(TypedQuery<Cidadao> query, Pageable pageable) {
 		
