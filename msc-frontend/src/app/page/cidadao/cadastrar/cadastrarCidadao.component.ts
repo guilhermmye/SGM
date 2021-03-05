@@ -5,6 +5,7 @@ import { Breakpoints } from '@angular/cdk/layout';
 import {Cidadao} from 'src/app/shared/model/cidadao/cidadao.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrarCidadao',
@@ -22,7 +23,7 @@ export class CadastrarCidadaoComponent implements OnInit {
 
   profileForm : FormGroup = this.iniciarForm();
 
-  constructor(public CidadaoService: CidadaoService) {
+  constructor(public CidadaoService: CidadaoService,private router: Router) {
 
    
     
@@ -131,5 +132,10 @@ export class CadastrarCidadaoComponent implements OnInit {
     this.profileForm.setValue(r);
     
   }
+
+  btnPesquisarCidadao() {
+    this.router.navigateByUrl('/pesquisarCidadao');
+};
+
 
 }

@@ -10,10 +10,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router) { 
 
-  }
-
-  btnCidadao() {
-    this.router.navigateByUrl('/cidadao');
+  } 
+  
+btnPesquisarCidadao() {
+  this.router.navigateByUrl('/pesquisarCidadao');
 };
 
   ngOnInit() {
