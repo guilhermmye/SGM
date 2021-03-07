@@ -12,4 +12,5 @@ public interface CidadaoRepositoryQuery {
 	
 	public List<Cidadao> filtrar(CidadaoFilter cidadaoFilter);
 	public Page<Cidadao> filtrar(CidadaoFilter cidadaoFilter,Pageable pageable);
+	public Cidadao       obterPorCpfCnpj(String cpfCnpj);
 }

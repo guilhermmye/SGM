@@ -7,15 +7,14 @@
 <div class="c-subheader sticky-top justify-content-between px-3 c-header-shadow">
     <ol class="breadcrumb border-0 m-0 px-0 px-md-3">
         <li class="breadcrumb-item" aria-current="page">Cidadão</li>
-        <li class="breadcrumb-item"><a routerLink="/table">Material Table</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Active Form</li>
+        <li class="breadcrumb-item"><a routerLink="/pesquisarCidadao">Pesquisar</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{cidadao.id > 0 && cidadao.id != null ? "Alterar" : "Cadastrar"}}</li>
     </ol>
     <!-- Breadcrumb Menu-->
     <div class="c-subheader-nav">
         <div class="btn-group" role="group">
-            <a class="btn" href="#" matTooltip="font awesome icon"><i class="fa fa-floppy-o"></i> Save</a>
-            <!-- https://coreui.io/docs/components/bootstrap/icons/#coreui-icons-free-502-icons -->
-            <a class="btn" href="#" matTooltip="coreui icon"><i class="cil-action-undo"></i> Cancel</a>
+            <a class="btn" (click)="btnPesquisarCidadao();" matTooltip="font awesome icon"><i class="fa fa-search"></i> Pesquisar</a>
+       
         </div>
     </div>
 </div>
@@ -25,19 +24,19 @@
             <mat-card class="mb-4">
                 <mat-card-header>
                     <mat-card-title>Cidadão</mat-card-title>
-                    <mat-card-subtitle>cadastrar</mat-card-subtitle>
+                    <mat-card-subtitle>{{cidadao.id > 0 && cidadao.id != null ? "Alterar" : "Cadastrar"}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
                         <div class="col-sm">
                             <mat-form-field >
-                                <input matInput placeholder="CPF/CNPJ" mask="000.000.000-00||00.000.000/0000-00" type="text" formControlName="cpfCnpj" required maxlength="15">
+                                <input matInput placeholder="CPF/CNPJ" mask="000.000.000-00||00.000.000/0000-00" type="text" formControlName="cpfCnpj" required maxlength="18">
                             </mat-form-field>
                         </div>
 
                         <div class="col-sm">
-                            <mat-form-field >
-                                <input matInput placeholder="Nome" type="text" formControlName="nome" required>
+                            <mat-form-field [style.width.px]=400 >
+                                <input matInput placeholder="Nome" type="text" formControlName="nome" maxlength="80" required>
                             </mat-form-field>
                         </div>
                     </div>
@@ -45,13 +44,13 @@
                     <div class="row">
                         <div class="col-sm">
                             <mat-form-field>
-                                <input matInput placeholder="E-mail:" type="text" formControlName="email" required>
+                                <input matInput placeholder="E-mail:" type="text" formControlName="email" maxlength="50" required>
                             </mat-form-field>
                         </div>
 
                         <div class="col-sm">
                             <mat-form-field>
-                                <input matInput placeholder="Telefone" mask="(00) 00000-0000||(00) 0000-0000" type="text" formControlName="telefone" required>
+                                <input matInput placeholder="Telefone" mask="(00) 00000-0000||(00) 0000-0000" type="text" formControlName="telefone" maxlength="14" required>
                             </mat-form-field>
                         </div> 
                     </div>
@@ -68,8 +67,8 @@
                         <div class="col-sm">
                             <mat-form-field >
                                 <mat-label>Sexo</mat-label>
-                                <mat-select>
-                                <mat-option *ngFor="let sexo of sexos" value="sexo.descricao">{{sexo.descricao}}</mat-option>
+                                <mat-select formControlName="sexo" >
+                                <mat-option *ngFor="let sexo of sexos"  [value]="sexo">{{sexo.descricao}}</mat-option>
                                 </mat-select>
                         </mat-form-field>
                         </div>                 
@@ -83,14 +82,14 @@
                     <mat-card-content>
                         <div class="row">
                             <div class="col-sm">
-                                <mat-form-field>
-                                    <input matInput placeholder="Endereço" type="text" formControlName="endereco" required>
+                                <mat-form-field [style.width.px]=400>
+                                    <input matInput placeholder="Endereço" maxlength="250" type="text" formControlName="endereco" required>
                                 </mat-form-field>
                             </div>
         
                             <div class="col-sm">
                                 <mat-form-field>
-                                    <input matInput placeholder="Número" type="text" formControlName="numero" required>
+                                    <input matInput placeholder="Número" type="text" maxlength="10" formControlName="numero" required>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -98,7 +97,7 @@
                         <div class="row">
                             <div class="col-sm">
                                 <mat-form-field>
-                                    <input matInput placeholder="CEP" mask="00.000-000"  type="text" formControlName="cep" required>
+                                    <input matInput placeholder="CEP" maxlength="10" mask="00.000-000"  type="text" formControlName="cep" required>
                                 </mat-form-field>
                             </div>
         
@@ -146,7 +145,7 @@
                     </mat-card-content>              
                 <mat-card-actions>
                     <button mat-button>LIKE</button>
-                    <button mat-button type="submit" >SALVAR</button>
+                    <button mat-button type="submit" [disabled]="profileForm.invalid" >SALVAR</button>
                 </mat-card-actions>
             </mat-card>
         </form>

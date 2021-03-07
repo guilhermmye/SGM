@@ -31,7 +31,7 @@ private readonly urlMsc = environment.msc_api;
 
   public listarSexo() {
     var url = this.urlMsc+"/sexos";
-    return this.httpClient.get<ResponsePageable>(url,{
+    return this.httpClient.get(url,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
@@ -42,6 +42,16 @@ private readonly urlMsc = environment.msc_api;
   public criarCidadao(cidadao:any){
     var url = this.urlMsc+"/cidadaos";
     return this.httpClient.post<Cidadao>(url,cidadao,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+  }
+
+  public alterarCidadao(cidadao:Cidadao){
+    var url = this.urlMsc+"/cidadaos/"+cidadao.id;
+    return this.httpClient.put<Cidadao>(url,cidadao,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'

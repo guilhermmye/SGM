@@ -1,4 +1,5 @@
 import { DatePipe } from "@angular/common";
+import { Sexo } from "../sexo/sexo.model";
 
 export class Cidadao {
 
@@ -7,13 +8,13 @@ export class Cidadao {
 	 cpfCnpj        : String  = "";
 	 email          : String  = "";
 	 telefone       : String  = "";
-	 //dataNascimento : DatePipe  ;
+	 dataNascimento : any; 
 	 endereco       : String  = "";
 	 cep            : String  = "";
-	 municipioId    : String  =  "";
+//	 municipioId    : String  = "";
 	 numero         : String  = "";
-	 //Sexo :   sexo;
-	 //TipoPessoa: tipoPessoa;
+	 sexo           : Sexo = new Sexo();
+
 
 
 }

@@ -19,8 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
-import { CadastrarCidadaoComponent } from './page/cidadao/cadastrarCidadao.component';
+import { CadastrarCidadaoComponent } from './page/cidadao/cadastrar/cadastrarCidadao.component';
+import { PesquisarCidadaoComponent } from './page/cidadao/pesquisar/pesquisarCidadao.component';
 import { RouterModule } from '@angular/router';
 import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,8 +40,8 @@ registerLocaleData(localePt, 'pt-BR');
     ToggleDirective,
     HomeComponent,
     TableComponent,
-    ListaRegioesComponent,
     CadastrarCidadaoComponent,
+    PesquisarCidadaoComponent,
   ],
   imports: [
     BrowserModule,
