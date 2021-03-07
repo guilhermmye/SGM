@@ -69,6 +69,6 @@ public class MicrorregiaoResource {
 		return microrregiao;		
 	} 
 	
-	
+	//vvv
 	
 }
