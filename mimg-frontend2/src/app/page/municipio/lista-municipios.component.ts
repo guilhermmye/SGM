@@ -23,12 +23,18 @@ export class ListaMunicipiosComponent implements  OnInit {
   }
 
   getListar(){
-    this.municipioService.getMunicipios("municipios").subscribe(data => {
+    this.municipioService.getMunicipios().subscribe(data => {
        this.municipios = data.content;
        console.log(this.municipios);
     });
 }
 
+getImportarMun(){
+  this.municipioService.getImportarMunicipios().subscribe(data => {
+     this.municipios = data.content;
+     console.log(this.municipios);
+  });
+}
 
 
 
