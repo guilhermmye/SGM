@@ -34,6 +34,7 @@ import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.RegiaoRepository;
 import br.gov.prefeitura.mimg.repository.regiao.filter.RegiaoFilter;
 import br.gov.prefeitura.mimg.service.RegiaoService;
+import br.gov.prefeitura.mimg.service.UfService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -48,6 +49,13 @@ public class RegiaoResource {
 	
 	@Autowired
 	private RegiaoService           regiaoService;
+	
+	@Autowired
+	private UfResource          ufResource;
+	@Autowired
+	private MesorregiaoResource          mesoRegiaoResource;
+	@Autowired
+	private MicrorregiaoResource          microRegiaoResource;
 	
 	
 	
@@ -102,4 +110,53 @@ public class RegiaoResource {
 		regiaoService.salvarRegioes(regioes);
 		return regiao;		
 	} 
+	
+	@RequestMapping( value ="/importar/{id}", method = RequestMethod.GET)
+	public void pesquisarDados(@PathVariable String id){
+		
+		pesquisarRegioes(id);
+		pesquisarUf();
+		pesquisarMesoRegiao();
+		pesquisarMicroRegiaoResource();
+		
+				
+	} 
+	
+	public void pesquisarRegioes(@PathVariable String id)
+	{
+		
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("regioes")
+				.queryParam(id)
+				.build();
+		
+		ResponseEntity<Regiao[]> regiao = restTemplate.getForEntity(uri.toUriString(), Regiao[].class);
+		
+		List<Regiao> regioes = Arrays.asList(regiao.getBody());
+		
+	
+		regiaoService.salvarRegioes(regioes);
+		
+		
+	}
+	public void pesquisarUf()
+	{
+		ufResource.pesquisarUfIbge();
+	}
+	
+	public void pesquisarMesoRegiao()
+	{
+		mesoRegiaoResource.pesquisarMesoRegiaoIbge();
+	}
+	public void pesquisarMicroRegiaoResource()
+	{
+		microRegiaoResource.pesquisarMicroRegiaoIbge();
+	}
+		
+	
+	
+	
 }

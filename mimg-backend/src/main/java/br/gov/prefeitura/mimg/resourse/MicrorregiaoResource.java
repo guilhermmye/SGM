@@ -35,6 +35,8 @@ public class MicrorregiaoResource {
 	@Autowired
 	private MicrorregiaoService           microrregiaoService;
 	
+	final String PARAMETROS = "/3101|3102|3103|3104|3105|3106|3107|3108|3109|3110|3111|3112/microrregioes";
+	
 /*	@GetMapping
 	public List<Microrregiao> listar(){
 		return microrregiaoRepository.findAll();
@@ -69,6 +71,27 @@ public class MicrorregiaoResource {
 		return microrregiao;		
 	} 
 	
+	
+	public void pesquisarMicroRegiaoIbge(){
+					
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("mesorregioes")
+				.queryParam(PARAMETROS)
+				.build();
+		
+		String NovoCaminho   = uri.toUriString().replace('-', '/');
+		String caminho = NovoCaminho.replace("?","/");		
+		
+		ResponseEntity<Microrregiao[]> microrregiao = restTemplate.getForEntity(caminho, Microrregiao[].class);
+		
+		List<Microrregiao> microrregioes = Arrays.asList(microrregiao.getBody());
+		
+		microrregiaoService.salvarMicrorregioes(microrregioes);
+			
+	} 
 	
 	
 }
