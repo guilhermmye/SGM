@@ -1,6 +1,9 @@
 package br.gov.prefeitura.mimg.service;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.gov.prefeitura.mimg.model.RegiaoImediata;
+import br.gov.prefeitura.mimg.model.RegiaoIntermediaria;
+import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.RegiaoImediataRepository;
 
 @Service
@@ -15,6 +20,10 @@ public class RegiaoImediataService {
 	
 	@Autowired
 	private RegiaoImediataRepository       regiaoImediataRepository;
+	@Autowired
+	private RegiaoIntermediariaService         regiaoIntermediariaService;
+	
+	
 	
 	public RegiaoImediata atualizar(Integer id,RegiaoImediata regiaoImediata) {		
 		RegiaoImediata regiaoImediataSalvo = buscarRegiaoImediataPorId(id);		
@@ -35,5 +44,24 @@ public class RegiaoImediataService {
 		}
 		return regiaoImediataSalvo.get();
 	}
+	
+	@Transactional
+	public void salvarRegiaoImediatas(List<RegiaoImediata> regiaoImediatas) {		
+			
+           for (RegiaoImediata regiaoImediata2 : regiaoImediatas) {
+			
+			if(regiaoImediata2.getId() == null)
+			{
+				regiaoImediata2.setId(-1);
+			}
+			
+			//RegiaoIntermediaria RegiaoIntermediaria = regiaoIntermediariaService.(regiaoImediata2.getRegiaoIntermediaria().getId());
+			//regiaoImediata2.setRegiaoIntermediaria(null);
+			regiaoImediataRepository.save(regiaoImediata2);
+		}
+		
+			
+	}
+	
 	
 }

@@ -43,19 +43,20 @@ public class RegiaoResource {
 	
 	@Autowired
 	private RegiaoRepository  regiaoRepository;
-	
 	@Autowired
 	private ApplicationEventPublisher publisher;
-	
 	@Autowired
-	private RegiaoService           regiaoService;
-	
+	private RegiaoService regiaoService;
 	@Autowired
-	private UfResource          ufResource;
+	private UfResource ufResource;
 	@Autowired
-	private MesorregiaoResource          mesoRegiaoResource;
+	private MesorregiaoResource mesoRegiaoResource;
 	@Autowired
-	private MicrorregiaoResource          microRegiaoResource;
+	private MicrorregiaoResource microRegiaoResource;
+	@Autowired
+	private RegiaoIntermediariaResource regiaoIntermediariaResource;
+	@Autowired
+	private RegiaoImediataResource regiaoImediataResource;
 	
 	
 	
@@ -118,6 +119,9 @@ public class RegiaoResource {
 		pesquisarUf();
 		pesquisarMesoRegiao();
 		pesquisarMicroRegiaoResource();
+		pesquisarRegiaoIntermediariaResource();
+		
+		
 		
 				
 	} 
@@ -154,9 +158,17 @@ public class RegiaoResource {
 	public void pesquisarMicroRegiaoResource()
 	{
 		microRegiaoResource.pesquisarMicroRegiaoIbge();
+	}	
+	
+	public void pesquisarRegiaoIntermediariaResource()
+	{
+		regiaoIntermediariaResource.pesquisarRegiaoIntermediariaIbge();
 	}
 		
-	
+	public void pesquisarRegiaoImediataResource()
+	{
+		regiaoImediataResource.pesquisarRegiaoImediataIbge();
+	}
 	
 	
 }
