@@ -16,11 +16,9 @@ import { Router } from '@angular/router';
 export class PesquisarCidadaoComponent implements OnInit {
   cidadao: Cidadao = new Cidadao();
 
-  displayedColumns:string[] =['id','nome'];
+  displayedColumns:string[] =['cpfCnpj','nome','tipoPessoa','opcoes'];
   dataSource:any;
   
-  sexos:any[] = [];
-
   profileForm : FormGroup = this.iniciarForm();
 
   constructor(public CidadaoService: CidadaoService,private router: Router) {
@@ -28,110 +26,47 @@ export class PesquisarCidadaoComponent implements OnInit {
 
   iniciarForm(){
   return this.profileForm = new FormGroup({  
-      id                : new FormControl({ value: this.cidadao.id, disabled: true }, Validators.required),
-      nome              :  new FormControl(this.cidadao.nome,Validators.required),
-      cpfCnpj           :  new FormControl({ value:this.cidadao.cpfCnpj, disabled:this.isEdicao()},Validators.required),
-      email             :  new FormControl(this.cidadao.email,Validators.required),
-      telefone          :  new FormControl(this.cidadao.telefone,Validators.required),
-      dataNascimento    :  new FormControl(this.cidadao.dataNascimento,Validators.required),
-      endereco          :  new FormControl(this.cidadao.endereco,Validators.required),
-      cep               :  new FormControl(this.cidadao.cep,Validators.required),
-      //municipioId     :  new FormControl(this.cidadao.municipioId,Validators.required),
-      numero            :  new FormControl(this.cidadao.numero,Validators.required),
-      sexo              :  new FormControl(this.cidadao.sexo,Validators.required),      
+      nome              :  new FormControl(this.cidadao.nome),
+      cpfCnpj           :  new FormControl(this.cidadao.cpfCnpj)
   });
 }
-
-  isEdicao(){
-    return this.cidadao.id > 0 && this.cidadao.id != null;
-  }
-
   ngOnInit() {
     this.cidadao = new Cidadao();
-    this.listarCidadaos();
-    this.listarSexos();
-
   }
 
   onSubmit(){
     if(!this.profileForm.invalid){
-      this.cadastrarProdutos(this.profileForm.getRawValue());
+     this.pesquisarCidadoes(this.profileForm.getRawValue());
     }
   }
 
-  cadastrarProdutos(value:any){
-    if (value.id > 0 && value.id != null) {
-      this.CidadaoService.alterarCidadao(value)
+  pesquisarCidadoes(value:any){
+      this.CidadaoService.pesquisarCidadoes(value)
       .toPromise()
-      .then((resposta) => {
-      var ok = resposta;
-      this.listarCidadaos();
-      this.limparCampos();
-      this.retornoCallback(ok);
-    }).catch((erro) => {
-      var erros = erro;
-    });    
-  }else{
-    this.CidadaoService.criarCidadao(value)
-     .toPromise()
-     .then((resposta) => {
-      var ok = resposta;
-      this.listarCidadaos();
-      this.limparCampos();
-      this.retornoCallback(ok);
+      .then((cidadaos) => {
+        var listaCidadaos :any;
+        listaCidadaos = cidadaos;
+        this.dataSource = listaCidadaos.content;
     }).catch((erro) => {
       var erros = erro;
     });
-  }
-
-  }
-
-  listarCidadaos(){
-    this.CidadaoService.listarCidadoes()
-    .toPromise()
-    .then((cidadaos) => {
-      var listaCidadaos :any;
-      listaCidadaos = cidadaos;
-      this.dataSource = listaCidadaos.content;
-    }).catch((erro) => {
-      var erros = erro;
-    });
-  }
-
-  listarSexos(){
-    this.CidadaoService.listarSexo()
-    .toPromise()
-    .then((sexos) => {
-      var listaSexos :any;
-      listaSexos = sexos;
-      this.sexos = listaSexos;
-    }).catch((erro) => {
-      var erros = erro;
-    });
-  }
+  
+}
 
   limparCampos(){
-   // this.cidadao = new Cidadao();
-    //this.profileForm.reset();
-    //this.iniciarForm();
-  }
-
-  carregarTela(){
+    this.cidadao = new Cidadao();
     this.profileForm.patchValue({
       nome:'',
-
+      cpfCnpj:''
     })
-  }
-
-  private retornoCallback(r: Cidadao) {
-    this.cidadao = r;
-    this.iniciarForm();
-    this.profileForm.setValue(r);
-    
   }
 
   btnCidadao() {
     this.router.navigateByUrl('/cidadao');
+};
+
+btnLimpar() {
+  this.limparCampos();
 };
 
 }

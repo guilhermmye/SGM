@@ -28,6 +28,28 @@ private readonly urlMsc = environment.msc_api;
     
   }
 
+  public pesquisarCidadoes(cidadao:any): Observable<ResponsePageable> {
+  let parametros = new String();
+  
+  if(cidadao.nome != null && cidadao.nome != '' && (cidadao.cpfCnpj == '' || cidadao.cpfCnpj == null)){
+    parametros = "nome="+cidadao.nome;
+  }
+
+  if(cidadao.cpfCnpj != null && cidadao.cpfCnpj != '' && (cidadao.nome == '' || cidadao.nome == null)){
+    parametros = "cpfCnpj="+cidadao.cpfCnpj;
+  }
+
+  if(cidadao.nome != null && cidadao.nome != '' && cidadao.cpfCnpj != '' && cidadao.cpfCnpj != null){
+    parametros = "nome="+cidadao.nome+"&cpfCnpj="+cidadao.cpfCnpj;
+  }
+
+    var url = this.urlMsc+"/cidadaos?"+parametros;
+    return this.httpClient.get<ResponsePageable>(url,{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })       
+    })  
+  }
 
   public listarSexo() {
     var url = this.urlMsc+"/sexos";
