@@ -33,6 +33,7 @@ public class MunicipioResource {
 	@Autowired
 	private MunicipioService  municipioService;
 	
+	final String PARAMETROS = "31/municipios";
 /*	@GetMapping
 	public List<Municipio> listar(){
 		return municipioRepository.findAll();
@@ -65,6 +66,25 @@ public class MunicipioResource {
 		
 		municipioService.salvarMunicipio(municipios);
 		return municipio;		
+	} 
+	
+	
+	public void pesquisarMunicipioIbge(){
+					
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("estados")
+				.queryParam(PARAMETROS)
+				.build();
+		
+	
+		String caminho = uri.toString().replace("?","/");				
+		ResponseEntity<Municipio[]> municipio = restTemplate.getForEntity(caminho, Municipio[].class);		
+		List<Municipio> municipios = Arrays.asList(municipio.getBody());		
+		municipioService.salvarMunicipio(municipios);
+	
 	} 
 	
 }

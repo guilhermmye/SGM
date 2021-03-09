@@ -57,6 +57,8 @@ public class RegiaoResource {
 	private RegiaoIntermediariaResource regiaoIntermediariaResource;
 	@Autowired
 	private RegiaoImediataResource regiaoImediataResource;
+	@Autowired
+	private MunicipioResource municipioResource;
 	
 	
 	
@@ -120,7 +122,7 @@ public class RegiaoResource {
 		pesquisarMesoRegiao();
 		pesquisarMicroRegiaoResource();
 		pesquisarRegiaoIntermediariaResource();
-		
+		pesquisarMunicipioResource();
 		
 		
 				
@@ -168,6 +170,10 @@ public class RegiaoResource {
 	public void pesquisarRegiaoImediataResource()
 	{
 		regiaoImediataResource.pesquisarRegiaoImediataIbge();
+	}
+	public void pesquisarMunicipioResource()
+	{
+		municipioResource.pesquisarMunicipioIbge();
 	}
 	
 	
