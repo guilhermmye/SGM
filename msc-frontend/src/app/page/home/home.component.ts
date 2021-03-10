@@ -16,6 +16,10 @@ btnPesquisarCidadao() {
   this.router.navigateByUrl('/pesquisarCidadao');
 };
 
+btnPesquisarRegioes() {
+  this.router.navigateByUrl('/regiao');
+};
+
   ngOnInit() {
   }
  

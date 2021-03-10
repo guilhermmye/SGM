@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   msc_api:'/msc/api',
+  mimg_api:'/mimg/api',
   tempo_validade:30,
   loader_time_show:500,
   loader_time_hiden:0

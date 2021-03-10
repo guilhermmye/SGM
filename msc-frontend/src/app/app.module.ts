@@ -30,6 +30,7 @@ import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -42,6 +43,7 @@ registerLocaleData(localePt, 'pt-BR');
     TableComponent,
     CadastrarCidadaoComponent,
     PesquisarCidadaoComponent,
+    ListaRegioesComponent,
   ],
   imports: [
     BrowserModule,
