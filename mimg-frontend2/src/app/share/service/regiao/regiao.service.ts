@@ -30,7 +30,10 @@ httpOptions={
     
    return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/regioes/ibge/1|2|3|4|5`)
  }
-
+ public getImportarTudo(): Observable<ResponsePageable> {
+    
+  return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/regioes/importar/1|2|3|4|5`)
+}
 
 
 }

@@ -33,6 +33,8 @@ public class UfResource {
 	@Autowired
 	private UfService  ufService;
 	
+	final String PARAMETROS = "11|12|13|14|15|16|17|21|22|23|24|25|26|27|28|29|31|32|33|35|41|42|43|50|51|52|53";
+	
 	@RequestMapping( value ="/listar", method = RequestMethod.GET)
 	public List<Uf> listar(){
 		return ufRepository.findAll();
@@ -62,5 +64,25 @@ public class UfResource {
 	
 		ufService.salvarUfs(ufs);
 		return uf;		
+	}
+	
+	
+	public void pesquisarUfIbge(){
+		
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("estados")
+				.queryParam(PARAMETROS)
+				.build();
+		String caminho = uri.toString().replace("?","/");
+		ResponseEntity<Uf[]> uf = restTemplate.getForEntity(caminho, Uf[].class);
+		
+		List<Uf> ufs = Arrays.asList(uf.getBody());
+		
+	
+		ufService.salvarUfs(ufs);
+			
 	}
 }

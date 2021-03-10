@@ -52,6 +52,8 @@ public class MesorregiaoResource {
 	@Autowired
 	private UfService           ufService;
 	
+	final String PARAMETROS = "/31/mesorregioes";
+	
 	
 	@GetMapping
 	public Page<Mesorregiao> pesquisar(MesorregiaoFilter mesorregiaoFilter,Pageable pageable){
@@ -116,5 +118,31 @@ public class MesorregiaoResource {
 	} 
 	
 	
+	public void pesquisarMesoRegiaoIbge(){
+				
+		RestTemplate restTemplate = new RestTemplate();
+		UriComponents uri = UriComponentsBuilder.newInstance()
+				.scheme("https")
+				.host("servicodados.ibge.gov.br/api/v1/localidades")
+				.path("estados")
+				.queryParam(PARAMETROS)
+				.build();
+		
+		String caminho = uri.toUriString().replace("?","/");
+		ResponseEntity<Mesorregiao[]> mesorregiao = restTemplate.getForEntity(caminho, Mesorregiao[].class);
+		
+		List<Mesorregiao> mesorregiaos = Arrays.asList(mesorregiao.getBody());
+		
+		for (Mesorregiao mesorregiao2 : mesorregiaos) {
+			if(mesorregiao2 != null && mesorregiao2.getUf() == null)
+			{
+				Uf uf = ufService.buscarUfPorId(31);
+				mesorregiao2.setUf(uf);
+			}
+		}
+	
+		mesorregiaoService.salvarMesorregioes(mesorregiaos);
+			
+	} 
 	
 }

@@ -36,5 +36,11 @@ getImportar(){
   });
 }
 
+getImportarTudo(){
+  this.regiaoService.getImportarTudo().subscribe(data => {
+     this.regioes = data.content;
+     console.log(this.regioes);
+  });
+}
 
 }
