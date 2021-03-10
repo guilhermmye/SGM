@@ -32,13 +32,13 @@ public class RegiaoIntermediariaResource {
 	private RegiaoIntermediariaService  regiaoIntermediariaService;
 	
 	
-	final String PARAMETROS = "/31/regioes-intermediarias";
+	final String PARAMETROS = "31/regioes-intermediarias";
 	
 	
-	@GetMapping
+/*	@GetMapping
 	public List<RegiaoIntermediaria> listar(){
 		return regiaoIntermediariaRepository.findAll();
-	}
+	}*/
 	
 
 	@GetMapping

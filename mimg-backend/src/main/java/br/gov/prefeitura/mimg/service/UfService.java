@@ -52,9 +52,10 @@ public class UfService {
 			{
 				uf2.setId(-1);
 			}
-			
+			/*
 			Regiao regiao = regiaoService.buscarRegiaoPorId(uf2.getRegiao().getId());
 			uf2.setRegiao(regiao);
+			*/
 			ufRepository.save(uf2);
 		}
 		
