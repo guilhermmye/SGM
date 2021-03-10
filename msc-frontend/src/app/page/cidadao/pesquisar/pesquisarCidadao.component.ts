@@ -65,6 +65,11 @@ export class PesquisarCidadaoComponent implements OnInit {
     this.router.navigateByUrl('/cidadao');
 };
 
+btnAlterar(id:any) {
+  this.router.navigateByUrl('/cidadao',id);
+};
+
+
 btnLimpar() {
   this.limparCampos();
 };
