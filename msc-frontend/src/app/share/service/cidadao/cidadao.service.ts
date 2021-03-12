@@ -28,6 +28,16 @@ private readonly urlMsc = environment.msc_api;
     
   }
 
+  public obterPorId(id:any) {
+    var url = this.urlMsc+"/cidadaos/"+id;
+    return this.httpClient.get<Cidadao>(url,{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+    
+  }
+
   public pesquisarCidadoes(cidadao:any): Observable<ResponsePageable> {
   let parametros = new String();
   
@@ -74,6 +84,16 @@ private readonly urlMsc = environment.msc_api;
   public alterarCidadao(cidadao:Cidadao){
     var url = this.urlMsc+"/cidadaos/"+cidadao.id;
     return this.httpClient.put<Cidadao>(url,cidadao,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+    })
+  }
+
+  public excluirCidadao(id:any){
+    var url = this.urlMsc+"/cidadaos/"+id;
+    return this.httpClient.delete(url,
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'

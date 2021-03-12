@@ -30,12 +30,19 @@ public class CidadaoRepositoryImpl implements CidadaoRepositoryQuery {
 		CriteriaQuery<Cidadao> criteria = builder.createQuery(Cidadao.class);		
 		Root<Cidadao> root = criteria.from(Cidadao.class);
 		
-		Predicate predicate = builder.equal(root.get("cpfCnpj"),cpfCnpj.replace(".","").replace("-","").replace("/",""));
-		
-		criteria.where(predicate);
+		Predicate[] predicates = criarRestricoesCpfCnpj(cpfCnpj,builder,root);		
+		criteria.where(predicates);
 				
-		TypedQuery<Cidadao> query = manager.createQuery(criteria);		
-		return query.getSingleResult();
+		TypedQuery<Cidadao> query = manager.createQuery(criteria);	
+        
+		List<Cidadao> cidadaos = query.getResultList();
+		Cidadao cidadao = new Cidadao();
+		
+		if(cidadaos.size() > 0) {
+			cidadao = cidadaos.get(0);
+		}
+        
+		return cidadao;
 	}
 	
 	@Override
@@ -113,6 +120,16 @@ public class CidadaoRepositoryImpl implements CidadaoRepositoryQuery {
 //			predicates.add(builder.equal(root.get("idTipoPessoa"),cidadaoFilter.getIdTipoPessoa()));
 //		}
 				
+		return predicates.toArray(new Predicate[predicates.size()]);
+	}
+	
+	private Predicate[] criarRestricoesCpfCnpj(String cpfCnpj, CriteriaBuilder builder, Root<Cidadao> root) {
+		List<Predicate> predicates = new ArrayList<>();
+			
+
+		predicates.add(builder.equal(root.get("cpfCnpj"),cpfCnpj.replace(".","").replace("-","").replace("/","")));
+	
+			
 		return predicates.toArray(new Predicate[predicates.size()]);
 	}
 	

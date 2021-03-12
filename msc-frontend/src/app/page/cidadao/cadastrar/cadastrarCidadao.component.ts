@@ -5,7 +5,7 @@ import { Breakpoints } from '@angular/cdk/layout';
 import {Cidadao} from 'src/app/shared/model/cidadao/cidadao.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastrarCidadao',
@@ -21,12 +21,12 @@ export class CadastrarCidadaoComponent implements OnInit {
   
   sexos:any[] = [];
 
+  idCidadao:any;
+
   profileForm : FormGroup = this.iniciarForm();
 
-  constructor(public CidadaoService: CidadaoService,private router: Router) {
-
-   
-    
+  constructor(public CidadaoService: CidadaoService,private router: Router, private activatedRoute :ActivatedRoute) {
+    this.idCidadao = this.activatedRoute.snapshot.params.id; 
   }
 
   iniciarForm(){
@@ -51,9 +51,9 @@ export class CadastrarCidadaoComponent implements OnInit {
 
   ngOnInit() {
     this.cidadao = new Cidadao();
+    this.obterPorId(this.idCidadao);
     this.listarCidadaos();
     this.listarSexos();
-
   }
 
   onSubmit(){
@@ -119,6 +119,21 @@ export class CadastrarCidadaoComponent implements OnInit {
     //this.iniciarForm();
   }
 
+  obterPorId(id:any){
+    if(this.idCidadao != null && this.idCidadao > 0){
+      this.CidadaoService.obterPorId(this.idCidadao)
+        .toPromise()
+        .then((resposta) => {
+        var ok = resposta;
+        this.cidadao = ok;
+        this.iniciarForm();
+        this.profileForm.setValue(this.cidadao);
+      }).catch((erro) => {
+        var erros = erro;
+      });    
+    }    
+  }
+    
   carregarTela(){
     this.profileForm.patchValue({
       nome:'',

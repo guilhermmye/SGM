@@ -11,6 +11,7 @@ export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'table', component: TableComponent}, 
   {path: 'cidadao', component: CadastrarCidadaoComponent},
+  {path: 'cidadao/:id', component: CadastrarCidadaoComponent},
   {path: 'pesquisarCidadao', component: PesquisarCidadaoComponent},
   {path: 'regiao', component: ListaRegioesComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},

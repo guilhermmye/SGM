@@ -22,6 +22,7 @@ export class PesquisarCidadaoComponent implements OnInit {
   profileForm : FormGroup = this.iniciarForm();
 
   constructor(public CidadaoService: CidadaoService,private router: Router) {
+    
   }
 
   iniciarForm(){
@@ -49,8 +50,17 @@ export class PesquisarCidadaoComponent implements OnInit {
         this.dataSource = listaCidadaos.content;
     }).catch((erro) => {
       var erros = erro;
-    });
-  
+    }); 
+}
+
+excluir(id:any){
+  this.CidadaoService.excluirCidadao(id)
+  .toPromise()
+  .then((ok) => {
+
+}).catch((erro) => {
+  var erros = erro;
+}); 
 }
 
   limparCampos(){
@@ -66,7 +76,7 @@ export class PesquisarCidadaoComponent implements OnInit {
 };
 
 btnAlterar(id:any) {
-  this.router.navigateByUrl('/cidadao',id);
+  this.router.navigate(['/cidadao',id]);
 };
 
 

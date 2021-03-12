@@ -58,7 +58,7 @@ public class CidadaoService {
 	}
 	
 	private void validarPessoa(String cpfCnpj) {
-		Cidadao cidadao = buscarPessoaPorCpfCnpj(cpfCnpj);
+		Cidadao cidadao = cidadaoRepository.obterPorCpfCnpj(cpfCnpj);	
 		
 		if(cidadao != null && cidadao.getId() != null) {
 			throw new DataIntegrityViolationException("Cidadão já Cadastrado.");
