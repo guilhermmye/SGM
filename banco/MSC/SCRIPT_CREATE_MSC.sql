@@ -33,23 +33,23 @@ CREATE TABLE cidadao (
                 telefone VARCHAR(12),
                 dataNascimento DATE NOT NULL,
                 endereco VARCHAR(250) NOT NULL,
-				numero VARCHAR(10) NOT NULL,
                 cep VARCHAR(10),
-                municipio_id INTEGER NOT NULL,
+                uf_id INTEGER NOT NULL,
+                numero VARCHAR(10) NOT NULL,
                 CONSTRAINT cidadao_id PRIMARY KEY (cidadao_id)
 );
 
 
 ALTER SEQUENCE cidadao_cidadao_id_seq OWNED BY cidadao.cidadao_id;
 
-ALTER TABLE cidadao ADD CONSTRAINT sexo_cidadao_fk
+ALTER TABLE cidadao ADD CONSTRAINT sexo_pessoa_fk
 FOREIGN KEY (sexo_id)
 REFERENCES sexo (sexo_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE cidadao ADD CONSTRAINT tipopessoa_cidadao_fk
+ALTER TABLE cidadao ADD CONSTRAINT tipopessoa_pessoa_fk
 FOREIGN KEY (tipoPessoa_id)
 REFERENCES tipoPessoa (tipoPessoa_id)
 ON DELETE NO ACTION

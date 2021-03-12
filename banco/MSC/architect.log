@@ -1,0 +1,74 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+1244 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+1345 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+1345 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+1415 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+4425 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+29792 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE sgm.sexo_sexo_id_seq
+29796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sgm.sexo (
+                sexo_id INTEGER NOT NULL DEFAULT nextval('sgm.sexo_sexo_id_seq'),
+                descricao VARCHAR NOT NULL,
+                CONSTRAINT sexo_id PRIMARY KEY (sexo_id)
+)
+29796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sgm.sexo_sexo_id_seq OWNED BY sgm.sexo.sexo_id
+29796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE sgm.tipopessoa_tipopessoa_id_seq
+29797 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sgm.tipoPessoa (
+                tipoPessoa_id INTEGER NOT NULL DEFAULT nextval('sgm.tipopessoa_tipopessoa_id_seq'),
+                descricao VARCHAR NOT NULL,
+                CONSTRAINT tipopessoa_id PRIMARY KEY (tipoPessoa_id)
+)
+29797 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sgm.tipopessoa_tipopessoa_id_seq OWNED BY sgm.tipoPessoa.tipoPessoa_id
+29798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE sgm.cidadao_cidadao_id_seq
+29799 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sgm.cidadao (
+                cidadao_id INTEGER NOT NULL DEFAULT nextval('sgm.cidadao_cidadao_id_seq'),
+                sexo_id INTEGER NOT NULL,
+                tipoPessoa_id INTEGER NOT NULL,
+                nome VARCHAR NOT NULL,
+                cpfCnpj VARCHAR(15) NOT NULL,
+                email VARCHAR(50) NOT NULL,
+                telefone VARCHAR(12),
+                dataNascimento DATE NOT NULL,
+                endereco VARCHAR(250) NOT NULL,
+                cep VARCHAR(10),
+                uf_id INTEGER NOT NULL,
+                numero VARCHAR(10) NOT NULL,
+                CONSTRAINT cidadao_id PRIMARY KEY (cidadao_id)
+)
+29799 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sgm.cidadao_cidadao_id_seq OWNED BY sgm.cidadao.cidadao_id
+29800 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE sgm.cidadao ADD CONSTRAINT sexo_pessoa_fk
+FOREIGN KEY (sexo_id)
+REFERENCES sgm.sexo (sexo_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+29801 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE sgm.cidadao ADD CONSTRAINT tipopessoa_pessoa_fk
+FOREIGN KEY (tipoPessoa_id)
+REFERENCES sgm.tipoPessoa (tipoPessoa_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+29805 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :11
