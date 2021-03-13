@@ -11,7 +11,7 @@ public class SgmApplication {
 		SpringApplication.run(SgmApplication.class, args);
 		
 	
-		System.out.println("teste");	
+		System.out.println("mimg");	
 	}
 
 }

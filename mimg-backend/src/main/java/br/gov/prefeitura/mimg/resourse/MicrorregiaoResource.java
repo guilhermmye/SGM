@@ -35,7 +35,7 @@ public class MicrorregiaoResource {
 	@Autowired
 	private MicrorregiaoService           microrregiaoService;
 	
-	final String PARAMETROS = "/3101|3102|3103|3104|3105|3106|3107|3108|3109|3110|3111|3112/microrregioes";
+	final String PARAMETROS = "3101|3102|3103|3104|3105|3106|3107|3108|3109|3110|3111|3112/microrregioes";
 	
 /*	@GetMapping
 	public List<Microrregiao> listar(){

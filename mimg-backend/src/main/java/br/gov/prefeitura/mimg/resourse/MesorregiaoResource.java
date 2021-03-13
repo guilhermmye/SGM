@@ -52,7 +52,7 @@ public class MesorregiaoResource {
 	@Autowired
 	private UfService           ufService;
 	
-	final String PARAMETROS = "/31/mesorregioes";
+	final String PARAMETROS = "31/mesorregioes";
 	
 	
 	@GetMapping
