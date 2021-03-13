@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class CidadaoService {
 
 private readonly urlMsc = environment.msc_api;
+private readonly urlStur = environment.stur_api;
 
   constructor(private httpClient: HttpClient) {
    
@@ -101,6 +102,14 @@ private readonly urlMsc = environment.msc_api;
     })
   }
 
+  public listarStur(cpfCnpj:any) {  
+      var url = this.urlStur+"/stur/"+cpfCnpj;
+      return this.httpClient.get(url,{
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json'
+          })       
+      })  
+    }
 
 
 

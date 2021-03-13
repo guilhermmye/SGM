@@ -1,4 +1,4 @@
-package br.gov.prefeitura.msc;
+package br.gov.prefeitura.stur;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

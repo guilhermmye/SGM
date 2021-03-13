@@ -16,7 +16,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CadastrarCidadaoComponent implements OnInit {
   cidadao: Cidadao = new Cidadao();
 
-  displayedColumns:string[] =['id','nome'];
+  displayedColumns:string[] =['inscricao','tipoImposto','parcela',
+                              'valorTotal','endereco','cep'
+                              ,'municipio','uf','numero'
+                            ];
   dataSource:any;
   
   sexos:any[] = [];
@@ -52,7 +55,6 @@ export class CadastrarCidadaoComponent implements OnInit {
   ngOnInit() {
     this.cidadao = new Cidadao();
     this.obterPorId(this.idCidadao);
-    this.listarCidadaos();
     this.listarSexos();
   }
 
@@ -68,7 +70,7 @@ export class CadastrarCidadaoComponent implements OnInit {
       .toPromise()
       .then((resposta) => {
       var ok = resposta;
-      this.listarCidadaos();
+      this.listarStur(value.cpfCnpj);
       this.limparCampos();
       this.retornoCallback(ok);
     }).catch((erro) => {
@@ -79,7 +81,7 @@ export class CadastrarCidadaoComponent implements OnInit {
      .toPromise()
      .then((resposta) => {
       var ok = resposta;
-      this.listarCidadaos();
+      this.listarStur(value.cpfCnpj);
       this.limparCampos();
       this.retornoCallback(ok);
     }).catch((erro) => {
@@ -89,13 +91,13 @@ export class CadastrarCidadaoComponent implements OnInit {
 
   }
 
-  listarCidadaos(){
-    this.CidadaoService.listarCidadoes()
+  listarStur(cpfCnpj:any){
+    this.CidadaoService.listarStur(cpfCnpj)
     .toPromise()
-    .then((cidadaos) => {
-      var listaCidadaos :any;
-      listaCidadaos = cidadaos;
-      this.dataSource = listaCidadaos.content;
+    .then((sturs) => {
+      var listaStur :any;
+      listaStur = sturs;
+      this.dataSource = listaStur;
     }).catch((erro) => {
       var erros = erro;
     });
@@ -126,8 +128,9 @@ export class CadastrarCidadaoComponent implements OnInit {
         .then((resposta) => {
         var ok = resposta;
         this.cidadao = ok;
+        this.listarStur(this.cidadao.cpfCnpj);
         this.iniciarForm();
-        this.profileForm.setValue(this.cidadao);
+        this.profileForm.setValue(this.cidadao);       
       }).catch((erro) => {
         var erros = erro;
       });    

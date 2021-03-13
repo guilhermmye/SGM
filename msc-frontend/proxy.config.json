@@ -10,5 +10,11 @@
     "target": "http://localhost:9090",
     "secure":false,
     "logLevel":"debug"
+  },
+
+  "/stur/api/*": {
+    "target": "http://localhost:7070",
+    "secure":false,
+    "logLevel":"debug"
   }
 }
