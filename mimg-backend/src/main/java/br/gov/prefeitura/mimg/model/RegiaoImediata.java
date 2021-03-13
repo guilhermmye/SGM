@@ -10,13 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name="regiaoIntermedia")
+@Table(name="regiaoimediata")
 public class RegiaoImediata {
 	
 	private Integer id;
@@ -24,7 +26,7 @@ public class RegiaoImediata {
 	private RegiaoIntermediaria regiaoIntermediaria;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "regiaoImediata_id")
 	public Integer getId() {
 		return id;
@@ -32,6 +34,7 @@ public class RegiaoImediata {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "regiaoIntermediaria_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public RegiaoIntermediaria getRegiaoIntermediaria()
     {
         return regiaoIntermediaria;

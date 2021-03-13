@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="municipio_id")
+@Table(name="municipio")
 public class Distrito {
 	
 	private Integer id;
@@ -32,7 +32,7 @@ public class Distrito {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "distrito_id")
 	public Integer getId() {
 		return id;

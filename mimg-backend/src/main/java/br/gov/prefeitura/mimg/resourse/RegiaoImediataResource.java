@@ -31,7 +31,7 @@ public class RegiaoImediataResource {
 	@Autowired
 	private RegiaoImediataService  regiaoImediataService;
 	
-	final String PARAMETROS = "/3101|3102|3103|3104|3105|3106|3107|3108|3109|3110|3111|3112|3113/regioes-imediatas";
+	final String PARAMETROS = "3101|3102|3103|3104|3105|3106|3107|3108|3109|3110|3111|3112|3113/regioes-imediatas";
 	
 	/*@GetMapping
 	public List<RegiaoImediata> listar(){

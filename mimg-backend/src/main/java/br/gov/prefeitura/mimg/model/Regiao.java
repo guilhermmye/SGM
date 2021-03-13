@@ -32,7 +32,7 @@ public class Regiao implements Serializable{
 	private String sigla;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "regiao_id")
 	public Integer getId() {
 		return id;
