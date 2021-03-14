@@ -15,10 +15,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.prefeitura.mimg.model.RegiaoImediata;
-import br.gov.prefeitura.mimg.model.RegiaoIntermediaria;
 import br.gov.prefeitura.mimg.repository.RegiaoImediataRepository;
 import br.gov.prefeitura.mimg.repository.regiaoImediata.filter.RegiaoImediataFilter;
-import br.gov.prefeitura.mimg.repository.regiaoIntermediaria.filter.RegiaoIntermediariaFilter;
 import br.gov.prefeitura.mimg.service.RegiaoImediataService;
 
 @RestController

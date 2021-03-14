@@ -121,9 +121,9 @@ public class RegiaoResource {
 		pesquisarUf();
 		pesquisarMesoRegiao();
 		pesquisarMicroRegiaoResource();
-		pesquisarRegiaoIntermediariaResource();
-		pesquisarRegiaoImediataResource();
-		pesquisarMunicipioResource();
+	//	pesquisarRegiaoIntermediariaResource();
+		//pesquisarRegiaoImediataResource();
+		//pesquisarMunicipioResource();
 		
 		
 				
