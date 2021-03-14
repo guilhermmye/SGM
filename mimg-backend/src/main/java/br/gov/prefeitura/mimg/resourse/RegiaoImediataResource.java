@@ -31,7 +31,7 @@ public class RegiaoImediataResource {
 	@Autowired
 	private RegiaoImediataService  regiaoImediataService;
 	
-	final String PARAMETROS = "3101|3102|3103|3104|3105|3106|3107|3108|3109|3110|3111|3112|3113/regioes-imediatas";
+	final String PARAMETROS = "31/regioes-imediatas";
 	
 	/*@GetMapping
 	public List<RegiaoImediata> listar(){
@@ -47,9 +47,10 @@ public class RegiaoImediataResource {
 
 		RestTemplate restTemplate = new RestTemplate();
 		UriComponents uri = UriComponentsBuilder.newInstance().scheme("https")
-				.host("servicodados.ibge.gov.br/api/v1/localidades").path("regioes-intermediarias").queryParam(PARAMETROS).build();
+				.host("servicodados.ibge.gov.br/api/v1/localidades").path("estados").queryParam(PARAMETROS).build();
 		String caminho = uri.toString().replace("?", "/");
 		ResponseEntity<RegiaoImediata[]> regiaoImediata = restTemplate.getForEntity(caminho, RegiaoImediata[].class);
+		
 
 		List<RegiaoImediata> regiaoImediatas = Arrays.asList(regiaoImediata.getBody());
 

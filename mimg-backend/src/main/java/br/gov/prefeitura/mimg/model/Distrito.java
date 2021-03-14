@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="municipio")
+@Table(name="distrito")
 public class Distrito {
 	
 	private Integer id;

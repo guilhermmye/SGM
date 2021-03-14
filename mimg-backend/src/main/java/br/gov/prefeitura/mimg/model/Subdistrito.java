@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="subdistrito_id")
+@Table(name="subdistrito")
 public class Subdistrito {
 	
 	private Integer id;

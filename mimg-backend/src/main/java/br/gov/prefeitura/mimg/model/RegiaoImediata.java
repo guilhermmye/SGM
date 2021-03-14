@@ -1,10 +1,10 @@
 package br.gov.prefeitura.mimg.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +19,12 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name="regiaoimediata")
-public class RegiaoImediata {
+public class RegiaoImediata implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nome;
 	private RegiaoIntermediaria regiaoIntermediaria;
@@ -33,7 +37,7 @@ public class RegiaoImediata {
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "regiaoIntermediaria_id")
+	@JoinColumn(name = "regiaointermediaria_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     public RegiaoIntermediaria getRegiaoIntermediaria()
     {
