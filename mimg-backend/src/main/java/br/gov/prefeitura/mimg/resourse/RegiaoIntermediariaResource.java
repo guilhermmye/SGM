@@ -1,5 +1,6 @@
 package br.gov.prefeitura.mimg.resourse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,18 +60,23 @@ public class RegiaoIntermediariaResource {
 		ResponseEntity<RegiaoIntermediaria[]> regiaoIntermediaria = restTemplate.getForEntity(caminho, RegiaoIntermediaria[].class);
 
 		List<RegiaoIntermediaria> regiaoIntermediarias = Arrays.asList(regiaoIntermediaria.getBody());
+		List<RegiaoIntermediaria> novaList = new ArrayList<RegiaoIntermediaria>();
 		
 		for (RegiaoIntermediaria regiaoIntermediaria2 : regiaoIntermediarias) {
 		
 				if(regiaoIntermediaria2 != null && regiaoIntermediaria2.getUf() == null)
 				{
+					RegiaoIntermediaria nova = new RegiaoIntermediaria();
 					Uf uf = ufService.buscarUfPorId(31);
-					regiaoIntermediaria2.setUf(uf);
+					nova.setUf(uf);
+					nova.setId(regiaoIntermediaria2.getId());
+					nova.setNome(regiaoIntermediaria2.getNome());	
+					novaList.add(nova);
 				}
 			
 		}
 
-		regiaoIntermediariaService.salvarRegiaoIntermediarias(regiaoIntermediarias);
+		regiaoIntermediariaService.salvarRegiaoIntermediarias(novaList);
 		
 	}
 }

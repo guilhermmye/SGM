@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,6 +40,7 @@ public class RegiaoImediata implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "regiaointermediaria_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonProperty("regiao-intermediaria")
     public RegiaoIntermediaria getRegiaoIntermediaria()
     {
         return regiaoIntermediaria;
