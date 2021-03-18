@@ -31,6 +31,10 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
+import { LoginComponent } from './page/login/login.component';
+import { AuthGuard } from './share/service/login/auth.guard';
+import { AuthService } from './share/service/login/auth.service';
+import { TokenStorageService } from './share/service/login/token-storage.service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -44,6 +48,7 @@ registerLocaleData(localePt, 'pt-BR');
     CadastrarCidadaoComponent,
     PesquisarCidadaoComponent,
     ListaRegioesComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,7 @@ registerLocaleData(localePt, 'pt-BR');
     NgxMaskModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
-  providers: [{
+  providers: [AuthGuard,AuthService,TokenStorageService,{
     provide: LOCALE_ID, useValue: 'pt-BR',
     useClass: HashLocationStrategy
   }],

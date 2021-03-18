@@ -4,16 +4,19 @@ import { CadastrarCidadaoComponent } from './page/cidadao/cadastrar/cadastrarCid
 import { PesquisarCidadaoComponent } from './page/cidadao/pesquisar/pesquisarCidadao.component';
 import { TableComponent } from './page/table/table.component';
 import { ListaRegioesComponent } from "./page/regiao/lista-regioes.component";
+import { LoginComponent } from './page/login/login.component';
+import { AuthGuard } from "./share/service/login/auth.guard";
  
 
 
 export const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'table', component: TableComponent}, 
-  {path: 'cidadao', component: CadastrarCidadaoComponent},
-  {path: 'cidadao/:id', component: CadastrarCidadaoComponent},
-  {path: 'pesquisarCidadao', component: PesquisarCidadaoComponent},
-  {path: 'regiao', component: ListaRegioesComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent,canActivate:[AuthGuard]},
+  {path: 'table', component: TableComponent,canActivate:[AuthGuard]}, 
+  {path: 'cidadao', component: CadastrarCidadaoComponent,canActivate:[AuthGuard]},
+  {path: 'cidadao/:id', component: CadastrarCidadaoComponent,canActivate:[AuthGuard]},
+  {path: 'pesquisarCidadao', component: PesquisarCidadaoComponent,canActivate:[AuthGuard]},
+  {path: 'regiao', component: ListaRegioesComponent,canActivate:[AuthGuard]},
+  {path: 'login', component: LoginComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

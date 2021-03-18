@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pesquisarCidadao',
-  templateUrl: './pesquisarCidadao.component.html',
-  styleUrls: ['./pesquisarCidadao.component.scss']
+  templateUrl: 'pesquisarCidadao.component.html',
+  styleUrls: ['pesquisarCidadao.component.scss']
 })
 
 export class PesquisarCidadaoComponent implements OnInit {

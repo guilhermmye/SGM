@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input, HostListener, ElementRef } from '@angular/core';
+import { TokenStorageService } from 'src/app/share/service/login/token-storage.service';
 
 @Component({
     selector: '[appSidebar]',
@@ -11,7 +12,7 @@ import { Component, HostBinding, Input, HostListener, ElementRef } from '@angula
 export class SidebarComponent {
 
     @HostBinding('class.c-sidebar-show') _alwaysShow = false;
-    @HostBinding('class.c-sidebar-lg-show') _show = true;
+    @HostBinding('class.c-sidebar-lg-show') _show = false;
     private _enableClickOutside = false;
     @Input()
     @HostBinding('class.c-sidebar-fixed') fixed = true;
