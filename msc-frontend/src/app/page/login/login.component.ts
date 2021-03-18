@@ -30,12 +30,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-
+        
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+        this.roles = this.tokenStorage.getUser().roles;        
         this.router.navigate(['/home']);
-        //this.reloadPage();
       },
       err => {
         this.errorMessage = err.error.message;
@@ -49,8 +48,8 @@ export class LoginComponent implements OnInit {
   }
 
    public logoff(){
-     this.tokenStorage.signOut();
-     this.router.navigate(['/home']);
+    this.tokenStorage.signOut();  
+    this.reloadPage(); 
    }
 
 }

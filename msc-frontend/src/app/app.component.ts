@@ -8,10 +8,12 @@ import { TokenStorageService } from './share/service/login/token-storage.service
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+ 
   constructor(private tokenStorageService:TokenStorageService){
   }
 
+  ngOnInit() {
   
-
   }
+}
 

@@ -7,7 +7,7 @@ const USER_KEY  = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
-
+  mostrarMenuEmitter = new EventEmitter<boolean>();
   constructor() { }
 
   signOut(): void {
@@ -31,4 +31,5 @@ export class TokenStorageService {
   public getUser(): any {
     return JSON.parse(sessionStorage.getItem(USER_KEY) || '{}');
   }
+
 }
