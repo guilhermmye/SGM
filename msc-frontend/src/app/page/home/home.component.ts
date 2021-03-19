@@ -20,6 +20,10 @@ btnPesquisarRegioes() {
   this.router.navigateByUrl('/regiao');
 };
 
+btnPermissaoAcesso() {
+  this.router.navigateByUrl('/permissaoAcesso');
+};
+
   ngOnInit() {
   }
  

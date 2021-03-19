@@ -13,6 +13,8 @@ public class Role {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
 	private ERole name;
+	
+	private String descricao;
 
 	public Role() {
 
@@ -36,5 +38,13 @@ public class Role {
 
 	public void setName(ERole name) {
 		this.name = name;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 }

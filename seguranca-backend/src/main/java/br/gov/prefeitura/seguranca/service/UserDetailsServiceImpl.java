@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.prefeitura.seguranca.model.Usuario;
-import br.gov.prefeitura.seguranca.repository.UserRepository;
+import br.gov.prefeitura.seguranca.repository.usuario.UsuarioRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
-	UserRepository userRepository;
+	UsuarioRepository userRepository;
 
 	@Override
 	@Transactional

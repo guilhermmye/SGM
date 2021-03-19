@@ -4,6 +4,7 @@ CREATE SEQUENCE roles_roles_id_seq;
 CREATE TABLE roles (
                 roles_id INTEGER NOT NULL DEFAULT nextval('roles_roles_id_seq'),
                 name VARCHAR NOT NULL,
+				descricao VARCHAR NOT NULL,
                 CONSTRAINT roles_id PRIMARY KEY (roles_id)
 );
 

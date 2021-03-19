@@ -27,8 +27,8 @@ import br.gov.prefeitura.seguranca.payload.request.LoginRequest;
 import br.gov.prefeitura.seguranca.payload.request.SignupRequest;
 import br.gov.prefeitura.seguranca.payload.response.JwtResponse;
 import br.gov.prefeitura.seguranca.payload.response.MessageResponse;
-import br.gov.prefeitura.seguranca.repository.RoleRepository;
-import br.gov.prefeitura.seguranca.repository.UserRepository;
+import br.gov.prefeitura.seguranca.repository.role.RoleRepository;
+import br.gov.prefeitura.seguranca.repository.usuario.UsuarioRepository;
 import br.gov.prefeitura.seguranca.service.UserDetailsImpl;
 import br.gov.prefeitura.seguranca.util.JwtUtils;
 
@@ -40,7 +40,7 @@ public class AuthController {
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	private UserRepository userRepository;
+	private UsuarioRepository userRepository;
 
 	@Autowired
 	private RoleRepository roleRepository;
@@ -101,7 +101,7 @@ public class AuthController {
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-				case "admin":
+				case "adm":
 					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
 					roles.add(adminRole);
@@ -113,10 +113,15 @@ public class AuthController {
 					roles.add(modRole);
 
 					break;
-				default:
+				case "user":
 					Role userRole = roleRepository.findByName(ERole.ROLE_USUARIO)
 							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
 					roles.add(userRole);
+					break;
+//				default:
+//					Role userRol = roleRepository.findByName(ERole.ROLE_USUARIO)
+//							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
+//					roles.add(userRol);
 				}
 			});
 		}

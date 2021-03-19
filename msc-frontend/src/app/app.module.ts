@@ -35,6 +35,7 @@ import { LoginComponent } from './page/login/login.component';
 import { AuthGuard } from './share/service/login/auth.guard';
 import { AuthService } from './share/service/login/auth.service';
 import { TokenStorageService } from './share/service/login/token-storage.service';
+import { CadastrarPermissaoComponent } from './page/permissaoAcesso/cadastrar/cadastrarPermissao.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -49,6 +50,7 @@ registerLocaleData(localePt, 'pt-BR');
     PesquisarCidadaoComponent,
     ListaRegioesComponent,
     LoginComponent,
+    CadastrarPermissaoComponent,
   ],
   imports: [
     BrowserModule,

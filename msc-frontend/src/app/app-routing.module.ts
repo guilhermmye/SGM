@@ -6,6 +6,7 @@ import { TableComponent } from './page/table/table.component';
 import { ListaRegioesComponent } from "./page/regiao/lista-regioes.component";
 import { LoginComponent } from './page/login/login.component';
 import { AuthGuard } from "./share/service/login/auth.guard";
+import { CadastrarPermissaoComponent } from "./page/permissaoAcesso/cadastrar/cadastrarPermissao.component";
  
 
 
@@ -16,6 +17,7 @@ export const routes: Routes = [
   {path: 'cidadao/:id', component: CadastrarCidadaoComponent,canActivate:[AuthGuard]},
   {path: 'pesquisarCidadao', component: PesquisarCidadaoComponent,canActivate:[AuthGuard]},
   {path: 'regiao', component: ListaRegioesComponent,canActivate:[AuthGuard]},
+  {path: 'permissaoAcesso', component: CadastrarPermissaoComponent,canActivate:[AuthGuard]},
   {path: 'login', component: LoginComponent },
   {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
