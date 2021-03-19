@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usuario_id")
 	private Long id;
 
 	@NotBlank
@@ -34,8 +35,8 @@ public class Usuario {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "usuario_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
+				joinColumns = @JoinColumn(name = "usuario_id"), 
+				inverseJoinColumns = @JoinColumn(name = "roles_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	public Usuario() {
