@@ -16,5 +16,11 @@
     "target": "http://localhost:7070",
     "secure":false,
     "logLevel":"debug"
+  },
+
+  "/seguranca/api/*": {
+    "target": "http://localhost:5050",
+    "secure":false,
+    "logLevel":"debug"
   }
 }

@@ -7,6 +7,7 @@ export const environment = {
   msc_api:'/msc/api',
   mimg_api:'/mimg/api',
   stur_api:'/stur/api',
+  seguranca_api:'/seguranca/api',
   tempo_validade:30,
   loader_time_show:500,
   loader_time_hiden:0

@@ -34,7 +34,7 @@ import br.gov.prefeitura.seguranca.util.JwtUtils;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
