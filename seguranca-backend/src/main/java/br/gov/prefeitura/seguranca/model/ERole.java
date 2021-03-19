@@ -1,7 +1,7 @@
 package br.gov.prefeitura.seguranca.model;
 
 public enum ERole {
-	ROLE_USER,
-    ROLE_MODERATOR,
+	ROLE_USUARIO,
+    ROLE_TECNICO,
     ROLE_ADMIN
 }
