@@ -4,8 +4,8 @@ import { Sexo } from "../sexo/sexo.model";
 export class Usuario {
 
      id             : number  = 0;
-	 nome           : String  = "";
-	 senha          : String  = "";
+	 username       : String  = "";
+	 password       : String  = "";
 	 email          : String  = "";
-	 role			: [] = [];
+	 roles			: [] = [];
 }

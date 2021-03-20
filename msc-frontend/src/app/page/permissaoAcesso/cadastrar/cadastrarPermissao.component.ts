@@ -16,7 +16,7 @@ import { PermissaoAcessoService } from 'src/app/share/service/permissaoAcesso/pe
 
 export class CadastrarPermissaoComponent implements OnInit {
   usuario: Usuario = new Usuario();
-  displayedColumns:string[] =['nome','email','permissao'];
+  displayedColumns:string[] =['nome','email','permissao','opcoes'];
   dataSource:any;
   idUsuario:any;
   profileForm : FormGroup = this.iniciarForm();
@@ -30,10 +30,10 @@ export class CadastrarPermissaoComponent implements OnInit {
   iniciarForm(){
   return this.profileForm = new FormGroup({  
       id                : new FormControl({ value: this.usuario.id, disabled: true }, Validators.required),
-      nome              :  new FormControl(this.usuario.nome,Validators.required),
-      senha           :  new FormControl({ value:this.usuario.senha, disabled:this.isEdicao()},Validators.required),
+      username              :  new FormControl(this.usuario.username,Validators.required),
+      password           :  new FormControl({ value:this.usuario.password, disabled:this.isEdicao()},Validators.required),
       email             :  new FormControl(this.usuario.email,Validators.required),
-      role             :  new FormControl(this.usuario.role,Validators.required),
+      roles             :  new FormControl(this.usuario.roles,Validators.required),
   });
 }
 
@@ -54,17 +54,28 @@ export class CadastrarPermissaoComponent implements OnInit {
   }
 
   cadastrar(value:any){
-      this.permissaoAcessoService.cadastrar(value)
-      .toPromise()
-      .then((resposta) => {
-      var ok = resposta;
-      this.listarUsuarios;
-      this.retornoCallback(ok);
-    }).catch((erro) => {
-      var erros = erro;
-    });    
-
+    if(value.id > 0 && value.id != null){
+      value.roles=[value.roles];
+      this.permissaoAcessoService.alterar(value)
+        .toPromise()
+        .then((resposta) => {
+        var ok = resposta;
+        this.retornoCallback();
+      }).catch((erro) => {
+        var erros = erro;
+      });
+    }else{
+        this.permissaoAcessoService.cadastrar(value)
+        .toPromise()
+        .then((resposta) => {
+        var ok = resposta;
+        this.retornoCallback();
+      }).catch((erro) => {
+        var erros = erro;
+      }); 
+    }   
   }
+  
  
   listarRoles(){
     this.permissaoAcessoService.listarRoles()
@@ -97,12 +108,27 @@ export class CadastrarPermissaoComponent implements OnInit {
     })
   }
 
-  private retornoCallback(r: Usuario) {
-    this.usuario = r;
+  private retornoCallback() {
+    this.usuario = new Usuario();
     this.iniciarForm();
-    this.profileForm.setValue(r);
-    
+    this.listarUsuarios; 
+    this.reloadPage();
   }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
+
+  carregarUsuario(value:any) {
+    this.usuario.id = value.id;
+    this.usuario.username = value.username;
+    this.usuario.password = value.password;
+    this.usuario.email = value.email;
+    this.usuario.role = value.roles[0];
+
+    this.iniciarForm();
+    this.profileForm.setValue(this.usuario); 
+   };
 
   btnPesquisarCidadao() {
     this.router.navigateByUrl('/pesquisarCidadao');

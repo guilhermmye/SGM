@@ -18,7 +18,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "usuario_id")
-	private Long id;
+	private Integer id;
 
 	@NotBlank
 	@Size(max = 20)
@@ -48,11 +48,11 @@ public class Usuario {
 		this.password = password;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
