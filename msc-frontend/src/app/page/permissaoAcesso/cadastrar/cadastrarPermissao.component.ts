@@ -16,7 +16,7 @@ import { PermissaoAcessoService } from 'src/app/share/service/permissaoAcesso/pe
 
 export class CadastrarPermissaoComponent implements OnInit {
   usuario: Usuario = new Usuario();
-  displayedColumns:string[] =['nome','email'];
+  displayedColumns:string[] =['nome','email','permissao'];
   dataSource:any;
   idUsuario:any;
   profileForm : FormGroup = this.iniciarForm();
@@ -43,6 +43,7 @@ export class CadastrarPermissaoComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = new Usuario();
+    this.listarUsuarios();
     this.listarRoles();
   }
 
@@ -53,11 +54,11 @@ export class CadastrarPermissaoComponent implements OnInit {
   }
 
   cadastrar(value:any){
-
       this.permissaoAcessoService.cadastrar(value)
       .toPromise()
       .then((resposta) => {
       var ok = resposta;
+      this.listarUsuarios;
       this.retornoCallback(ok);
     }).catch((erro) => {
       var erros = erro;
@@ -72,6 +73,18 @@ export class CadastrarPermissaoComponent implements OnInit {
       var listaRoles :any;
       listaRoles = roles;
       this.roles = listaRoles;
+    }).catch((erro) => {
+      var erros = erro;
+    });
+  }
+
+  listarUsuarios(){
+    this.permissaoAcessoService.listarUsuarios()
+    .toPromise()
+    .then((usuarios) => {
+      var lista :any;
+      lista = usuarios;
+      this.dataSource = lista;
     }).catch((erro) => {
       var erros = erro;
     });

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { TokenStorageService } from '../login/token-storage.service';
 
 const urlSeguranca = environment.seguranca_api;
 
@@ -13,8 +14,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PermissaoAcessoService {
+  testa: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private tokenStorage: TokenStorageService) { }
 
   cadastrar(usuario:any): Observable<any> {
     return this.http.post(urlSeguranca + '/auth/signup', {
@@ -25,12 +27,21 @@ export class PermissaoAcessoService {
     }, httpOptions);
   }
 
-  public listarRoles() {
-    return this.http.get(urlSeguranca+'roles',{
+  public listarRoles() {   
+    return this.http.get(urlSeguranca+'/roles',{
         headers: new HttpHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+this.tokenStorage.getToken()
         })
-    })
-    
+    })   
+  }
+
+  public listarUsuarios() {   
+    return this.http.get(urlSeguranca+'/usuarios',{
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+        })
+    })   
   }
 }

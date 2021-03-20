@@ -147,8 +147,7 @@ export class CadastrarCidadaoComponent implements OnInit {
   private retornoCallback(r: Cidadao) {
     this.cidadao = r;
     this.iniciarForm();
-    this.profileForm.setValue(r);
-    
+    this.profileForm.setValue(r);    
   }
 
   btnPesquisarCidadao() {
