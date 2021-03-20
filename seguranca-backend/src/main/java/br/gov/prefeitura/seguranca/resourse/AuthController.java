@@ -1,5 +1,6 @@
 package br.gov.prefeitura.seguranca.resourse;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -92,28 +93,23 @@ public class AuthController {
 							 encoder.encode(signUpRequest.getPassword()));
 
 		Set<String> strRoles = signUpRequest.getRole();
+		List<String> list = new ArrayList<String>(strRoles);
 		Set<Role> roles = new HashSet<>();
 
-		if (strRoles == null) {
-			Role userRole = roleRepository.findByName(ERole.ROLE_USUARIO)
-					.orElseThrow(() -> new RuntimeException("Role não encontrada."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "adm":
+				switch (list.get(0)) {
+				case "ROLE_ADMIN":
 					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
 					roles.add(adminRole);
 
 					break;
-				case "tec":
+				case "ROLE_TECNICO":
 					Role modRole = roleRepository.findByName(ERole.ROLE_TECNICO)
 							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
 					roles.add(modRole);
 
 					break;
-				case "user":
+				case "ROLE_USUARIO":
 					Role userRole = roleRepository.findByName(ERole.ROLE_USUARIO)
 							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
 					roles.add(userRole);
@@ -123,8 +119,6 @@ public class AuthController {
 //							.orElseThrow(() -> new RuntimeException("Role não encontrada."));
 //					roles.add(userRol);
 				}
-			});
-		}
 
 		user.setRoles(roles);
 		userRepository.save(user);

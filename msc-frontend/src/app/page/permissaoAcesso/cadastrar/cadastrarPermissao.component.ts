@@ -33,7 +33,7 @@ export class CadastrarPermissaoComponent implements OnInit {
       nome              :  new FormControl(this.usuario.nome,Validators.required),
       senha           :  new FormControl({ value:this.usuario.senha, disabled:this.isEdicao()},Validators.required),
       email             :  new FormControl(this.usuario.email,Validators.required),
- 
+      role             :  new FormControl(this.usuario.role,Validators.required),
   });
 }
 

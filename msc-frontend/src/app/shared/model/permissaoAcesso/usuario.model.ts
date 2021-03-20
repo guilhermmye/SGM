@@ -7,4 +7,5 @@ export class Usuario {
 	 nome           : String  = "";
 	 senha          : String  = "";
 	 email          : String  = "";
+	 role			: [] = [];
 }

@@ -23,7 +23,7 @@ export class PermissaoAcessoService {
       username: usuario.nome,
       email: usuario.email,
       password: usuario.senha,
-      role:["admin"]    
+      role:[usuario.role.name]    
     }, httpOptions);
   }
 
