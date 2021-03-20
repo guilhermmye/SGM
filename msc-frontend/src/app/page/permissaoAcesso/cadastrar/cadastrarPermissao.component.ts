@@ -124,7 +124,7 @@ export class CadastrarPermissaoComponent implements OnInit {
     this.usuario.username = value.username;
     this.usuario.password = value.password;
     this.usuario.email = value.email;
-    this.usuario.role = value.roles[0];
+    this.usuario.roles = value.roles[0];
 
     this.iniciarForm();
     this.profileForm.setValue(this.usuario); 

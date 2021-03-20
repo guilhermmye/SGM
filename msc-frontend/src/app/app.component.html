@@ -9,7 +9,7 @@
   <!--
       https://coreui.io/docs/components/header/
   -->
-  <header class="c-header c-header-light c-header-fixed c-header-shadow">    
+  <header *ngIf="usuario.id != null" class="c-header c-header-light c-header-fixed c-header-shadow">    
     <button matRipple class="c-header-toggler" type="button" (click)="sidebar.toggle()">
       <span class="c-header-toggler-icon"></span>
     </button>
@@ -17,8 +17,15 @@
     <div class="c-header-brand">
       <strong>SGM - Sistema de Gestão Integrada Municipal</strong>
     </div>
-  </header>
 
+    <div class="c-header-brand direita">
+      <strong>Olá, {{usuario.username}}</strong>
+      <div class="btn-group" role="group">
+        <a class="btn" (click)="logoff();" matTooltip="sair"><i class="fa fa-sign-out" aria-hidden="true"></i>Sair</a>   
+    </div>
+    </div>
+    
+  </header>
   <div class="c-body">
     <router-outlet></router-outlet>
   </div>

@@ -8,12 +8,21 @@ import { TokenStorageService } from './share/service/login/token-storage.service
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- 
+  usuario:any;
   constructor(private tokenStorageService:TokenStorageService){
   }
 
   ngOnInit() {
-  
+    this.usuario = this.tokenStorageService.getUser();
   }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
+
+   public logoff(){
+    this.tokenStorageService.signOut();  
+    this.reloadPage(); 
+   }
 }
 
