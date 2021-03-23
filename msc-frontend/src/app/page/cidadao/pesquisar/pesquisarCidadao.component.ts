@@ -6,6 +6,7 @@ import {Cidadao} from 'src/app/shared/model/cidadao/cidadao.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/share/service/login/token-storage.service';
 
 @Component({
   selector: 'app-pesquisarCidadao',
@@ -15,13 +16,16 @@ import { Router } from '@angular/router';
 
 export class PesquisarCidadaoComponent implements OnInit {
   cidadao: Cidadao = new Cidadao();
+  isAdministrador:boolean = false
+  isTecnico:boolean = false
+  isUsuario:boolean = false
 
   displayedColumns:string[] =['cpfCnpj','nome','tipoPessoa','opcoes'];
   dataSource:any;
   
   profileForm : FormGroup = this.iniciarForm();
 
-  constructor(public CidadaoService: CidadaoService,private router: Router) {
+  constructor(public CidadaoService: CidadaoService,private router: Router,private tokenStorage: TokenStorageService) {
     
   }
 
@@ -33,6 +37,9 @@ export class PesquisarCidadaoComponent implements OnInit {
 }
   ngOnInit() {
     this.cidadao = new Cidadao();
+    this.isAdministrador = this.tokenStorage.permissaoAdm();
+    this.isTecnico = this.tokenStorage.permissaoTecnico();
+    this.isUsuario = this.tokenStorage.permissaoAdm();
   }
 
   onSubmit(){
@@ -83,5 +90,9 @@ btnAlterar(id:any) {
 btnLimpar() {
   this.limparCampos();
 };
+
+podeEditar(){
+  return this.isAdministrador || this.isTecnico;
+}
 
 }

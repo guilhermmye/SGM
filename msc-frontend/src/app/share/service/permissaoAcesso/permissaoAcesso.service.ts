@@ -21,10 +21,10 @@ export class PermissaoAcessoService {
 
   cadastrar(usuario:any): Observable<any> {
     return this.http.post(urlSeguranca + '/auth/signup', {
-      username: usuario.nome,
+      username: usuario.username,
       email: usuario.email,
-      password: usuario.senha,
-      role:[usuario.role.name]    
+      password: usuario.password,
+      role:usuario.roles.name    
     }, httpOptions);
   }
 

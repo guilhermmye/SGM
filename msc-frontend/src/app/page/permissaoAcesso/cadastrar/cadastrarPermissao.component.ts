@@ -30,8 +30,8 @@ export class CadastrarPermissaoComponent implements OnInit {
   iniciarForm(){
   return this.profileForm = new FormGroup({  
       id                : new FormControl({ value: this.usuario.id, disabled: true }, Validators.required),
-      username              :  new FormControl(this.usuario.username,Validators.required),
-      password           :  new FormControl({ value:this.usuario.password, disabled:this.isEdicao()},Validators.required),
+      username          :  new FormControl(this.usuario.username,Validators.required),
+      password          :  new FormControl({ value:this.usuario.password, disabled:this.isEdicao()},Validators.required),
       email             :  new FormControl(this.usuario.email,Validators.required),
       roles             :  new FormControl(this.usuario.roles,Validators.required),
   });
@@ -65,6 +65,7 @@ export class CadastrarPermissaoComponent implements OnInit {
         var erros = erro;
       });
     }else{
+        value.roles=[value.roles];
         this.permissaoAcessoService.cadastrar(value)
         .toPromise()
         .then((resposta) => {

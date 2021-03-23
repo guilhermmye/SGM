@@ -10,6 +10,9 @@ import { TokenStorageService } from 'src/app/share/service/login/token-storage.s
 })
 // tslint:disable: curly variable-name
 export class SidebarComponent {
+    isAdministrador:boolean = false
+    isTecnico:boolean = false
+    isUsuario:boolean = false
 
     @HostBinding('class.c-sidebar-show') _alwaysShow = false;
     @HostBinding('class.c-sidebar-lg-show') _show = false;
@@ -17,7 +20,7 @@ export class SidebarComponent {
     @Input()
     @HostBinding('class.c-sidebar-fixed') fixed = true;
 
-    constructor(private eRef: ElementRef) { }
+    constructor(private eRef: ElementRef,private tokenStorage: TokenStorageService) { }
 
     toggle(): void {
         const smalScreen = window && window.innerWidth <= 992;
@@ -52,4 +55,19 @@ export class SidebarComponent {
             }
         }
     }
+
+    ngOnInit() {
+        this.isAdministrador = this.tokenStorage.permissaoAdm();
+        this.isTecnico = this.tokenStorage.permissaoTecnico();
+        this.isUsuario = this.tokenStorage.permissaoAdm();
+      }
+      
+      permissaoGeorreferencimento(){
+        return this.isAdministrador || this.isTecnico;
+      }
+      
+      permissaoAcesso(){
+        return this.isAdministrador;
+      }
+
 }

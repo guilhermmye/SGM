@@ -30,7 +30,7 @@ https://coreui.io/docs/components/sidebar/
             </li>         
         </ul>
     </li>
-    <li class="c-sidebar-nav-dropdown" >
+    <li *ngIf="permissaoGeorreferencimento()" class="c-sidebar-nav-dropdown" >
         <a class="c-sidebar-nav-dropdown-toggle" matRipple appToggle>
             <i class="c-sidebar-nav-icon cil-contact"></i>Georreferenciamento
         </a>
@@ -40,6 +40,21 @@ https://coreui.io/docs/components/sidebar/
                 <a class="c-sidebar-nav-link" matRipple routerLink="regiao" routerLinkActive="c-active">
                     <!-- fontawesome icon -->
                     <i class="c-sidebar-nav-icon cil-search"></i> Importar
+                </a>
+            </li>        
+        </ul>
+    </li>
+
+    <li *ngIf="permissaoAcesso()" class="c-sidebar-nav-dropdown" >
+        <a class="c-sidebar-nav-dropdown-toggle" matRipple appToggle>
+            <i class="c-sidebar-nav-icon cil-contact"></i>Permissão de Acesso
+        </a>
+
+        <ul class="c-sidebar-nav-dropdown-items">
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" matRipple routerLink="permissaoAcesso" routerLinkActive="c-active">
+                    <!-- fontawesome icon -->
+                    <i class="c-sidebar-nav-icon cil-search"></i> Permissões
                 </a>
             </li>        
         </ul>
