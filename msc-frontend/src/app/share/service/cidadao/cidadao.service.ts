@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ResponsePageable } from 'src/app/shared//model/cidadao/responsePageable.model';
 import { Cidadao } from 'src/app/shared/model/cidadao/cidadao.model';
 import { environment } from 'src/environments/environment';
+import { TokenStorageService } from '../login/token-storage.service';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class CidadaoService {
 private readonly urlMsc = environment.msc_api;
 private readonly urlStur = environment.stur_api;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) {
    
   }
 
@@ -23,7 +24,8 @@ private readonly urlStur = environment.stur_api;
     var url = this.urlMsc+"/cidadaos";
     return this.httpClient.get<ResponsePageable>(url,{
         headers: new HttpHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+this.tokenStorage.getToken()
         })
     })
     
@@ -57,7 +59,8 @@ private readonly urlStur = environment.stur_api;
     var url = this.urlMsc+"/cidadaos?"+parametros;
     return this.httpClient.get<ResponsePageable>(url,{
         headers: new HttpHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+this.tokenStorage.getToken()
         })       
     })  
   }
