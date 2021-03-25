@@ -1,4 +1,4 @@
-package br.gov.prefeitura.msc.service;
+package br.gov.prefeitura.msc.seguranca.model;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.gov.prefeitura.msc.config.AuthTokenFilter.Usuario;
+import br.gov.prefeitura.msc.seguranca.filter.RetornoValidarTokenDTO.Usuario;
 
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;

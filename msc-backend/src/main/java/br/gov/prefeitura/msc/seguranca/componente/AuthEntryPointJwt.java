@@ -1,4 +1,4 @@
-package br.gov.prefeitura.msc.config;
+package br.gov.prefeitura.msc.seguranca.componente;
 
 import java.io.IOException;
 

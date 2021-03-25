@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.gov.prefeitura.seguranca.model.Usuario;
-import br.gov.prefeitura.seguranca.service.UserDetailsServiceImpl;
+import br.gov.prefeitura.seguranca.service.ValidarTokenService;
+import br.gov.prefeitura.seguranca.util.RetornoValidarTokenDTO;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -17,14 +17,13 @@ import br.gov.prefeitura.seguranca.service.UserDetailsServiceImpl;
 @RequestMapping("/validarToken")
 public class ValidarTokenController {
 	
-
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+	private ValidarTokenService  validarTokenService;
 
-	@GetMapping("/{username}")
-	public ResponseEntity<?> validar(@PathVariable String username) {
-		Usuario usuario = userDetailsService.loadUsername(username);
-		return ResponseEntity.ok(usuario);
+	@GetMapping("/{token}")
+	public ResponseEntity<?> validart(@PathVariable String token) {
+		RetornoValidarTokenDTO retorno = validarTokenService.validacao(token);
+		return ResponseEntity.ok(retorno);
 	}
 	
 
