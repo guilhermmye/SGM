@@ -114,7 +114,8 @@ private readonly urlStur = environment.stur_api;
       var url = this.urlStur+"/stur/"+cpfCnpj;
       return this.httpClient.get(url,{
           headers: new HttpHeaders({
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+this.tokenStorage.getToken()
           })       
       })  
     }
