@@ -44,7 +44,7 @@
                         <div class="col-sm">
                             <mat-form-field >
                                 <mat-label>Permissão</mat-label>
-                                <mat-select formControlName="roles" >
+                                <mat-select formControlName="roles" [compareWith]="compareValues" >
                                 <mat-option *ngFor="let role of roles"  [value]="role">{{role.descricao}}</mat-option>
                                 </mat-select>
                             </mat-form-field>

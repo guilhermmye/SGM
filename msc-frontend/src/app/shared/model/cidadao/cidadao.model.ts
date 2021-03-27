@@ -11,7 +11,7 @@ export class Cidadao {
 	 dataNascimento : any; 
 	 endereco       : String  = "";
 	 cep            : String  = "";
-//	 municipioId    : String  = "";
+	 ufId           : any ;
 	 numero         : String  = "";
 	 sexo           : Sexo = new Sexo();
 

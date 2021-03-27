@@ -6,6 +6,7 @@ import {Cidadao} from 'src/app/shared/model/cidadao/cidadao.model';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UfService } from 'src/app/share/service/uf/uf.service';
 
 @Component({
   selector: 'app-cadastrarCidadao',
@@ -23,12 +24,13 @@ export class CadastrarCidadaoComponent implements OnInit {
   dataSource:any;
   
   sexos:any[] = [];
+  ufs:any[] = [];
 
   idCidadao:any;
 
   profileForm : FormGroup = this.iniciarForm();
 
-  constructor(public CidadaoService: CidadaoService,private router: Router, private activatedRoute :ActivatedRoute) {
+  constructor(public CidadaoService: CidadaoService,private ufService :UfService, private router: Router, private activatedRoute :ActivatedRoute) {
     this.idCidadao = this.activatedRoute.snapshot.params.id; 
   }
 
@@ -42,7 +44,7 @@ export class CadastrarCidadaoComponent implements OnInit {
       dataNascimento    :  new FormControl(this.cidadao.dataNascimento,Validators.required),
       endereco          :  new FormControl(this.cidadao.endereco,Validators.required),
       cep               :  new FormControl(this.cidadao.cep,Validators.required),
-      //municipioId     :  new FormControl(this.cidadao.municipioId,Validators.required),
+      ufId               :  new FormControl(this.cidadao.ufId,Validators.required),
       numero            :  new FormControl(this.cidadao.numero,Validators.required),
       sexo              :  new FormControl(this.cidadao.sexo,Validators.required),      
   });
@@ -56,6 +58,7 @@ export class CadastrarCidadaoComponent implements OnInit {
     this.cidadao = new Cidadao();
     this.obterPorId(this.idCidadao);
     this.listarSexos();
+    this.listarUfs();
   }
 
   onSubmit(){
@@ -117,6 +120,14 @@ export class CadastrarCidadaoComponent implements OnInit {
     this.router.navigateByUrl('/cidadao');
   }
 
+  compareValues(value1: any, value2: any): boolean {
+    return value1.id === value2.id;
+}
+
+compareValuesUf(value1: any, value2: any): boolean {
+  return value1 === value2;
+}
+
 
   obterPorId(id:any){
     if(this.idCidadao != null && this.idCidadao > 0){
@@ -151,5 +162,16 @@ export class CadastrarCidadaoComponent implements OnInit {
     this.router.navigateByUrl('/pesquisarCidadao');
 };
 
+listarUfs(){
+  this.ufService.listar()
+  .toPromise()
+  .then((ufs) => {
+    var listaUfs :any;
+    listaUfs = ufs;
+    this.ufs = listaUfs;
+  }).catch((erro) => {
+    var erros = erro;
+  });
+}
 
 }

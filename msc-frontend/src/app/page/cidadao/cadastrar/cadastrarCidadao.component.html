@@ -67,7 +67,7 @@
                         <div class="col-sm">
                             <mat-form-field >
                                 <mat-label>Sexo</mat-label>
-                                <mat-select formControlName="sexo" >
+                                <mat-select formControlName="sexo"  [compareWith]="compareValues" >
                                 <mat-option *ngFor="let sexo of sexos"  [value]="sexo">{{sexo.descricao}}</mat-option>
                                 </mat-select>
                         </mat-form-field>
@@ -100,15 +100,15 @@
                                     <input matInput placeholder="CEP" maxlength="10" mask="00.000-000"  type="text" formControlName="cep" required>
                                 </mat-form-field>
                             </div>
-        
+                            
                             <div class="col-sm">
                                 <mat-form-field >
                                     <mat-label>UF</mat-label>
-                                    <mat-select>
-                                    <mat-option value="option">Option</mat-option>
+                                    <mat-select formControlName="ufId"  [compareWith]="compareValuesId" >
+                                    <mat-option *ngFor="let uf of ufs"  [value]="uf.id">{{uf.sigla}}</mat-option>
                                     </mat-select>
                             </mat-form-field>
-                            </div>  
+                        </div>
                         </div>
                     </mat-card-content>
                 </mat-card>                

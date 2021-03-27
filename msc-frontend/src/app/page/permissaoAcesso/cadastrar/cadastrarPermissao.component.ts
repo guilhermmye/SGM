@@ -141,4 +141,8 @@ export class CadastrarPermissaoComponent implements OnInit {
 };
 
 
+compareValues(value1: any, value2: any): boolean {
+  return value1.id === value2.id;
+}
+
 }

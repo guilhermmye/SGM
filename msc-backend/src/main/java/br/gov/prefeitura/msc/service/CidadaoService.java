@@ -28,7 +28,6 @@ public class CidadaoService {
 		Cidadao cidadaoSalvo = buscarPessoaPorId(id);
 		TipoPessoa tipoPessoa = tipoPessoaService.buscarTipoPessoaPorId(cidadao.getCpfCnpj().length() == 11 ? CPF : CNPJ);
 		cidadao.setTipoPessoa(tipoPessoa);
-		cidadao.setMunicipioId(1);
 		BeanUtils.copyProperties(cidadao,cidadaoSalvo,"id");		
 		return cidadaoRepository.save(cidadaoSalvo);		
 	}
@@ -37,7 +36,6 @@ public class CidadaoService {
 		validarPessoa(cidadao.getCpfCnpj());
 		TipoPessoa tipoPessoa = tipoPessoaService.buscarTipoPessoaPorId(cidadao.getCpfCnpj().length() == 11 ? CPF : CNPJ);
 		cidadao.setTipoPessoa(tipoPessoa);
-		cidadao.setMunicipioId(1);
 		return cidadaoRepository.save(cidadao);		
 	}
 	

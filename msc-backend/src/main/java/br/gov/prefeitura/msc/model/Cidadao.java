@@ -32,7 +32,7 @@ public class Cidadao {
 	private Date    dataNascimento;
 	private String  endereco;
 	private String  cep;
-	private Integer municipioId;
+	private Integer ufId;
 	private String  numero;
 	private Sexo    sexo;
 	private TipoPessoa tipoPessoa;
@@ -44,9 +44,9 @@ public class Cidadao {
 		return id;
 	}
 	
-	@Column(name = "municipio_id")
-	public Integer getMunicipioId() {
-		return municipioId;
+	@Column(name = "uf_id")
+	public Integer getUfId() {
+		return ufId;
 	}
 	
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
