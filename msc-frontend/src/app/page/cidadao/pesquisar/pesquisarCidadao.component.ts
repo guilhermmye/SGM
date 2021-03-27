@@ -7,6 +7,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 import { Router } from '@angular/router';
 import { TokenStorageService } from 'src/app/share/service/login/token-storage.service';
+import { NotificacaoService } from 'src/app/notificacao.service';
 
 @Component({
   selector: 'app-pesquisarCidadao',
@@ -25,7 +26,7 @@ export class PesquisarCidadaoComponent implements OnInit {
   
   profileForm : FormGroup = this.iniciarForm();
 
-  constructor(public CidadaoService: CidadaoService,private router: Router,private tokenStorage: TokenStorageService) {
+  constructor(public CidadaoService: CidadaoService,private notificacaoService:NotificacaoService,private router: Router,private tokenStorage: TokenStorageService) {
     
   }
 
@@ -55,6 +56,10 @@ export class PesquisarCidadaoComponent implements OnInit {
         var listaCidadaos :any;
         listaCidadaos = cidadaos;
         this.dataSource = listaCidadaos.content;
+
+        this.notificacaoService.showNotification('tes tes tte s te s te  te sss ','OK','error');
+        this.notificacaoService.showNotification('tes tes tte s te s te  te sss ','OK','success');
+
     }).catch((erro) => {
       var erros = erro;
     }); 

@@ -34,8 +34,10 @@ import { ListaRegioesComponent } from './page/regiao/lista-regioes.component';
 import { LoginComponent } from './page/login/login.component';
 import { AuthGuard } from './share/service/login/auth.guard';
 import { AuthService } from './share/service/login/auth.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TokenStorageService } from './share/service/login/token-storage.service';
 import { CadastrarPermissaoComponent } from './page/permissaoAcesso/cadastrar/cadastrarPermissao.component';
+import { NotificacaoComponent } from './notificacao/notificacao.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -51,6 +53,7 @@ registerLocaleData(localePt, 'pt-BR');
     ListaRegioesComponent,
     LoginComponent,
     CadastrarPermissaoComponent,
+    NotificacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ registerLocaleData(localePt, 'pt-BR');
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
     NgxMaskModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
