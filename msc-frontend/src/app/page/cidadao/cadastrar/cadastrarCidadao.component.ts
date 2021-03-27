@@ -124,7 +124,7 @@ export class CadastrarCidadaoComponent implements OnInit {
     return value1.id === value2.id;
 }
 
-compareValuesUf(value1: any, value2: any): boolean {
+compareValuesId(value1: any, value2: any): boolean {
   return value1 === value2;
 }
 
