@@ -71,7 +71,6 @@ export class CadastrarCidadaoComponent implements OnInit {
       .then((resposta) => {
       var ok = resposta;
       this.listarStur(value.cpfCnpj);
-      this.limparCampos();
       this.retornoCallback(ok);
     }).catch((erro) => {
       var erros = erro;
@@ -82,7 +81,6 @@ export class CadastrarCidadaoComponent implements OnInit {
      .then((resposta) => {
       var ok = resposta;
       this.listarStur(value.cpfCnpj);
-      this.limparCampos();
       this.retornoCallback(ok);
     }).catch((erro) => {
       var erros = erro;
@@ -115,11 +113,10 @@ export class CadastrarCidadaoComponent implements OnInit {
     });
   }
 
-  limparCampos(){
-   // this.cidadao = new Cidadao();
-    //this.profileForm.reset();
-    //this.iniciarForm();
+  btnLimpar(){
+    this.router.navigateByUrl('/cidadao');
   }
+
 
   obterPorId(id:any){
     if(this.idCidadao != null && this.idCidadao > 0){

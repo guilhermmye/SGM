@@ -131,6 +131,11 @@ export class CadastrarPermissaoComponent implements OnInit {
     this.profileForm.setValue(this.usuario); 
    };
 
+   btnLimpar(){
+    this.usuario = new Usuario();
+    this.iniciarForm();
+  }
+
   btnPesquisarCidadao() {
     this.router.navigateByUrl('/pesquisarCidadao');
 };
