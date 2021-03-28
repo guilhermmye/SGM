@@ -7,6 +7,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PermissaoAcessoService } from 'src/app/share/service/permissaoAcesso/permissaoAcesso.service';
+import { NotificacaoService } from 'src/app/notificacao.service';
 
 @Component({
   selector: 'app-cadastrarPermissao',
@@ -23,7 +24,7 @@ export class CadastrarPermissaoComponent implements OnInit {
 
   roles:any[] = [];
 
-  constructor(public permissaoAcessoService: PermissaoAcessoService,private router: Router, private activatedRoute :ActivatedRoute) {
+  constructor(public permissaoAcessoService: PermissaoAcessoService,private notificacaoService:NotificacaoService,private router: Router, private activatedRoute :ActivatedRoute) {
     this.idUsuario = this.activatedRoute.snapshot.params.id; 
   }
 
@@ -61,8 +62,10 @@ export class CadastrarPermissaoComponent implements OnInit {
         .then((resposta) => {
         var ok = resposta;
         this.retornoCallback();
+        this.notificacaoService.showNotificationNotButton('Alteração realizada com sucesso !','sucesso');
       }).catch((erro) => {
         var erros = erro;
+        this.notificacaoService.showNotificationNotButton(erro,'erro');
       });
     }else{
         value.roles=[value.roles];
@@ -71,8 +74,10 @@ export class CadastrarPermissaoComponent implements OnInit {
         .then((resposta) => {
         var ok = resposta;
         this.retornoCallback();
+        this.notificacaoService.showNotificationNotButton('Cadastro realizado com sucesso !','sucesso');
       }).catch((erro) => {
         var erros = erro;
+        this.notificacaoService.showNotificationNotButton(erro,'erro');
       }); 
     }   
   }

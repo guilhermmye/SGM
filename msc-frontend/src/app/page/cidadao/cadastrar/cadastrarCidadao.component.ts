@@ -7,6 +7,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { Sexo } from 'src/app/shared/model/sexo/sexo.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UfService } from 'src/app/share/service/uf/uf.service';
+import { NotificacaoService } from 'src/app/notificacao.service';
 
 @Component({
   selector: 'app-cadastrarCidadao',
@@ -30,7 +31,7 @@ export class CadastrarCidadaoComponent implements OnInit {
 
   profileForm : FormGroup = this.iniciarForm();
 
-  constructor(public CidadaoService: CidadaoService,private ufService :UfService, private router: Router, private activatedRoute :ActivatedRoute) {
+  constructor(public CidadaoService: CidadaoService,private notificacaoService:NotificacaoService,private ufService :UfService, private router: Router, private activatedRoute :ActivatedRoute) {
     this.idCidadao = this.activatedRoute.snapshot.params.id; 
   }
 
@@ -44,9 +45,10 @@ export class CadastrarCidadaoComponent implements OnInit {
       dataNascimento    :  new FormControl(this.cidadao.dataNascimento,Validators.required),
       endereco          :  new FormControl(this.cidadao.endereco,Validators.required),
       cep               :  new FormControl(this.cidadao.cep,Validators.required),
-      ufId               :  new FormControl(this.cidadao.ufId,Validators.required),
+      ufId              :  new FormControl(this.cidadao.ufId,Validators.required),
       numero            :  new FormControl(this.cidadao.numero,Validators.required),
-      sexo              :  new FormControl(this.cidadao.sexo,Validators.required),      
+      sexo              :  new FormControl(this.cidadao.sexo,Validators.required), 
+      tipoPessoa        :  new FormControl(this.cidadao.tipoPessoa),   
   });
 }
 
@@ -75,8 +77,10 @@ export class CadastrarCidadaoComponent implements OnInit {
       var ok = resposta;
       this.listarStur(value.cpfCnpj);
       this.retornoCallback(ok);
+      this.notificacaoService.showNotificationNotButton('Alteração realizada com sucesso !','sucesso');
     }).catch((erro) => {
       var erros = erro;
+      this.notificacaoService.showNotificationNotButton(erro,'erro');
     });    
   }else{
     this.CidadaoService.criarCidadao(value)
@@ -85,8 +89,10 @@ export class CadastrarCidadaoComponent implements OnInit {
       var ok = resposta;
       this.listarStur(value.cpfCnpj);
       this.retornoCallback(ok);
+      this.notificacaoService.showNotificationNotButton('Cadastro realizado com sucesso !','sucesso');
     }).catch((erro) => {
       var erros = erro;
+      this.notificacaoService.showNotificationNotButton(erro,'erro');
     });
   }
 

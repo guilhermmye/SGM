@@ -6,14 +6,16 @@
   margin-bottom: 10px;  
 }
 
-.error.mat-smack-bar-container{
-  background: #cc0000;
+::ng-deep .erro{
+  background: #580101a9;
   color: white;
+  margin-top: 130px !important;
 }
 
-.success.mat-smack-bar-container{
-  background: #00cc00;
+::ng-deep .sucesso{
+  background: #00410b9f;
   color: white;
+  margin-top: 130px !important;
 }
 
 

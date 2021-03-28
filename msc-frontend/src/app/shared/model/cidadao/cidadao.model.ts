@@ -14,6 +14,7 @@ export class Cidadao {
 	 ufId           : any ;
 	 numero         : String  = "";
 	 sexo           : Sexo = new Sexo();
+	 tipoPessoa		: any;
 
 
 

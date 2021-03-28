@@ -1,11 +1,8 @@
-<div>
-    {{data.type}}
-</div>
 <div class="content-style"> 
     {{data.message}}
 </div>
-<div style="text-align: center;">
-    <button mat-flat-button (click)="snackBarRef.dismiss()"> {{data.buttonText}}</button>
+<div *ngIf="data.button" style="text-align: center;">
+    <button mat-flat-button type="button" (click)="snackBarRef.dismiss()"> {{data.buttonText}}</button>
 </div>
 
 

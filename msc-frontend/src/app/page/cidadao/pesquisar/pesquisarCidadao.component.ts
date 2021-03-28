@@ -56,12 +56,10 @@ export class PesquisarCidadaoComponent implements OnInit {
         var listaCidadaos :any;
         listaCidadaos = cidadaos;
         this.dataSource = listaCidadaos.content;
-
-        this.notificacaoService.showNotification('tes tes tte s te s te  te sss ','OK','error');
-        this.notificacaoService.showNotification('tes tes tte s te s te  te sss ','OK','success');
-
+        this.notificacaoService.showNotificationNotButton('Pesquisa realizada com sucesso !','sucesso');
     }).catch((erro) => {
       var erros = erro;
+      this.notificacaoService.showNotificationNotButton(erro,'erro');
     }); 
 }
 
@@ -69,9 +67,10 @@ excluir(id:any){
   this.CidadaoService.excluirCidadao(id)
   .toPromise()
   .then((ok) => {
-
+  this.notificacaoService.showNotificationNotButton('Exclusão realizada com sucesso !','sucesso');
 }).catch((erro) => {
   var erros = erro;
+  this.notificacaoService.showNotificationNotButton(erro,'erro');
 }); 
 }
 
