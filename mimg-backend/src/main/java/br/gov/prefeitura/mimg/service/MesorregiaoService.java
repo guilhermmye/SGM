@@ -11,7 +11,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.gov.prefeitura.mimg.model.Mesorregiao;
-import br.gov.prefeitura.mimg.model.Regiao;
 import br.gov.prefeitura.mimg.repository.MesorregiaoRepository;
 
 @Service

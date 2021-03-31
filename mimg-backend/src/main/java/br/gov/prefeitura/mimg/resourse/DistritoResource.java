@@ -44,12 +44,7 @@ public class DistritoResource {
 	public Page<Distrito> pesquisar(DistritoFilter distritoFilter,Pageable pageable){
 		return distritoRepository.filtrar(distritoFilter,pageable);
 	}
-	
-//	@GetMapping
-//	public List<Distrito> pesquisar(DistritoFilter distritoFilter){
-//		return distritoRepository.filtrar(distritoFilter);
-//	}
-	
+
 	@PostMapping
 	public ResponseEntity<Distrito> criar(@Valid @RequestBody Distrito distrito, HttpServletResponse response) {
 		Distrito distritoSalvo = distritoRepository.save(distrito);		

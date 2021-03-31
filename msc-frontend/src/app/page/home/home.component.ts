@@ -16,12 +16,12 @@ export class HomeComponent implements OnInit {
      
   } 
   
-btnPesquisarCidadao() {
-  this.router.navigateByUrl('/pesquisarCidadao');
+btnHomeCidadao() {
+  this.router.navigateByUrl('/homeCidadao');
 };
 
-btnPesquisarRegioes() {
-  this.router.navigateByUrl('/regiao');
+btnHomeGeorreferenciamento() {
+  this.router.navigateByUrl('/homeGeorreferenciamento');
 };
 
 btnPermissaoAcesso() {

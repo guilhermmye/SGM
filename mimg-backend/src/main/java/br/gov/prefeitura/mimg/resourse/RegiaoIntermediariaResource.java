@@ -15,12 +15,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.gov.prefeitura.mimg.model.Mesorregiao;
-import br.gov.prefeitura.mimg.model.Regiao;
 import br.gov.prefeitura.mimg.model.RegiaoIntermediaria;
 import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.RegiaoIntermediariaRepository;
-import br.gov.prefeitura.mimg.repository.regiao.filter.RegiaoFilter;
 import br.gov.prefeitura.mimg.repository.regiaoIntermediaria.filter.RegiaoIntermediariaFilter;
 import br.gov.prefeitura.mimg.service.RegiaoIntermediariaService;
 import br.gov.prefeitura.mimg.service.UfService;
@@ -30,22 +27,15 @@ import br.gov.prefeitura.mimg.service.UfService;
 public class RegiaoIntermediariaResource {
 	
 	@Autowired
-	private RegiaoIntermediariaRepository  regiaoIntermediariaRepository;
+	private RegiaoIntermediariaRepository  	regiaoIntermediariaRepository;
 	@Autowired
-	private RegiaoIntermediariaService  regiaoIntermediariaService;
+	private RegiaoIntermediariaService  	regiaoIntermediariaService;
 	@Autowired
-	private UfService           ufService;
+	private UfService           			ufService;
 	
 	
-	final String PARAMETROS = "31/regioes-intermediarias";
+	private final static String PARAMETROS = "31/regioes-intermediarias";
 	
-	
-/*	@GetMapping
-	public List<RegiaoIntermediaria> listar(){
-		return regiaoIntermediariaRepository.findAll();
-	}*/
-	
-
 	@GetMapping
 	public Page<RegiaoIntermediaria> pesquisar(RegiaoIntermediariaFilter regiaoIntermediariaFilter,Pageable pageable){
 		return regiaoIntermediariaRepository.filtrar(regiaoIntermediariaFilter, pageable);
@@ -72,11 +62,9 @@ public class RegiaoIntermediariaResource {
 					nova.setId(regiaoIntermediaria2.getId());
 					nova.setNome(regiaoIntermediaria2.getNome());	
 					novaList.add(nova);
-				}
-			
-		}
+				}	
+			}
 
-		regiaoIntermediariaService.salvarRegiaoIntermediarias(novaList);
-		
+			regiaoIntermediariaService.salvarRegiaoIntermediarias(novaList);		
 	}
 }

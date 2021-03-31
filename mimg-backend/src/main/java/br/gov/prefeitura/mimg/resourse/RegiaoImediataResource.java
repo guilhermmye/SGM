@@ -24,17 +24,12 @@ import br.gov.prefeitura.mimg.service.RegiaoImediataService;
 public class RegiaoImediataResource {
 	
 	@Autowired
-	private RegiaoImediataRepository  regiaoImediataRepository;
+	private RegiaoImediataRepository  	regiaoImediataRepository;
 	
 	@Autowired
-	private RegiaoImediataService  regiaoImediataService;
+	private RegiaoImediataService  		regiaoImediataService;
 	
-	final String PARAMETROS = "31/regioes-imediatas";
-	
-	/*@GetMapping
-	public List<RegiaoImediata> listar(){
-		return regiaoImediataRepository.findAll();
-	}*/
+	private final static String PARAMETROS = "31/regioes-imediatas";
 	
 	@GetMapping
 	public Page<RegiaoImediata> pesquisar(RegiaoImediataFilter regiaoImediataFilter,Pageable pageable){
@@ -49,10 +44,8 @@ public class RegiaoImediataResource {
 		String caminho = uri.toString().replace("?", "/");
 		ResponseEntity<RegiaoImediata[]> regiaoImediata = restTemplate.getForEntity(caminho, RegiaoImediata[].class);
 		
-
 		List<RegiaoImediata> regiaoImediatas = Arrays.asList(regiaoImediata.getBody());
 
-		regiaoImediataService.salvarRegiaoImediatas(regiaoImediatas);
-		
+		regiaoImediataService.salvarRegiaoImediatas(regiaoImediatas);		
 	}
 }

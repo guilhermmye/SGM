@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.gov.prefeitura.mimg.model.Regiao;
 import br.gov.prefeitura.mimg.model.RegiaoIntermediaria;
 import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.RegiaoIntermediariaRepository;

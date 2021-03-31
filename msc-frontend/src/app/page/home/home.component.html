@@ -19,7 +19,7 @@
             <mat-card-content >
                 <div class="row" >
                     <div class="form-group example-button-row" >                      
-                        <button mat-raised-button color="primary" (click)="btnPesquisarCidadao();" class="btn btn-primary btn-lg tamanhoBotao">
+                        <button mat-raised-button color="primary" (click)="btnHomeCidadao();" class="btn btn-primary btn-lg tamanhoBotao">
                             <div class="justify-content-center align-items-center" >
                                 <mat-icon class="icon-display">face</mat-icon>
                             </div>
@@ -29,7 +29,7 @@
                         </button>                                    
                     </div>  
                     <div *ngIf="permissaoGeorreferencimento()" class="form-group example-button-row" >
-                        <button mat-raised-button color="primary" (click)="btnPesquisarRegioes();" class="btn btn-primary btn-lg tamanhoBotao" >
+                        <button mat-raised-button color="primary" (click)="btnHomeGeorreferenciamento();" class="btn btn-primary btn-lg tamanhoBotao" >
                             <div class="justify-content-center align-items-center" >
                                 <mat-icon class="icon-display">map</mat-icon>
                             </div>

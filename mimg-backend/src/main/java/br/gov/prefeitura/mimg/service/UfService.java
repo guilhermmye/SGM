@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.gov.prefeitura.mimg.model.Regiao;
 import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.UfRepository;
 
@@ -19,9 +18,6 @@ public class UfService {
 	
 	@Autowired
 	private UfRepository       ufRepository;
-	
-	@Autowired
-	private RegiaoService      regiaoService;
 	
 	public Uf atualizar(Integer id,Uf uf) {		
 		Uf ufSalvo = buscarUfPorId(id);		
@@ -52,15 +48,7 @@ public class UfService {
 			{
 				uf2.setId(-1);
 			}
-			/*
-			Regiao regiao = regiaoService.buscarRegiaoPorId(uf2.getRegiao().getId());
-			uf2.setRegiao(regiao);
-			*/
 			ufRepository.save(uf2);
-		}
-		
-			
-	}
-   
-	
+		}			
+	}	
 }
