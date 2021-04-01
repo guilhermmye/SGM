@@ -2,6 +2,8 @@ package br.gov.prefeitura.mimg.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,12 +18,14 @@ public class DistritoService {
 	@Autowired
 	private DistritoRepository       distritoRepository;
 	
+	@Transactional
 	public Distrito atualizar(Integer id,Distrito distrito) {		
 		Distrito distritoSalvo = buscarDistritoPorId(id);		
 		BeanUtils.copyProperties(distrito,distritoSalvo,"id");		
 		return distritoRepository.save(distritoSalvo);		
 	}
-
+	
+	@Transactional
 	public Distrito atualizarNome(Integer id,String nome) {		
 		Distrito distritoSalvo = buscarDistritoPorId(id);		
 		distritoSalvo.setNome(nome);

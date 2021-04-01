@@ -12,24 +12,21 @@
                 <mat-card-title>Apoio IBGE</mat-card-title>
                 <mat-card-subtitle>Prefeitura Municipal de Bom Destino</mat-card-subtitle>
             </mat-card-header> 
-            <div class="row">
-                <div  class="direita">
-                    <a class="btn" (click)="importarTudo()"  class="btn btn-success"><i class="fa fa-plus"></i> Importar</a>   
-                </div>               
-            </div>         
-            <mat-card-content >                           
-                <div class="row" >
-                    <mat-tab-group>
-                        <mat-tab label="Região">
-                            <app-lista-regioes></app-lista-regioes>
-                        </mat-tab>
-                        <mat-tab label="Second"> Content 2 </mat-tab>
-                        <mat-tab label="Third"> Content 3 </mat-tab>
-                        <mat-tab label="Second"> Content 2 </mat-tab>
-                        <mat-tab label="Third"> Content 3 </mat-tab>
-                        <mat-tab label="Third"> Content 3 </mat-tab>
-                      </mat-tab-group>                     
-                </div>
+            <mat-card-content>             
+                    <a class="btn" (click)="importarTudo()"  class="btn btn-success direita"><i class="fa fa-plus"></i> Importar</a>   
+            </mat-card-content>     
+            <mat-card-content>                           
+                
+                <mat-tab-group>
+                    <mat-tab [disabled]="false" label="Região"><app-lista-regioes></app-lista-regioes></mat-tab>
+                    <mat-tab [disabled]="false" label="UF"><app-lista-ufs></app-lista-ufs></mat-tab>
+                    <mat-tab [disabled]="false" label="Mesorregião"><app-lista-mesorregioes></app-lista-mesorregioes></mat-tab>
+                    <mat-tab [disabled]="false" label="Microrregião"><app-lista-microrregioes></app-lista-microrregioes></mat-tab>
+                    <mat-tab [disabled]="false" label="Região Intermediaria"><app-lista-regioesIntermediarias></app-lista-regioesIntermediarias></mat-tab>
+                    <mat-tab [disabled]="false" label="Região Imediata"><app-lista-regioesImediatas></app-lista-regioesImediatas></mat-tab>
+                    <mat-tab [disabled]="false" label="Municipio"><app-lista-municipios></app-lista-municipios></mat-tab>
+                </mat-tab-group>                     
+                
             </mat-card-content>
         </mat-card>
     </div>

@@ -19,6 +19,7 @@ public class RegiaoService {
 	@Autowired
 	private RegiaoRepository       regiaoRepository;
 	
+	@Transactional
 	public Regiao atualizar(Integer id,Regiao regiao) {		
 		Regiao regiaoSalvo = buscarRegiaoPorId(id);		
 		BeanUtils.copyProperties(regiao,regiaoSalvo,"id");		

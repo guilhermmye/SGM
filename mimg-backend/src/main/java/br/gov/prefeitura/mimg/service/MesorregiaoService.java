@@ -19,12 +19,14 @@ public class MesorregiaoService {
 	@Autowired
 	private MesorregiaoRepository       mesorregiaoRepository;
 	
+	@Transactional
 	public Mesorregiao atualizar(Integer id,Mesorregiao mesorregiao) {		
 		Mesorregiao mesorregiaoSalvo = buscarMesorregiaoPorId(id);		
 		BeanUtils.copyProperties(mesorregiao,mesorregiaoSalvo,"id");		
 		return mesorregiaoRepository.save(mesorregiaoSalvo);		
 	}
 
+	@Transactional
 	public Mesorregiao atualizarNome(Integer id,String nome) {		
 		Mesorregiao mesorregiaoSalvo = buscarMesorregiaoPorId(id);		
 		mesorregiaoSalvo.setNome(nome);

@@ -24,7 +24,7 @@ ngOnInit(){
 }
 
 importarTudo(){
-  this.importarService.getImportarTudo().subscribe(data => {
+  this.importarService.importarTudo().subscribe(data => {
      this.regioes = data.content;
      console.log(this.regioes);
   });

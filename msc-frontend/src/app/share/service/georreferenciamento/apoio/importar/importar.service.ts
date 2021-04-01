@@ -12,8 +12,8 @@ export class ImportarService {
 
  constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) {}
 
-  public getImportarTudo(): Observable<ResponsePageable> {   
-    return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/regioes/importar/1|2|3|4|5`,{
+  public importarTudo(): Observable<ResponsePageable> {   
+    return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/importar/tudo`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+this.tokenStorage.getToken()

@@ -19,15 +19,18 @@ public class RegiaoIntermediariaService {
 	
 	@Autowired
 	private RegiaoIntermediariaRepository       regiaoIntermediariaRepository;
+	
 	@Autowired
 	private UfService      ufService;
 	
+	@Transactional
 	public RegiaoIntermediaria atualizar(Integer id,RegiaoIntermediaria regiaoIntermediaria) {		
 		RegiaoIntermediaria regiaoIntermediariaSalvo = buscarRegiaoIntermediariaPorId(id);		
 		BeanUtils.copyProperties(regiaoIntermediaria,regiaoIntermediariaSalvo,"id");		
 		return regiaoIntermediariaRepository.save(regiaoIntermediariaSalvo);		
 	}
 
+	@Transactional
 	public RegiaoIntermediaria atualizarNome(Integer id,String nome) {		
 		RegiaoIntermediaria regiaoIntermediariaSalvo = buscarRegiaoIntermediariaPorId(id);		
 		regiaoIntermediariaSalvo.setNome(nome);
@@ -41,6 +44,7 @@ public class RegiaoIntermediariaService {
 		}
 		return regiaoIntermediariaSalvo.get();
 	}
+	
 	@Transactional
 	public void salvarRegiaoIntermediarias(List<RegiaoIntermediaria> regiaoIntermediarias) {		
 			

@@ -44,11 +44,7 @@ public class RegiaoService {
 				regiao2.setId(-1);
 			}	
 			regiaoRepository.save(regiao2);
-		}
-		
+		}		
 	}
-   
-   
-   
-	
+
 }

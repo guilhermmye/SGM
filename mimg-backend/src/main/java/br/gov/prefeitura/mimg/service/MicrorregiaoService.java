@@ -18,12 +18,14 @@ public class MicrorregiaoService {
 	@Autowired
 	private MicrorregiaoRepository       microrregiaoRepository;
 	
+	@Transactional
 	public Microrregiao atualizar(Integer id,Microrregiao microrregiao) {		
 		Microrregiao microrregiaoSalvo = buscarMicrorregiaoPorId(id);		
 		BeanUtils.copyProperties(microrregiao,microrregiaoSalvo,"id");		
 		return microrregiaoRepository.save(microrregiaoSalvo);		
 	}
 
+	@Transactional
 	public Microrregiao atualizarNome(Integer id,String nome) {		
 		Microrregiao microrregiaoSalvo = buscarMicrorregiaoPorId(id);		
 		microrregiaoSalvo.setNome(nome);
@@ -37,6 +39,7 @@ public class MicrorregiaoService {
 		}
 		return microrregiaoSalvo.get();
 	}
+	
 	@Transactional
 	public void salvarMicrorregioes(List<Microrregiao> microrregioes) {		
 			

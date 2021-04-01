@@ -19,12 +19,14 @@ public class MunicipioService {
 	@Autowired
 	private MunicipioRepository       municipioRepository;
 	
+	@Transactional
 	public Municipio atualizar(Integer id,Municipio municipio) {		
 		Municipio municipioSalvo = buscarMunicipioPorId(id);		
 		BeanUtils.copyProperties(municipio,municipioSalvo,"id");		
 		return municipioRepository.save(municipioSalvo);		
 	}
 
+	@Transactional
 	public Municipio atualizarNome(Integer id,String nome) {		
 		Municipio municipioSalvo = buscarMunicipioPorId(id);		
 		municipioSalvo.setNome(nome);

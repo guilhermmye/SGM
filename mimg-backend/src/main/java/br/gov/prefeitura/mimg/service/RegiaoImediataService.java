@@ -19,12 +19,14 @@ public class RegiaoImediataService {
 	@Autowired
 	private RegiaoImediataRepository       regiaoImediataRepository;
 
+	@Transactional
 	public RegiaoImediata atualizar(Integer id,RegiaoImediata regiaoImediata) {		
 		RegiaoImediata regiaoImediataSalvo = buscarRegiaoImediataPorId(id);		
 		BeanUtils.copyProperties(regiaoImediata,regiaoImediataSalvo,"id");		
 		return regiaoImediataRepository.save(regiaoImediataSalvo);		
 	}
 
+	@Transactional
 	public RegiaoImediata atualizarNome(Integer id,String nome) {		
 		RegiaoImediata regiaoImediataSalvo = buscarRegiaoImediataPorId(id);		
 		regiaoImediataSalvo.setNome(nome);

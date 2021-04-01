@@ -41,7 +41,7 @@ public class RegiaoResource {
 	
 	@Autowired
 	private RegiaoService 				regiaoService;
-
+	
 	@GetMapping
 	public Page<Regiao> pesquisar(RegiaoFilter regiaoFilter,Pageable pageable){
 		return regiaoRepository.filtrar(regiaoFilter,pageable);

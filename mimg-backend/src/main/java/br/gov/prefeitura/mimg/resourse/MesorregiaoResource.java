@@ -1,7 +1,5 @@
 package br.gov.prefeitura.mimg.resourse;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,17 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import br.gov.prefeitura.mimg.event.RecursoCriadoEvent;
 import br.gov.prefeitura.mimg.model.Mesorregiao;
-import br.gov.prefeitura.mimg.model.Uf;
 import br.gov.prefeitura.mimg.repository.MesorregiaoRepository;
 import br.gov.prefeitura.mimg.repository.mesorregiao.filter.MesorregiaoFilter;
 import br.gov.prefeitura.mimg.service.MesorregiaoService;
-import br.gov.prefeitura.mimg.service.UfService;
 
 @RestController
 @RequestMapping("/mesorregioes")
@@ -46,12 +39,6 @@ public class MesorregiaoResource {
 	
 	@Autowired
 	private MesorregiaoService          mesorregiaoService;
-	
-	@Autowired
-	private UfService           		ufService;
-	
-	private final static String PARAMETROS = "31/mesorregioes";
-	
 	
 	@GetMapping
 	public Page<Mesorregiao> pesquisar(MesorregiaoFilter mesorregiaoFilter,Pageable pageable){
@@ -82,32 +69,5 @@ public class MesorregiaoResource {
 		Mesorregiao mesorregiaoSalvo = mesorregiaoService.atualizar(id, mesorregiao);	
 		return ResponseEntity.ok(mesorregiaoSalvo);		
 	}
-		
-	public void pesquisarMesoRegiaoIbge(){
-				
-		RestTemplate restTemplate = new RestTemplate();
-		UriComponents uri = UriComponentsBuilder.newInstance()
-				.scheme("https")
-				.host("servicodados.ibge.gov.br/api/v1/localidades")
-				.path("estados")
-				.queryParam(PARAMETROS)
-				.build();
-		
-		String caminho = uri.toUriString().replace("?","/");
-		ResponseEntity<Mesorregiao[]> mesorregiao = restTemplate.getForEntity(caminho, Mesorregiao[].class);
-		
-		List<Mesorregiao> mesorregiaos = Arrays.asList(mesorregiao.getBody());
-		
-		for (Mesorregiao mesorregiao2 : mesorregiaos) {
-			if(mesorregiao2 != null && mesorregiao2.getUf() == null)
-			{
-				Uf uf = ufService.buscarUfPorId(31);
-				mesorregiao2.setUf(uf);
-			}
-		}
-	
-		mesorregiaoService.salvarMesorregioes(mesorregiaos);
 			
-	} 
-	
 }

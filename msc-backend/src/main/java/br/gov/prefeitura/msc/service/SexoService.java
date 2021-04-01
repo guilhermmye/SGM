@@ -2,6 +2,8 @@ package br.gov.prefeitura.msc.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,6 +18,7 @@ public class SexoService {
 	@Autowired
 	private SexoRepository       sexoRepository;
 	
+	@Transactional
 	public Sexo atualizar(Integer id,Sexo sexo) {		
 		Sexo sexoSalvo = buscarSexoPorId(id);		
 		BeanUtils.copyProperties(sexo,sexoSalvo,"id");		

@@ -19,12 +19,14 @@ public class UfService {
 	@Autowired
 	private UfRepository       ufRepository;
 	
+	@Transactional
 	public Uf atualizar(Integer id,Uf uf) {		
 		Uf ufSalvo = buscarUfPorId(id);		
 		BeanUtils.copyProperties(uf,ufSalvo,"id");		
 		return ufRepository.save(ufSalvo);		
 	}
 
+	@Transactional
 	public Uf atualizarNome(Integer id,String nome) {		
 		Uf ufSalvo = buscarUfPorId(id);		
 		ufSalvo.setNome(nome);

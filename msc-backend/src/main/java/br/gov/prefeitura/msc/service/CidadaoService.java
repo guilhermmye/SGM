@@ -2,6 +2,8 @@ package br.gov.prefeitura.msc.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -24,6 +26,7 @@ public class CidadaoService {
 	private final static Integer CPF  = 1;
 	private final static Integer CNPJ = 2;
 	
+	@Transactional
 	public Cidadao atualizar(Integer id,Cidadao cidadao) {		
 		Cidadao cidadaoSalvo = buscarPessoaPorId(id);
 		TipoPessoa tipoPessoa = tipoPessoaService.buscarTipoPessoaPorId(cidadao.getCpfCnpj().length() == 11 ? CPF : CNPJ);
@@ -32,6 +35,7 @@ public class CidadaoService {
 		return cidadaoRepository.save(cidadaoSalvo);		
 	}
 	
+	@Transactional
 	public Cidadao cadastrar(Cidadao cidadao) {	
 		validarPessoa(cidadao.getCpfCnpj());
 		TipoPessoa tipoPessoa = tipoPessoaService.buscarTipoPessoaPorId(cidadao.getCpfCnpj().length() == 11 ? CPF : CNPJ);
