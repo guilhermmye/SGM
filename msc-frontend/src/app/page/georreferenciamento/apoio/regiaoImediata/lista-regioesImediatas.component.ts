@@ -23,10 +23,14 @@ export class ListaRegioesImediatasComponent implements  OnInit {
   }
 
   listar(){
-    this.regiaoImediataService.listarRegioesImediatas().subscribe(data => {
-       this.regioesImediatas = data.content;
-       console.log(this.regioesImediatas);
-    });
+    this.regiaoImediataService.listarRegioesImediatas()
+    .toPromise()
+    .then((resposta) => {
+      this.regioesImediatas = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  })
 }
 
 }

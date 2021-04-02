@@ -23,10 +23,14 @@ export class ListaRegioesIntermediariasComponent implements  OnInit {
   }
 
  listar(){
-    this.regiaoIntermediariaService.listarRegioesIntermediarias().subscribe(data => {
-       this.regioesIntermediarias = data.content;
-       console.log(this.regioesIntermediarias);
-    });
+    this.regiaoIntermediariaService.listarRegioesIntermediarias()
+    .toPromise()
+    .then((resposta) => {
+      this.regioesIntermediarias = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  }) 
 }
 
 }

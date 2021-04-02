@@ -23,10 +23,14 @@ export class ListaSubdistritosComponent implements  OnInit {
   }
 
   listar(){
-    this.subdistritoService.listarSubdistritos().subscribe(data => {
-       this.subdistritos = data.content;
-       console.log(this.subdistritos);
-    });
+    this.subdistritoService.listarSubdistritos()
+    .toPromise()
+    .then((resposta) => {
+      this.subdistritos = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  }) 
 }
 
 }

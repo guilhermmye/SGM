@@ -4,6 +4,7 @@ import { ImportarService } from 'src/app/share/service/georreferenciamento/apoio
 import { Regiao } from 'src/app/shared/model/regiao/regiao.model';
 import { Router } from '@angular/router';
 import {MatTabsModule} from '@angular/material/tabs'
+import { NotificacaoService } from 'src/app/notificacao.service';
 
 
 @Component({
@@ -15,16 +16,23 @@ import {MatTabsModule} from '@angular/material/tabs'
 })
 export class ImportarComponent implements  OnInit {
 
-  constructor(public importarService:ImportarService, private router: Router) { }
+  constructor(public importarService:ImportarService, private router: Router,private notificacaoService:NotificacaoService) { }
 
 ngOnInit(){
 
 }
 
 importarTudo(){
-  this.importarService.importarTudo().subscribe(data => {
- 
-  });
+  this.importarService.importarTudo()   
+  .toPromise()
+  .then((resposta) => {
+  var ok = resposta;
+  this.notificacaoService.showNotificationNotButton('Importação realizada com sucesso !','sucesso');   
+  this.reloadPage();
+}).catch((erro) => {
+  var erros = erro;
+  this.notificacaoService.showNotificationNotButton(erro,'erro');
+}); 
 }
 
 btnPesquisarRegiao() {
@@ -54,5 +62,9 @@ btnPesquisarRegiaoImediata() {
 btnPesquisarMunicipio() {
   this.router.navigateByUrl('/pesquisarMunicipio');
 };
+
+reloadPage(): void {
+  window.location.reload();
+}
 
 }

@@ -23,10 +23,14 @@ export class ListaMunicipiosComponent implements  OnInit {
   }
 
   listar(){
-    this.municipioService.listarMunicipios().subscribe(data => {
-       this.municipios = data.content;
-       console.log(this.municipios);
-    });
+    this.municipioService.listarMunicipios()
+    .toPromise()
+    .then((resposta) => {
+      this.municipios = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  })
 }
 
 }

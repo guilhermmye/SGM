@@ -23,10 +23,14 @@ export class ListaMicrorregioesComponent implements  OnInit {
   }
 
   listar(){
-    this.microrregiaoService.listarMicrorregioes().subscribe(data => {
-       this.microrregioes = data.content;
-       console.log(this.microrregioes);
-    });
+    this.microrregiaoService.listarMicrorregioes()
+    .toPromise()
+    .then((resposta) => {
+      this.microrregioes = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  });
 }
 
 }

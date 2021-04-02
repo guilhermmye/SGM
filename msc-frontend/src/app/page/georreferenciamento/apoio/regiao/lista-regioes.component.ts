@@ -23,10 +23,14 @@ export class ListaRegioesComponent implements  OnInit {
   }
 
   listar(){
-    this.regiaoService.listarRegioes().subscribe(data => {
-       this.regioes = data.content;
-       console.log(this.regioes);
-    });
+    this.regiaoService.listarRegioes()
+    .toPromise()
+    .then((resposta) => {
+      this.regioes = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  })
 }
 
 }

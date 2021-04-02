@@ -23,10 +23,14 @@ export class ListaUfsComponent implements  OnInit {
   }
 
   listar(){
-    this.ufService.getufs().subscribe(data => {
-       this.ufs = data.content;
-       console.log(this.ufs);
-    });
+    this.ufService.getufs()
+    .toPromise()
+    .then((resposta) => {
+      this.ufs = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  }) 
 }
 
 }

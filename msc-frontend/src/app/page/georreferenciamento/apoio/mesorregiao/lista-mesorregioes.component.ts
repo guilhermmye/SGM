@@ -23,10 +23,14 @@ export class ListaMesorregioesComponent implements  OnInit {
   }
 
   listar(){
-    this.mesorregiaoService.listarMesorregioes().subscribe(data => {
-       this.mesorregioes = data.content;
-       console.log(this.mesorregioes);
-    });
+    this.mesorregiaoService.listarMesorregioes()
+    .toPromise()
+    .then((resposta) => {
+      this.mesorregioes = resposta.content; 
+    var ok = resposta;
+  }).catch((erro) => {
+    var erros = erro;
+  });  
 }
 
 }
