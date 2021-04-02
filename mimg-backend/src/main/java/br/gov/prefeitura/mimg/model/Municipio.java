@@ -3,14 +3,14 @@ package br.gov.prefeitura.mimg.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,9 +23,8 @@ public class Municipio {
 	
 	private Integer id;
 	private String nome;
-	private RegiaoIntermediaria regiaoIntermediaria;
-	private Microrregiao microrregiao;
-	
+	private RegiaoImediata regiaoImediata;
+	private Microrregiao microrregiao;	
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +36,9 @@ public class Municipio {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "regiaoImediata_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    public RegiaoIntermediaria getRegiaoIntermediaria()
+    public RegiaoImediata getRegiaoImediata()
     {
-        return regiaoIntermediaria;
+        return regiaoImediata;
     }
 	
 	@ManyToOne(fetch = FetchType.LAZY)

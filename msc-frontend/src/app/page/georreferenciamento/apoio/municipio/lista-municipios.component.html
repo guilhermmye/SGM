@@ -16,12 +16,12 @@
             <!-- Name Column -->
             <ng-container matColumnDef="regiaoImediata">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Região Imediata</th>
-              <td mat-cell *matCellDef="let element">{{element.regiaoImediata}}</td>
+              <td mat-cell *matCellDef="let element">{{element.regiaoImediata.nome}}</td>
             </ng-container>
 
             <ng-container matColumnDef="microrregiao">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Microrregião</th>
-              <td mat-cell *matCellDef="let element">{{element.microrregiao}}</td>
+              <td mat-cell *matCellDef="let element">{{element.microrregiao.nome}}</td>
             </ng-container>
            
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

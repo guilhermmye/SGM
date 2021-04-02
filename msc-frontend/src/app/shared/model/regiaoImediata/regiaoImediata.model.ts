@@ -1,8 +1,6 @@
 export class RegiaoImediata {
 
-    regiaoImediata_id = "";
+    id = 0;
     nome= "";
-    regiaoIntermediaria_id="";
-
-
+    regiaoIntermediaria="";
 }

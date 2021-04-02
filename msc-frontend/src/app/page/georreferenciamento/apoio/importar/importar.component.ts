@@ -15,8 +15,6 @@ import {MatTabsModule} from '@angular/material/tabs'
 })
 export class ImportarComponent implements  OnInit {
 
-  regioes: Regiao[] = [];
-  displayedColumns = ['nome','sigla']
   constructor(public importarService:ImportarService, private router: Router) { }
 
 ngOnInit(){
@@ -25,8 +23,7 @@ ngOnInit(){
 
 importarTudo(){
   this.importarService.importarTudo().subscribe(data => {
-     this.regioes = data.content;
-     console.log(this.regioes);
+ 
   });
 }
 

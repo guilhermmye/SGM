@@ -16,11 +16,11 @@ CREATE TABLE uf (
 );
 
 
-CREATE TABLE regiaoIntermedia (
+CREATE TABLE regiaoIntermediaria (
                 regiaoIntermediaria_id INTEGER NOT NULL,
                 nome VARCHAR NOT NULL,
                 uf_id INTEGER NOT NULL,
-                CONSTRAINT regiaointermediaria_id PRIMARY KEY (regiaoIntermediaria_id)
+                CONSTRAINT regiaoIntermediaria_id PRIMARY KEY (regiaoIntermediaria_id)
 );
 
 
@@ -87,21 +87,21 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE regiaoIntermedia ADD CONSTRAINT uf_regiaointermedia_fk
+ALTER TABLE regiaoIntermediaria ADD CONSTRAINT uf_regiaoIntermediaria_fk
 FOREIGN KEY (uf_id)
 REFERENCES uf (uf_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE regiaoImediata ADD CONSTRAINT regiaointermedia_regiaoimediata_fk
+ALTER TABLE regiaoImediata ADD CONSTRAINT regiaointermedia_regiaoIntermediaria_fk
 FOREIGN KEY (regiaoIntermediaria_id)
-REFERENCES regiaoIntermedia (regiaoIntermediaria_id)
+REFERENCES regiaoIntermediaria (regiaoIntermediaria_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE municipio ADD CONSTRAINT regiaoimediata_municipio_fk
+ALTER TABLE municipio ADD CONSTRAINT regiaoImediata_municipio_fk
 FOREIGN KEY (regiaoImediata_id)
 REFERENCES regiaoImediata (regiaoImediata_id)
 ON DELETE NO ACTION

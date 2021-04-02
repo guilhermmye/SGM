@@ -207,7 +207,7 @@ public class ImportarService {
 				.build();
 			
 		String caminho = uri.toString().replace("?","/");				
-		ResponseEntity<Municipio[]> municipio = restTemplate.getForEntity(caminho, Municipio[].class);		
+		ResponseEntity<Municipio[]> municipio = restTemplate.getForEntity(caminho, Municipio[].class);	
 		List<Municipio> municipios = Arrays.asList(municipio.getBody());		
 		municipioService.salvarMunicipio(municipios);	
 	} 

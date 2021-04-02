@@ -38,9 +38,9 @@ public class RegiaoImediata implements Serializable {
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "regiaointermediaria_id")
+	@JoinColumn(name = "regiaoIntermediaria_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@JsonProperty("regiaoIntermediaria")
+	@JsonProperty("regiao-intermediaria")
     public RegiaoIntermediaria getRegiaoIntermediaria()
     {
         return regiaoIntermediaria;

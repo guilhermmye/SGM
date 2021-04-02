@@ -1,9 +1,7 @@
 export class Municipio {
 
-    municipio_id = "";
+    id = 0;
     nome= "";
-    regiaoImediata_id="";
-    microrregiao_id="";
-
-
+    regiaoImediata="";
+    microrregiao="";
 }

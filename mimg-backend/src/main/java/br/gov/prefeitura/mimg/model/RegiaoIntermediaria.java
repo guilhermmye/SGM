@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="regiaointermedia")
+@Table(name="regiaoIntermediaria")
 public class RegiaoIntermediaria implements Serializable {
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class RegiaoIntermediaria implements Serializable {
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "regiaointermediaria_id")
+	@Column(name = "regiaoIntermediaria_id")
 	public Integer getId() {
 		return id;
 	}

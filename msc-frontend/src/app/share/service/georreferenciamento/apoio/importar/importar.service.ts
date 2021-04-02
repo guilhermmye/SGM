@@ -12,12 +12,14 @@ export class ImportarService {
 
  constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) {}
 
-  public importarTudo(): Observable<ResponsePageable> {   
-    return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/importar/tudo`,{
+  public importarTudo() {
+    return this.httpClient.get(`${environment.mimg_api}/importar/tudo`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+this.tokenStorage.getToken()
       })
-    })
+    });
   }
+
+
 }
