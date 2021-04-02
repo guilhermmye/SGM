@@ -13,7 +13,7 @@ import { Municipio } from 'src/app/shared/model/municipio/municipio.model';
 export class ListaMunicipiosComponent implements  OnInit {
 
   municipios: Municipio[] = [];
-  displayedColumns = ['nome','regiaoImediata','microrregiao']
+  displayedColumns = ['nome','uf','regiaoImediata','microrregiao']
   constructor(
     public municipioService:MunicipioService
   ) { }
