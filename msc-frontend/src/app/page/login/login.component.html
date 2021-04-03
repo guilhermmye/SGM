@@ -19,11 +19,11 @@
         <button class="btn btn-primary btn-block">Login</button>
       </div>
       <div class="form-group">
-        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">Login failed: {{ errorMessage }}</div>
+        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">Erro no Login: {{ errorMessage }}</div>
       </div>
     </form>
     <div class="form-group" *ngIf="isLoggedIn">
-      <button class="btn btn-primary btn-block" (click)="logoff();">Logoff</button>
+      <button class="btn btn-primary btn-block" (click)="logoff();">Sair</button>
     </div>
     <div class="alert alert-success" *ngIf="isLoggedIn">   
       Usuário Logado. {{ roles }}.

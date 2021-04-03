@@ -10,36 +10,30 @@ https://coreui.io/docs/components/sidebar/
         </a>
     </li>
 
-    <li class="c-sidebar-nav-dropdown" >
+    <li *ngIf="permissaoCidadao()" class="c-sidebar-nav-dropdown" >
         <a class="c-sidebar-nav-dropdown-toggle" matRipple appToggle>
-            <i class="c-sidebar-nav-icon cil-contact"></i> Cidadão
+            <i class="c-sidebar-nav-icon cil-smile"></i> Cidadão
         </a>
 
         <ul class="c-sidebar-nav-dropdown-items">
-            <li class="c-sidebar-nav-item">
+            <li *ngIf="permissaoAdministrar()" class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link" matRipple routerLink="pesquisarCidadao" routerLinkActive="c-active">
                     <!-- fontawesome icon -->
-                    <i class="c-sidebar-nav-icon cil-search"></i> Pesquisar Cidadão
+                    <i class="c-sidebar-nav-icon cil-search"></i> Administrar Cidadão
                 </a>
-            </li>
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" matRipple routerLink="cidadao" routerLinkActive="c-active">
-                    <!-- fontawesome icon -->
-                    <i class="c-sidebar-nav-icon cil-plus"></i> Cadastar Cidadão
-                </a>
-            </li>         
+            </li>              
         </ul>
     </li>
     <li *ngIf="permissaoGeorreferencimento()" class="c-sidebar-nav-dropdown" >
         <a class="c-sidebar-nav-dropdown-toggle" matRipple appToggle>
-            <i class="c-sidebar-nav-icon cil-contact"></i>Georreferenciamento
+            <i class="c-sidebar-nav-icon cil-map"></i>Georreferenciamento
         </a>
 
         <ul class="c-sidebar-nav-dropdown-items">
-            <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" matRipple routerLink="regiao" routerLinkActive="c-active">
+            <li *ngIf="permissaoImportar()"  class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" matRipple routerLink="importar" routerLinkActive="c-active">
                     <!-- fontawesome icon -->
-                    <i class="c-sidebar-nav-icon cil-search"></i> Importar
+                    <i class="c-sidebar-nav-icon cil-search"></i> Apoio IBGE
                 </a>
             </li>        
         </ul>
@@ -47,7 +41,7 @@ https://coreui.io/docs/components/sidebar/
 
     <li *ngIf="permissaoAcesso()" class="c-sidebar-nav-dropdown" >
         <a class="c-sidebar-nav-dropdown-toggle" matRipple appToggle>
-            <i class="c-sidebar-nav-icon cil-contact"></i>Permissão de Acesso
+            <i class="c-sidebar-nav-icon cil-user"></i>Permissão de Acesso
         </a>
 
         <ul class="c-sidebar-nav-dropdown-items">

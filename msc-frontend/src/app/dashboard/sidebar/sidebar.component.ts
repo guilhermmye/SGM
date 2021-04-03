@@ -65,7 +65,19 @@ export class SidebarComponent {
       permissaoGeorreferencimento(){
         return this.isAdministrador || this.isTecnico;
       }
-      
+
+      permissaoImportar(){
+        return this.isAdministrador;
+      }
+
+      permissaoCidadao(){
+        return this.isAdministrador || this.isTecnico || this.isUsuario ;
+      }
+
+      permissaoAdministrar(){
+        return this.isAdministrador || this.isTecnico;
+      }
+
       permissaoAcesso(){
         return this.isAdministrador;
       }

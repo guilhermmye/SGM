@@ -1,11 +1,6 @@
 
         <div class="mat-elevation-z8">
-          <mat-paginator #paginator
-            
-            [pageIndex]="0"
-            [pageSize]="5"
-            [pageSizeOptions]="[5, 10, 15, 100]">
-          </mat-paginator>
+      
           <table mat-table class="full-width-table" [dataSource]="mesorregioes" class="full-width-table" matSort aria-label="Elements">
             <!-- Id Column -->
             <ng-container matColumnDef="nome">

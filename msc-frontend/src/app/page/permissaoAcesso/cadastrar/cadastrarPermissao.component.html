@@ -48,22 +48,15 @@
                                 <mat-option *ngFor="let role of roles"  [value]="role">{{role.descricao}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                        </div>
-
-                        
-                    </div>
-
-       
-                </mat-card-content>
-                
-                   
+                        </div>      
+                    </div>   
+                </mat-card-content>                  
                     <mat-card-header>
                         <mat-card-subtitle>Usuários</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
                         <div>
-                            <div>
-                        
+                            <div>                        
                               <table mat-table [dataSource]="dataSource"  matSort aria-label="Elements">
                                 <!-- Id Column -->
                                 <ng-container matColumnDef="nome">
@@ -88,9 +81,6 @@
                                     </td>
                                 </ng-container>  
 
-
-
-                      
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                 
