@@ -1,9 +1,13 @@
 export class Uf {
+    
+    constructor(){
+           
+    }
 
-    uf_id = "";
-    nome= "";
-    sigla="";
-    regiao="";
+   public  id : Number = null;
+   public  nome : string;
+   public sigla : string;
+   public regiao : string;
 
 
 }

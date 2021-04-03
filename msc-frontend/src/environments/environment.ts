@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   msc_api:'/msc/api',
-  mimg_api:'/mimg/api',
+  mimg_api:'/cidadao_geo/v1',
   stur_api:'/stur/api',
   seguranca_api:'/seguranca/api',
   tempo_validade:30,

@@ -14,7 +14,7 @@ export class UfService {
 
   constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) {}
 
-  public getufs(): Observable<ResponsePageable> {
+  public getufs(flag: string): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/ufs`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -23,8 +23,8 @@ export class UfService {
     })
   }
 
-  public listar() {
-    return this.httpClient.get(`${environment.mimg_api}/ufs/listar`,{
+  public listar(): Observable<Array<Uf>> {
+    return this.httpClient.get<Array<Uf>>(`${environment.mimg_api}/ufs/listar`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+this.tokenStorage.getToken()
