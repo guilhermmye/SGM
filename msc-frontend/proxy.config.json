@@ -6,8 +6,8 @@
     "logLevel":"debug"
   },
 
-  "/mimg/api/*": {
-    "target": "http://localhost:9090",
+  "/cidadao_geo/v1/*": {
+    "target": "https://localhost:8243",
     "secure":false,
     "logLevel":"debug"
   },

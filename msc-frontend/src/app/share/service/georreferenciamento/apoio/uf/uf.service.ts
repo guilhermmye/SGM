@@ -14,7 +14,7 @@ export class UfService {
 
   constructor(private httpClient: HttpClient,private tokenStorage: TokenStorageService) {}
 
-  public getufs(flag: string): Observable<ResponsePageable> {
+  public getufs(): Observable<ResponsePageable> {
     return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/ufs`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
