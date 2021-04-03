@@ -15,7 +15,7 @@ import { NotificacaoService } from 'src/app/notificacao.service';
   
 })
 export class ImportarComponent implements  OnInit {
-
+desabilitarImportacao:      boolean = false;
 possuiRegiao:               boolean = false;
 possuiUf:                   boolean = false;
 possuiMesorregiao:          boolean = false;
@@ -43,39 +43,46 @@ importarTudo(){
 }); 
 }
 
-desabilitarImportacao():Boolean{
-return this.possuiRegiao || this.possuiUf || this.possuiMesorregiao ||
-       this.possuiMicrorregiao || this.possuiRegiaoIntermediaria ||
-       this.possuiRegiaoImediata || this.possuiMunicipio
+desabilitar(desabilitar:boolean){
+ if(desabilitar){
+  this.desabilitarImportacao = desabilitar
+ }
 }
 
 
 isRegiao(possuiRegiao:boolean) {
   this.possuiRegiao = possuiRegiao;
+  this.desabilitar(possuiRegiao)
 }
 
 isUf(possuiUf:boolean) {
   this.possuiUf = possuiUf;
+  this.desabilitar(possuiUf)
 }
 
 isMesorregiao(possuiMesorregiao:boolean) {
   this.possuiMesorregiao = possuiMesorregiao;
+  this.desabilitar(possuiMesorregiao)
 }
 
 isMicrorregiao(possuiMicrorregiao:boolean) {
   this.possuiMicrorregiao = possuiMicrorregiao;
+  this.desabilitar(possuiMicrorregiao)
 }
 
 isRegiaoIntermediaria(possuiRegiaoIntermediaria:boolean) {
   this.possuiRegiaoIntermediaria = possuiRegiaoIntermediaria;
+  this.desabilitar(possuiRegiaoIntermediaria)
 }
 
 isRegiaoImediata(possuiRegiaoImediata:boolean) {
   this.possuiRegiaoImediata = possuiRegiaoImediata;
+  this.desabilitar(possuiRegiaoImediata)
 }
 
 isMunicipio(possuiMunicipio:boolean) {
   this.possuiMunicipio = possuiMunicipio;
+  this.desabilitar(possuiMunicipio)
 }
 
 btnPesquisarRegiao() {
