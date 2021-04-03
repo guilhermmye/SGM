@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { SubdistritoService } from 'src/app/share/service/georreferenciamento/apoio/subdistrito/subdistrito.service';
 import { Subdistrito } from 'src/app/shared/model/subdistrito/subdistrito.model';
 
@@ -14,6 +14,8 @@ export class ListaSubdistritosComponent implements  OnInit {
 
   subdistritos: Subdistrito[] = [];
   displayedColumns = ['nome','distrito']
+  @Output() possuiSubdistrito = new EventEmitter();
+
   constructor(
     public subdistritoService:SubdistritoService
   ) { }
@@ -27,6 +29,7 @@ export class ListaSubdistritosComponent implements  OnInit {
     .toPromise()
     .then((resposta) => {
       this.subdistritos = resposta.content; 
+      this.possuiSubdistrito.emit(this.subdistritos.length > 0 ? true : false);
     var ok = resposta;
   }).catch((erro) => {
     var erros = erro;

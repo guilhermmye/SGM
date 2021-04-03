@@ -16,7 +16,15 @@ import { NotificacaoService } from 'src/app/notificacao.service';
 })
 export class ImportarComponent implements  OnInit {
 
-  constructor(public importarService:ImportarService, private router: Router,private notificacaoService:NotificacaoService) { }
+possuiRegiao:               boolean = false;
+possuiUf:                   boolean = false;
+possuiMesorregiao:          boolean = false;
+possuiMicrorregiao:         boolean = false;
+possuiRegiaoIntermediaria:  boolean = false;
+possuiRegiaoImediata:       boolean = false;
+possuiMunicipio:            boolean = false;
+
+constructor(public importarService:ImportarService, private router: Router,private notificacaoService:NotificacaoService) { }
 
 ngOnInit(){
 
@@ -33,6 +41,41 @@ importarTudo(){
   var erros = erro;
   this.notificacaoService.showNotificationNotButton(erro,'erro');
 }); 
+}
+
+desabilitarImportacao():Boolean{
+return this.possuiRegiao || this.possuiUf || this.possuiMesorregiao ||
+       this.possuiMicrorregiao || this.possuiRegiaoIntermediaria ||
+       this.possuiRegiaoImediata || this.possuiMunicipio
+}
+
+
+isRegiao(possuiRegiao:boolean) {
+  this.possuiRegiao = possuiRegiao;
+}
+
+isUf(possuiUf:boolean) {
+  this.possuiUf = possuiUf;
+}
+
+isMesorregiao(possuiMesorregiao:boolean) {
+  this.possuiMesorregiao = possuiMesorregiao;
+}
+
+isMicrorregiao(possuiMicrorregiao:boolean) {
+  this.possuiMicrorregiao = possuiMicrorregiao;
+}
+
+isRegiaoIntermediaria(possuiRegiaoIntermediaria:boolean) {
+  this.possuiRegiaoIntermediaria = possuiRegiaoIntermediaria;
+}
+
+isRegiaoImediata(possuiRegiaoImediata:boolean) {
+  this.possuiRegiaoImediata = possuiRegiaoImediata;
+}
+
+isMunicipio(possuiMunicipio:boolean) {
+  this.possuiMunicipio = possuiMunicipio;
 }
 
 btnPesquisarRegiao() {

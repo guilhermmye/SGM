@@ -12,19 +12,20 @@
                 <mat-card-title>Apoio IBGE</mat-card-title>
                 <mat-card-subtitle>Prefeitura Municipal de Bom Destino</mat-card-subtitle>
             </mat-card-header> 
-            <mat-card-content>             
-                    <a class="btn" (click)="importarTudo()"  class="btn btn-success direita"><i class="fa fa-plus"></i> Importar</a>   
+            <mat-card-content> 
+                <button mat-raised-button color="primary"  (click)="importarTudo()" [disabled]="desabilitarImportacao" type="button" ><i class="fa fa-plus"></i> Importar</button>&nbsp;                     
             </mat-card-content>     
             <mat-card-content>                           
                 
-                <mat-tab-group>
-                    <mat-tab [disabled]="false" label="Região"><app-lista-regioes></app-lista-regioes></mat-tab>
-                    <mat-tab [disabled]="false" label="UF"><app-lista-ufs></app-lista-ufs></mat-tab>
-                    <mat-tab [disabled]="false" label="Mesorregião"><app-lista-mesorregioes></app-lista-mesorregioes></mat-tab>
-                    <mat-tab [disabled]="false" label="Microrregião"><app-lista-microrregioes></app-lista-microrregioes></mat-tab>
-                    <mat-tab [disabled]="false" label="Região Intermediaria"><app-lista-regioesIntermediarias></app-lista-regioesIntermediarias></mat-tab>
-                    <mat-tab [disabled]="false" label="Região Imediata"><app-lista-regioesImediatas></app-lista-regioesImediatas></mat-tab>
-                    <mat-tab [disabled]="false" label="Municipio"><app-lista-municipios></app-lista-municipios></mat-tab>
+                <mat-tab-group>                    
+                    <mat-tab [disabled]="!possuiRegiao" label="Região"><app-lista-regioes (possuiRegiao)="isRegiao($event)"></app-lista-regioes></mat-tab>
+                    <mat-tab [disabled]="!possuiUf" label="UF"><app-lista-ufs (possuiUf)="isUf($event)"></app-lista-ufs></mat-tab>
+                    <mat-tab [disabled]="!possuiMesorregiao" label="Mesorregião"><app-lista-mesorregioes (possuiMesorregiao)="isMesorregiao($event)"></app-lista-mesorregioes></mat-tab>
+                    <mat-tab [disabled]="!possuiMicrorregiao" label="Microrregião"><app-lista-microrregioes (possuiMicrorregiao)="isMicrorregiao($event)"></app-lista-microrregioes></mat-tab>
+                    <mat-tab [disabled]="!possuiRegiaoIntermediaria" label="Região Intermediaria"><app-lista-regioesIntermediarias (possuiRegiaoIntermediaria)="isRegiaoIntermediaria($event)"></app-lista-regioesIntermediarias></mat-tab>
+                    <mat-tab [disabled]="!possuiRegiaoImediata" label="Região Imediata"><app-lista-regioesImediatas (possuiRegiaoImediata)="isRegiaoImediata($event)"></app-lista-regioesImediatas></mat-tab>
+                    <mat-tab [disabled]="!possuiMunicipio" label="Municipio"><app-lista-municipios (possuiMunicipio)="isMunicipio($event)"></app-lista-municipios></mat-tab>
+                    
                 </mat-tab-group>                     
                 
             </mat-card-content>

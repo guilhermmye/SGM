@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { UfService } from 'src/app/share/service/georreferenciamento/apoio/uf/uf.service';
 import { Uf } from 'src/app/shared/model/uf/uf.model';
 
@@ -13,7 +13,9 @@ import { Uf } from 'src/app/shared/model/uf/uf.model';
 export class ListaUfsComponent implements  OnInit {
 
   ufs: Uf[] = [];
-    displayedColumns = ['nome','sigla','regiao']
+  displayedColumns = ['nome','sigla','regiao']
+  @Output() possuiUf = new EventEmitter();
+
   constructor(
     public ufService:UfService
   ) { }
@@ -27,6 +29,7 @@ export class ListaUfsComponent implements  OnInit {
     .toPromise()
     .then((resposta) => {
       this.ufs = resposta.content; 
+      this.possuiUf.emit(this.ufs.length > 0 ? true : false);
     var ok = resposta;
   }).catch((erro) => {
     var erros = erro;

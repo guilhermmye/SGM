@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { MesorregiaoService } from 'src/app/share/service/georreferenciamento/apoio/mesorregiao/mesorregiao.service';
 import { Mesorregiao } from 'src/app/shared/model/mesorregiao/mesorregiao.model';
 
@@ -14,6 +14,8 @@ export class ListaMesorregioesComponent implements  OnInit {
 
   mesorregioes: Mesorregiao[] = [];
   displayedColumns = ['nome','uf']
+  @Output() possuiMesorregiao = new EventEmitter();
+
   constructor(
     public mesorregiaoService:MesorregiaoService
   ) { }
@@ -27,7 +29,8 @@ export class ListaMesorregioesComponent implements  OnInit {
     .toPromise()
     .then((resposta) => {
       this.mesorregioes = resposta.content; 
-    var ok = resposta;
+      this.possuiMesorregiao.emit(this.mesorregioes.length > 0 ? true : false);
+      var ok = resposta;
   }).catch((erro) => {
     var erros = erro;
   });  

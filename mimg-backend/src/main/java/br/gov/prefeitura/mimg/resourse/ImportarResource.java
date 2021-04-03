@@ -2,7 +2,6 @@ package br.gov.prefeitura.mimg.resourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,37 +19,37 @@ public class ImportarResource {
 		importarService.importarTudo();
 	} 
 	
-	@PostMapping("/regioes")
+	@GetMapping("/regioes")
 	public void importarRegioes(){
 		importarService.importarRegiao();
 	}
 	
-	@PostMapping("/ufs")
+	@GetMapping("/ufs")
 	public void importarUf(){
 		importarService.importarUf();
 	}
 	
-	@PostMapping("/mesoregioes")
+	@GetMapping("/mesoregioes")
 	public void importarMesoRegiao(){
 		importarService.importarMesorregiao();
 	}
 	
-	@PostMapping("/microrregioes")
+	@GetMapping("/microrregioes")
 	public void importarMicroRegiaoResource(){
 		importarService.importarMicrorregiao();
 	}	
 	
-	@PostMapping("/regioesIntermediarias")
+	@GetMapping("/regioesIntermediarias")
 	public void importarRegiaoIntermediariaResource(){
 		importarService.importarRegiaoIntermediaria();
 	}
 	
-	@PostMapping("/regioesImediatas")
+	@GetMapping("/regioesImediatas")
 	public void importarRegiaoImediataResource(){
 		importarService.importarRegiaoImediata();
 	}
 	
-	@PostMapping("/municipios")
+	@GetMapping("/municipios")
 	public void importarMunicipioResource(){
 		importarService.importarMunicipio();
 	}

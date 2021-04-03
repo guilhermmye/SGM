@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { MicrorregiaoService } from 'src/app/share/service/georreferenciamento/apoio/microrregiao/microrregiao.service';
 import { Microrregiao } from 'src/app/shared/model/microrregiao/microrregiao.model';
 
@@ -14,6 +14,8 @@ export class ListaMicrorregioesComponent implements  OnInit {
 
   microrregioes: Microrregiao[] = [];
   displayedColumns = ['nome','mesorregiao']
+  @Output() possuiMicrorregiao = new EventEmitter();
+
   constructor(
     public microrregiaoService:MicrorregiaoService
   ) { }
@@ -27,6 +29,7 @@ export class ListaMicrorregioesComponent implements  OnInit {
     .toPromise()
     .then((resposta) => {
       this.microrregioes = resposta.content; 
+      this.possuiMicrorregiao.emit(this.microrregioes.length > 0 ? true : false);
     var ok = resposta;
   }).catch((erro) => {
     var erros = erro;

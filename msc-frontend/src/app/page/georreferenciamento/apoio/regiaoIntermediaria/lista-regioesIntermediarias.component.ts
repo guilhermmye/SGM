@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { RegiaoIntermediariaService } from 'src/app/share/service/georreferenciamento/apoio/regiaoIntermediaria/regiaoIntermediaria.service';
 import { RegiaoIntermediaria } from 'src/app/shared/model/regiaoIntermediaria/regiaoIntermediaria.model';
 
@@ -14,6 +14,8 @@ export class ListaRegioesIntermediariasComponent implements  OnInit {
 
   regioesIntermediarias: RegiaoIntermediaria[] = [];
   displayedColumns = ['nome','uf']
+  @Output() possuiRegiaoIntermediaria = new EventEmitter();
+
   constructor(
     public regiaoIntermediariaService:RegiaoIntermediariaService
   ) { }
@@ -27,6 +29,7 @@ export class ListaRegioesIntermediariasComponent implements  OnInit {
     .toPromise()
     .then((resposta) => {
       this.regioesIntermediarias = resposta.content; 
+      this.possuiRegiaoIntermediaria.emit(this.regioesIntermediarias.length > 0 ? true : false);
     var ok = resposta;
   }).catch((erro) => {
     var erros = erro;

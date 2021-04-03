@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output, EventEmitter} from '@angular/core';
 import { NotificacaoService } from 'src/app/notificacao.service';
 import { DistritoService } from 'src/app/share/service/georreferenciamento/apoio/distrito/distrito.service';
 import { Distrito } from 'src/app/shared/model/distrito/distrito.model';
@@ -15,6 +15,8 @@ export class ListaDistritosComponent implements  OnInit {
 
   distritos: Distrito[] = [];
   displayedColumns = ['nome','municipio']
+  @Output() possuiDistrito = new EventEmitter();
+
   constructor(public distritoService:DistritoService) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class ListaDistritosComponent implements  OnInit {
     .toPromise()
     .then((resposta) => {
       this.distritos = resposta.content; 
+      this.possuiDistrito.emit(this.distritos.length > 0 ? true : false);
     var ok = resposta;
   }).catch((erro) => {
     var erros = erro;
