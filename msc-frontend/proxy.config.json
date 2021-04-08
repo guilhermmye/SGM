@@ -1,25 +1,25 @@
 {
   
-    "/msc/api/*": {
-    "target": "http://localhost:8080",
-    "secure":false,
-    "logLevel":"debug"
-  },
-
-  "/cidadao_geo/v1/*": {
+    "/cidadao/v1/*": {
     "target": "https://localhost:8243",
     "secure":false,
     "logLevel":"debug"
   },
 
-  "/stur/api/*": {
-    "target": "http://localhost:7070",
+  "/georreferenciamento/v1/*": {
+    "target": "https://localhost:8243",
     "secure":false,
     "logLevel":"debug"
   },
 
-  "/seguranca/api/*": {
-    "target": "http://localhost:5050",
+  "/stur/v1/*": {
+    "target": "https://localhost:8243",
+    "secure":false,
+    "logLevel":"debug"
+  },
+
+  "/seguranca/v1/*": {
+    "target": "https://localhost:8243",
     "secure":false,
     "logLevel":"debug"
   }

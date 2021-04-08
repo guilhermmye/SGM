@@ -18,7 +18,7 @@ export class UfService {
     return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/ufs`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+this.tokenStorage.getToken()
+        'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
       })         
     })
   }
@@ -26,8 +26,8 @@ export class UfService {
   public listar(): Observable<Array<Uf>> {
     return this.httpClient.get<Array<Uf>>(`${environment.mimg_api}/ufs/listar`,{
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+this.tokenStorage.getToken()
+        'Content-Type': 'application/json',   
+        'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
       })         
     });
   }

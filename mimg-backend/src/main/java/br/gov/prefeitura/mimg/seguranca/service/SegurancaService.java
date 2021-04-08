@@ -21,7 +21,7 @@ public class SegurancaService {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.setBearerAuth(token);
+		headers.set("x-wso2-auth-header","Bearer "+token);
 
 		MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
 		map.add("token",token);
@@ -30,7 +30,7 @@ public class SegurancaService {
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 		
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<Object> response = restTemplate.exchange("http://localhost:5050/seguranca/api/validarToken/"+token,HttpMethod.GET,new HttpEntity<Object>(headers),Object.class,request);
+		ResponseEntity<Object> response = restTemplate.exchange("https://localhost:8243/seguranca/v1/validarToken/"+token,HttpMethod.GET,new HttpEntity<Object>(headers),Object.class,request);
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(response.getBody()); 

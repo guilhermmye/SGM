@@ -33,7 +33,7 @@ export class PermissaoAcessoService {
     return this.http.put<Usuario>(urlSeguranca+'/usuarios/'+usuario.id,usuario,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
   }
@@ -42,7 +42,7 @@ export class PermissaoAcessoService {
     return this.http.get(urlSeguranca+'/roles',{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })   
   }
@@ -51,7 +51,7 @@ export class PermissaoAcessoService {
     return this.http.get(urlSeguranca+'/usuarios',{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })   
   }

@@ -16,7 +16,7 @@ export class ImportarService {
     return this.httpClient.get(`${environment.mimg_api}/importar/tudo`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+this.tokenStorage.getToken()
+        'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
       })
     });
   }

@@ -169,17 +169,15 @@ compareValuesId(value1: any, value2: any): boolean {
 };
 
 listarUfs(){
-  this.ufService.listar().subscribe(
-      ufs => this.ufs = ufs
-  );
-  /*.toPromise()
+  this.ufService.listar()
+  .toPromise()
   .then((ufs) => {
     var listaUfs :any;
     listaUfs = ufs;
     this.ufs = listaUfs;
   }).catch((erro) => {
     var erros = erro;
-  });*/
+  });
 }
 
 }

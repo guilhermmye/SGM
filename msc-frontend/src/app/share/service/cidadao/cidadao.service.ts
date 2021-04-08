@@ -25,7 +25,7 @@ private readonly urlStur = environment.stur_api;
     return this.httpClient.get<ResponsePageable>(url,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
     
@@ -36,7 +36,7 @@ private readonly urlStur = environment.stur_api;
     return this.httpClient.get<Cidadao>(url,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
     
@@ -61,7 +61,7 @@ private readonly urlStur = environment.stur_api;
     return this.httpClient.get<ResponsePageable>(url,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })       
     })  
   }
@@ -71,7 +71,7 @@ private readonly urlStur = environment.stur_api;
     return this.httpClient.get(url,{
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
     
@@ -83,7 +83,7 @@ private readonly urlStur = environment.stur_api;
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
   }
@@ -94,7 +94,7 @@ private readonly urlStur = environment.stur_api;
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
   }
@@ -105,7 +105,7 @@ private readonly urlStur = environment.stur_api;
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+this.tokenStorage.getToken()
+          'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
         })
     })
   }
@@ -115,7 +115,7 @@ private readonly urlStur = environment.stur_api;
       return this.httpClient.get(url,{
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+this.tokenStorage.getToken()
+            'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
           })       
       })  
     }

@@ -25,10 +25,10 @@ export class ListaUfsComponent implements  OnInit {
   }
 
   listar(){
-    this.ufService.getufs()
+    this.ufService.listar()
     .toPromise()
     .then((resposta) => {
-      this.ufs = resposta.content; 
+      this.ufs = resposta; 
       this.possuiUf.emit(this.ufs.length > 0 ? true : false);
     var ok = resposta;
   }).catch((erro) => {

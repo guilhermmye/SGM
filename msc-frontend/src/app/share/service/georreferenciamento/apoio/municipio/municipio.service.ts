@@ -17,7 +17,7 @@ export class MunicipioService {
     return this.httpClient.get<ResponsePageable>(`${environment.mimg_api}/municipios`,{
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+this.tokenStorage.getToken()
+        'x-wso2-auth-header': 'Bearer '+this.tokenStorage.getToken()
       })
     });
   }

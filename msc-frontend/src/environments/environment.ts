@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  msc_api:'/msc/api',
-  mimg_api:'/cidadao_geo/v1',
-  stur_api:'/stur/api',
-  seguranca_api:'/seguranca/api',
+  msc_api:'/cidadao/v1',
+  mimg_api:'/georreferenciamento/v1',
+  stur_api:'/stur/v1',
+  seguranca_api:'/seguranca/v1',
   tempo_validade:30,
   loader_time_show:500,
   loader_time_hiden:0

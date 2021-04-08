@@ -65,11 +65,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		
-		web.ignoring().antMatchers("/ufs/*");
-	}
+//	@Override
+//	public void configure(WebSecurity web) throws Exception {
+//		
+//		web.ignoring().antMatchers("/ufs/*");
+//	}
 	
 	
 }
