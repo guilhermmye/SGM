@@ -57,9 +57,7 @@ public class RegiaoIntermediariaService {
 			
 			Uf uf = ufService.buscarUfPorId(regiaoIntermediaria2.getUf().getId());
 			regiaoIntermediaria2.setUf(uf);
-			regiaoIntermediariaRepository.save(regiaoIntermediaria2);
-			regiaoIntermediariaRepository.flush();
-			
+			regiaoIntermediariaRepository.save(regiaoIntermediaria2);			
 		}
 		
 			

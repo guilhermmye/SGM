@@ -46,12 +46,7 @@ public class CidadaoResource {
 	public Page<Cidadao> pesquisar(CidadaoFilter cidadaoFilter,Pageable pageable){
 		return cidadaoRepository.filtrar(cidadaoFilter,pageable);
 	}
-	
-//	@GetMapping
-//	public List<Cidadao> pesquisar(cidadaoFilter cidadaoFilter){
-//		return cidadaoRepository.filtrar(cidadaoFilter);
-//	}
-	
+		
 	@PostMapping
 	public ResponseEntity<Cidadao> criar(@Valid @RequestBody Cidadao cidadao, HttpServletResponse response) {
 		Cidadao cidadaoSalvo = cidadaoService.cadastrar(cidadao);
