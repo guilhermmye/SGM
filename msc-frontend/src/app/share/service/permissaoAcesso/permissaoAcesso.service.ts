@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PermissaoAcessoService {
-  testa: any;
+
 
   constructor(private http: HttpClient,private tokenStorage: TokenStorageService) { }
 
@@ -24,7 +24,7 @@ export class PermissaoAcessoService {
       username: usuario.username,
       email: usuario.email,
       password: usuario.password,
-      role:usuario.roles.name    
+      role : [usuario.roles[0].name]  
     }, httpOptions);
   }
 

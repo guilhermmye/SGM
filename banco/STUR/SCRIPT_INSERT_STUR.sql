@@ -1,26 +1,26 @@
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
-	VALUES ( '100200', 'IPTU',250.00,1.000,'11111111111','Qs 301 conunto 01', '77777777','Bom Destino','MG','66b');
+	VALUES ( '100200', 'IPTU',250.00,1.000,'03925168109','Qs 301 conunto 01', '77777777','Bom Destino','MG','66b');
 	
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
-	VALUES ( '200300', 'IPTU',250.00,1.000,'11111111111','Qs 301 conunto 01', '77777777','Bom Destino','MG','66b');
+	VALUES ( '200300', 'IPTU',250.00,1.000,'03925168109','Qs 301 conunto 01', '77777777','Bom Destino','MG','66b');
 	
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
-	VALUES ( '300400', 'IPTU',250.00,1.000,'11111111111','Qs 301 conunto 01', '77777777','Bom Destino','MG','66b');
+	VALUES ( '300400', 'IPTU',250.00,1.000,'03925168109','Qs 301 conunto 01', '77777777','Bom Destino','MG','66b');
 	
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
-	VALUES ( '400500', 'ITR',400.00,1.600,'11111111111','Setor Rutal Asa Branca','77777888','Bom Destino','MG','10');
+	VALUES ( '400500', 'ITR',400.00,1.600,'03925168109','Setor Rutal Asa Branca','77777888','Bom Destino','MG','10');
 	
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
-	VALUES ( '500600', 'ITR',100.00,400.00,'11111111111','Setor Rutal Brasil', '77777999','Bom Destino','MG','88');
+	VALUES ( '500600', 'ITR',100.00,400.00,'03925168109','Setor Rutal Brasil', '77777999','Bom Destino','MG','88');
 	
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
-	VALUES ( '600700', 'IPTU',200,800.00,'11111111111','Condominio Viver Melhor ', '77777999','Bom Destino','MG','apt 102 c');
+	VALUES ( '600700', 'IPTU',200,800.00,'03925168109','Condominio Viver Melhor ', '77777999','Bom Destino','MG','apt 102 c');
 	
 	INSERT INTO public.stur(
 	 inscricao, tipoimposto, parcela, valortotal, cpfcnpj, endereco, cep, municipio, uf, numero)
